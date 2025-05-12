@@ -7,6 +7,7 @@ import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 import Material from '@primeuix/themes/material';
 import {
+    Avatar,
     Button,
     Column,
     ConfirmationService, ConfirmDialog,
@@ -33,6 +34,7 @@ app.use(PrimeVue,{theme:{preset:Material},ripple:true})
     .component('pv-toast',Toast)
     .component('pv-confirm-dialog',ConfirmDialog)
     .component('pv-select-button',SelectButton)
+    .component('pv-avatar',Avatar)
     .mount('#app')
 
 
