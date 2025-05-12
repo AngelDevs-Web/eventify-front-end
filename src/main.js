@@ -12,7 +12,7 @@ import {
     ConfirmationService, ConfirmDialog,
     DataTable,
     Dialog,
-    DialogService,
+    DialogService, SelectButton,
     Toast,
     ToastService,
     Toolbar
@@ -32,6 +32,7 @@ app.use(PrimeVue,{theme:{preset:Material},ripple:true})
     .component('pv-toolbar',Toolbar)
     .component('pv-toast',Toast)
     .component('pv-confirm-dialog',ConfirmDialog)
+    .component('pv-select-button',SelectButton)
     .mount('#app')
 
 
