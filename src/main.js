@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 import i18n from "./i18n/index.js";
+import router from './router/index.js'
 import PrimeVue from 'primevue/config';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
@@ -26,6 +27,7 @@ app.use(PrimeVue,{theme:{preset:Material},ripple:true})
     .use(DialogService)
     .use(ToastService)
     .use(i18n)
+    .use(router)
     .component('pv-dialog',Dialog)
     .component('pv-button',Button)
     .component('pv-data-table',DataTable)
