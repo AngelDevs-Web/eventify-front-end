@@ -14,13 +14,14 @@ export default {
   components: {PvDialog, ServiceItemCreateAndEditDialog, CreateAndEdit},
   props:{
     item:null,
-
+    serviceList:Array,
+    isEdit:false,
     visible:false
   },
-  emits:['cancel-requested','save-requested','change-visible','quote-order-created'],
+  emits:['cancel-requested','save-requested','change-visible','quote-order-created','quote-order-updated'],
   data(){
     return{
-      id: uuidv4(),
+      id:uuidv4(),
       title:'',
       eventType:'',
       eventDate: null,
@@ -30,10 +31,10 @@ export default {
       eventTypeOptions:['Wedding','Conference','Quinceanera','Graduation'],
 
 
-
       submitted:false,
       serviceDialogVisible:false,
       serviceItems:[],
+      deletedServices:[],
 
 
       quoteOrderService: new QuoteOrderService()
@@ -61,27 +62,44 @@ export default {
       console.log(this.eventDate);
       this.eventDate = this.eventDate.toISOString().split("T")[0]
       console.log(this.eventDate)
-      console.log('Creating a new Quote order');
-      this.serviceItems.forEach(serviceItem => {
-        serviceItemService.create(serviceItem)
-      })
+
+
       let item = {id: this.id, title: this.title, eventType: this.eventType,
         eventDate: this.eventDate,guestQuantity: this.guestQuantity, location:this.location,
         totalPrice: this.getTotalPrice(), state: this.state
       };
       let quoteOrder = new Quote({...item})
-      this.quoteOrderService.create(quoteOrder);
+
+      if(this.isEdit){
+        this.quoteOrderService.update(quoteOrder.id, quoteOrder);
+        this.$emit('quote-order-updated',quoteOrder);
+        if(this.deletedServices.length > 0){
+          this.deletedServices.forEach(serviceId => {
+            serviceItemService.delete(serviceId).then(()=>{
+              console.log('Service deleted successfully');
+            }).catch(err=>{console.log(err);});
+
+          })
+          this.deletedServices = [];
+        }
+      }else{
+        console.log('Creating a new Quote order');
+        this.quoteOrderService.create(quoteOrder);
+        this.serviceItems.forEach(serviceItem => {
+          serviceItemService.create(serviceItem)
+        })
+        this.$emit('quote-order-created',quoteOrder);
+      }
+
+
+
       this.$emit('change-visible',false);
-      this.$emit('quote-order-created',quoteOrder);
       this.clearForm();
     },
 
     onCancel(){
       this.$emit('change-visible',false);
       this.clearForm();
-    },
-    changeVisible(){
-      this.visible = false;
     },
 
     clearForm(){
@@ -94,13 +112,9 @@ export default {
       this.serviceItems = [];
     },
 
-
-    hideServiceDialog(isVisible){
-      this.serviceDialogVisible=isVisible;
-    },
-
-    deleteServiceItem(description){
-      this.serviceItems = this.serviceItems.filter(item => item.description !== description);
+    deleteServiceItem(id){
+      this.serviceItems = this.serviceItems.filter(item => item.id !== id);
+      this.deletedServices.push(id)
     },
     getFormatPrice(price){
       return `S/ ${price.toFixed(2)}`;
@@ -115,14 +129,44 @@ export default {
     },
     getSubTotal(){
       return parseFloat(this.getTotalPrice()-this.getIGV()).toFixed(2);
+    },
+    getSubmitLabel() {
+      return `${this.isEdit ? 'Update' : 'Create'} Quote`;
+    },
+  },
+  watch: {
+    visible(newValue) {
+      if (newValue) {
+        if (this.isEdit) {
+          // Si es edición, carga los datos del item
+          this.id = this.item.id;
+          this.title = this.item.title;
+          this.eventType = this.item.eventType;
+          this.guestQuantity = this.item.guestQuantity;
+          this.location = this.item.location;
+
+          const [year, month, day] = this.item.eventDate.split('-');
+          this.eventDate = new Date(year, month - 1, day);
+
+          let serviceItemService = new ServiceItemService();
+          serviceItemService.getByQuoteOrderId(this.id).then((response) => {
+            const newServiceItems = response.data.map(service => new ServiceItem({...service}));
+            this.serviceItems = [...newServiceItems];
+          });
+        } else {
+          // Si no es edición, limpia el formulario
+          this.clearForm();
+        }
+      }
     }
   }
+
 }
 </script>
 
 <template>
 
-  <pv-dialog v-bind:visible="visible" modal closable="false">
+  <pv-dialog v-bind:visible="visible" modal>
 
     <div class="flex flex-column p-4 quote-container">
 
@@ -132,10 +176,10 @@ export default {
 
       <div>
         <div class="flex flex-column form-group">
-          <label for="title">Id</label>
+          <label for="id">Id</label>
           <pv-input-group>
             <pv-input-group-addon><i class="pi pi-bookmark"></i></pv-input-group-addon>
-            <pv-input-text id="title" v-model="id" required></pv-input-text>
+            <pv-input-text id="id" v-model="id" required></pv-input-text>
           </pv-input-group>
         </div>
         <div class="flex flex-column form-group">
@@ -178,7 +222,7 @@ export default {
           </div>
         </div>
         <div class="mt-4">
-          <pv-button  class="mr-2" style="background-color: #3A506B; border:none" type="button" @click="onCreateQuoteOrder">Create Quote</pv-button>
+          <pv-button :label="getSubmitLabel()" class="mr-2" style="background-color: #3A506B; border:none" type="button" @click="onCreateQuoteOrder"/>
           <pv-button style="background-color: #3A506B; border:none" type="button" @click="onCancel">Cancel</pv-button>
         </div>
 
@@ -204,7 +248,7 @@ export default {
           </pv-column>
           <pv-column field="actions" header="Actions">
             <template #body="slotProps">
-              <pv-button type="button" @click="deleteServiceItem(slotProps.data.description)" class="bg-red-500"><i class="pi pi-trash"></i></pv-button>
+              <pv-button type="button" @click="deleteServiceItem(slotProps.data.id)" class="bg-red-500"><i class="pi pi-trash"></i></pv-button>
             </template>
           </pv-column>
         </pv-data-table>
