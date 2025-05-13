@@ -12,9 +12,9 @@ import {
     Button,
     Column,
     ConfirmationService, ConfirmDialog,
-    DataTable,
+    DataTable, DatePicker,
     Dialog,
-    DialogService, SelectButton,
+    DialogService, Divider, InputGroup, InputGroupAddon, InputNumber, InputText, Select, SelectButton,
     Toast,
     ToastService,
     Toolbar
@@ -37,6 +37,13 @@ app.use(PrimeVue,{theme:{preset:Material},ripple:true})
     .component('pv-confirm-dialog',ConfirmDialog)
     .component('pv-select-button',SelectButton)
     .component('pv-avatar',Avatar)
+    .component('pv-input-group',InputGroup)
+    .component('pv-input-group-addon',InputGroupAddon)
+    .component('pv-input-text',InputText)
+    .component('pv-input-number',InputNumber)
+    .component('pv-date-picker',DatePicker)
+    .component('pv-select',Select)
+    .component('pv-divider',Divider)
     .mount('#app')
 
 
