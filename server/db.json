@@ -1,5 +1,78 @@
 {
+  "users": [
+    {
+      "id": "1",
+      "name": "Andrea Ramirez",
+      "title": "Event Organizer",
+      "email": "andrea.ramirez@gmail.com",
+      "phone": "+51 999 888 777",
+      "location": "Peru, Lima, Surco",
+      "website": "www.andrearamirez-events.com",
+      "bio": "Event organizer with over 8 years of experience. Specialized in weddings, corporate events, and XV birthday parties. Creator of unforgettable moments with attention to detail and personalized service.",
+      "profileImage": "https://b2472105.smushcdn.com/2472105/wp-content/uploads/2023/01/Perfil-Profesional-_48-820x1024.jpg?lossy=1&strip=1&webp=1"
+    },
+    {
+      "id": "2",
+      "name": "Carlos Mendoza",
+      "title": "Wedding Planner",
+      "email": "carlos.mendoza@gmail.com",
+      "phone": "+51 987 654 321",
+      "location": "Peru, Lima, Miraflores",
+      "website": "www.carlosmendoza-weddings.com",
+      "bio": "Wedding planner with 5 years of experience. Specialized in luxury weddings and destination ceremonies. Known for creating elegant and personalized celebrations.",
+      "profileImage": "https://www.cristianprado.cl/wp-content/uploads/2021/03/49B5179-1024x683.jpg"
+    }
+    ],
+
   "events": [
+    {
+      "id": 1,
+      "title": "Wedding of Maria and Juan",
+      "date": "2025-04-26",
+      "customerName": "María López",
+      "location": "Blue Beach Hotel",
+      "status": "Active",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "title": "Annual Conference",
+      "date": "2025-06-22",
+      "customerName": "ABC Company",
+      "location": "Convention Center",
+      "status": "Active",
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "title": "Corporate Party",
+      "date": "2025-07-10",
+      "customerName": "Company XYZ",
+      "location": "Botanical Garden",
+      "status": "Active",
+      "userId": 1
+    },
+    {
+      "id": 4,
+      "title": "Baby Shower Ana",
+      "date": "2025-08-05",
+      "customerName": "Ana Rodríguez",
+      "location": "Private residence",
+      "status": "To be confirmed",
+      "userId": 1
+    },
+    {
+      "id": 5,
+      "title": "Pedro's graduation",
+      "date": "2025-08-20",
+      "customerName": "Sanchez Family",
+      "location": "Event Hall",
+      "status": "Active",
+      "userId": 1
+    }
+  ],
+
+  "events-calendar": [
     {
       "id": 1,
       "title": "Event 1",
@@ -45,6 +118,7 @@
       "location": "Location 5",
       "status": "upcoming"
     }
-
   ]
+
+
 }
