@@ -98,7 +98,7 @@ export default {
           </pv-input-group>
         </div>
         <div class="flex flex-column form-group">
-          <label class="text-sm" for="description">Quote Order</label>
+          <label class="text-sm" for="description">{{ $t('serviceItem.quoteOrder') }}</label>
           <pv-input-group>
             <pv-input-group-addon>
               <i class="pi pi-pencil"></i>
@@ -107,7 +107,7 @@ export default {
           </pv-input-group>
         </div>
         <div class="flex flex-column form-group">
-          <label class="text-sm" for="description">Description</label>
+          <label class="text-sm" for="description">{{ $t('serviceItem.description') }}</label>
           <pv-input-group>
             <pv-input-group-addon>
               <i class="pi pi-pencil"></i>
@@ -116,7 +116,7 @@ export default {
           </pv-input-group>
         </div>
         <div class="flex flex-column form-group">
-          <label class="text-sm" for="quantity">Quantity</label>
+          <label class="text-sm" for="quantity">{{ $t('serviceItem.quantity')}}</label>
           <pv-input-group>
             <pv-input-group-addon>
               <i class="pi pi-hashtag"></i>
@@ -125,14 +125,14 @@ export default {
           </pv-input-group>
         </div>
         <div class="flex flex-column form-group">
-          <label class="text-sm" for="unitPrice">Unit Price</label>
+          <label class="text-sm" for="unitPrice">{{ $t('serviceItem.unitPrice') }}</label>
           <pv-input-group>
             <pv-input-group-addon>S/</pv-input-group-addon>
             <pv-input-number v-model="unitPrice" id="unitPrice" :min-fraction-digits="2" :max-fraction-digits="2" required></pv-input-number>
           </pv-input-group>
         </div>
         <div class="flex flex-column form-group">
-          <label class="text-sm"  for="totalPrice">Total Price</label>
+          <label class="text-sm"  for="totalPrice">{{ $t('serviceItem.totalPrice') }}</label>
           <pv-input-group>
             <pv-input-group-addon>S/</pv-input-group-addon>
             <pv-input-number v-model="totalPrice" id="totalPrice" :min-fraction-digits="2" :max-fraction-digits="2"></pv-input-number>

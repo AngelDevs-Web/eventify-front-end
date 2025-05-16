@@ -69,7 +69,7 @@ export default {
 <template>
 
   <div class="flex flex-column p-4" style="background-color: #F5F7FA; color:#000">
-    <p class="text-3xl font-bold text-left mb-4 mt-0">Quotes</p>
+    <p class="text-3xl font-bold text-left mb-4 mt-0">{{ $t('quoteOrder.quotes') }}</p>
     <div class="flex mb-4">
       <div class="flex justify-content-between w-8">
         <pv-input-group class="w-5">
@@ -80,7 +80,7 @@ export default {
         <pv-select class="w-3" placeholder="Recientes"></pv-select>
       </div>
       <div class="flex justify-content-end w-4">
-        <pv-button style="background-color: #3A506B" type="button" @click="isQuoteCreateFormVisible= true; isEdit=false"><i class="pi pi-plus-circle"></i> New Quote</pv-button>
+        <pv-button style="background-color: #3A506B" type="button" @click="isQuoteCreateFormVisible= true; isEdit=false"><i class="pi pi-plus-circle"></i> {{$t('quoteOrder.newQuote')}}</pv-button>
       </div>
     </div>
 

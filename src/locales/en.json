@@ -195,5 +195,24 @@
   },
   "commonTask": {
     "required": "is required"
+  },
+
+  "quoteOrder":{
+    "title": "Title",
+    "eventType": "Event Type",
+    "eventDate": "Event Date",
+    "guestQuantity": "Guest Number",
+    "location": "Location",
+    "state": "State",
+    "includedServices": "Included Services",
+    "quotes": "Quotes",
+    "newQuote": "New Quote"
+  },
+  "serviceItem": {
+    "quoteOrder": "Quote Order",
+    "description": "Description",
+    "quantity": "Quantity",
+    "unitPrice": "Unit Price",
+    "totalPrice": "Total Price"
   }
 }

@@ -183,7 +183,7 @@ export default {
           </pv-input-group>
         </div>
         <div class="flex flex-column form-group">
-          <label for="title">Title</label>
+          <label for="title">{{ $t('quoteOrder.title') }}</label>
           <pv-input-group>
             <pv-input-group-addon><i class="pi pi-bookmark"></i></pv-input-group-addon>
             <pv-input-text id="title" v-model="title" required></pv-input-text>
@@ -191,14 +191,14 @@ export default {
         </div>
         <div class="flex form-group justify-content-between" >
           <div class="w-24rem flex flex-column align-content-start">
-            <label for="eventType">Event Type</label>
+            <label for="eventType">{{ $t('quoteOrder.eventType') }}</label>
             <pv-input-group>
               <pv-input-group-addon><i class="pi pi-headphones"></i></pv-input-group-addon>
               <pv-select id="eventType" v-model="eventType" :options="eventTypeOptions" required></pv-select>
             </pv-input-group>
           </div>
           <div class="w-24rem flex flex-column align-content-start">
-            <label>Event Date</label>
+            <label>{{$t('quoteOrder.eventDate')}}</label>
             <pv-input-group>
               <pv-input-group-addon><i class="pi pi-calendar"></i></pv-input-group-addon>
               <pv-date-picker v-model="eventDate" date-format="dd/mm/yy" fluid required/>
@@ -207,14 +207,14 @@ export default {
         </div>
         <div class="flex form-group justify-content-between">
           <div class="w-24rem flex flex-column align-content-start">
-            <label for="guestQuantity">Guests Number</label>
+            <label for="guestQuantity">{{ $t('quoteOrder.guestQuantity') }}</label>
             <pv-input-group>
               <pv-input-group-addon><i class="pi pi-user"></i></pv-input-group-addon>
               <pv-input-number v-model="guestQuantity" id="guestQuantity" required></pv-input-number>
             </pv-input-group>
           </div>
           <div class="w-24rem flex flex-column align-content-start">
-            <label for="location">Location</label>
+            <label for="location">{{$t('quoteOrder.location') }}</label>
             <pv-input-group>
               <pv-input-group-addon><i class="pi pi-map-marker"></i></pv-input-group-addon>
               <pv-input-text id="location" v-model="location" required></pv-input-text>
@@ -233,7 +233,7 @@ export default {
       <div class="flex flex-column align-content-start">
 
         <div class="text-xl text-left font-bold">
-          <p>Included Services</p>
+          <p>{{ $t('quoteOrder.includedServices') }}</p>
         </div>
         <pv-data-table :value="serviceItems" table-style="min-width:50rem">
           <pv-column field="id" header="ID"></pv-column>
