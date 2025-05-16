@@ -1,11 +1,11 @@
 // src/services/task.service.js
 import axios from 'axios';
 
-// Usamos la variable de entorno para la URL base de la API
+// Use Vite's environment variable for the API base URL
 const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api/v1';
 
 /**
- * Servicio para interactuar con la API de json-server
+ * Service to interact with the json-server API
  */
 export const apiService = {
     // ===== Tableros (Boards) =====
@@ -31,29 +31,29 @@ export const apiService = {
     updateTask: (id, task) => axios.put(`${API_URL}/tasks/${id}`, task),
     deleteTask: (id) => axios.delete(`${API_URL}/tasks/${id}`),
 
-    // ===== Operaciones complejas =====
+
 
     /**
-     * Mover una tarea entre columnas
-     * @param {number} taskId - ID de la tarea a mover
-     * @param {number} sourceColumnId - ID de la columna origen
-     * @param {number} targetColumnId - ID de la columna destino
+     * Move a task between columns
+     * @param {number} taskId - ID of the task to move
+     * @param {number} sourceColumnId - ID of the source column
+     * @param {number} targetColumnId - ID of the target column
      */
     moveTask: async (taskId, sourceColumnId, targetColumnId) => {
         try {
-            // Obtener la tarea actual
+            // Get the current task
             const taskResponse = await apiService.getTask(taskId);
             const task = taskResponse.data;
 
-            // Obtener las tareas en la columna destino para determinar el nuevo orden
+            // Get the tasks in the target column to determine the new order
             const tasksInTargetResponse = await apiService.getColumnTasks(targetColumnId);
             const tasksInTarget = tasksInTargetResponse.data;
 
-            // Actualizar la tarea con la nueva columna y orden
+            // Update the task with the new column and order
             return await apiService.updateTask(taskId, {
                 ...task,
                 columnId: targetColumnId,
-                order: tasksInTarget.length + 1 // Agregamos al final de la columna
+                order: tasksInTarget.length + 1 // Add to the end of the column
             });
         } catch (error) {
             console.error('Error al mover la tarea:', error);
@@ -62,21 +62,21 @@ export const apiService = {
     },
 
     /**
-     * Cargar un tablero completo con sus columnas y tareas
-     * @param {number} boardId - ID del tablero a cargar
-     * @returns {Promise<Object>} - Tablero con columnas y tareas
+     * Put together a complete board with its columns and tasks
+     * @param {number} boardId - ID of the board to load
+     * @returns {Promise<Object>} - Board with columns and tasks
      */
     loadBoard: async (boardId) => {
         try {
-            // 1. Obtener información del tablero
+            // 1. Get the board
             const boardResponse = await apiService.getBoard(boardId);
             const board = boardResponse.data;
 
-            // 2. Obtener columnas del tablero
+            // 2. Get the columns of the board
             const columnsResponse = await apiService.getBoardColumns(boardId);
             const columns = columnsResponse.data;
 
-            // 3. Para cada columna, obtener sus tareas
+            // 3. For each column, get the tasks
             const columnsWithTasks = await Promise.all(
                 columns.map(async (column) => {
                     const tasksResponse = await apiService.getColumnTasks(column.id);
@@ -87,7 +87,7 @@ export const apiService = {
                 })
             );
 
-            // 4. Retornar el tablero completo con columnas y tareas
+            // 4. Return the complete board with columns and tasks
             return {
                 ...board,
                 columns: columnsWithTasks

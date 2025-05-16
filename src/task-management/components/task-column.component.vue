@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     onDragStart(task, event) {
-      // Transferir los datos de la tarea y la columna
+      // Transfer data to the drag event
       event.dataTransfer.setData('taskId', task.id);
       event.dataTransfer.setData('sourceColumnId', this.column.id);
       event.dataTransfer.effectAllowed = 'move';
@@ -30,11 +30,11 @@ export default {
     onDrop(event) {
       event.preventDefault();
 
-      // Obtener los datos transferidos
+      // Get taskId and sourceColumnId from the drag event
       const taskId = parseInt(event.dataTransfer.getData('taskId'));
       const sourceColumnId = parseInt(event.dataTransfer.getData('sourceColumnId'));
 
-      // Emitir evento para mover la tarea
+      // Emit task-drop event with taskId and sourceColumnId
       this.$emit('task-drop', {
         taskId,
         sourceColumnId,

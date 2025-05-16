@@ -16,9 +16,9 @@ export default {
     }
   },
   computed: {
-    // Asegurarnos de mostrar el título correctamente
+
     taskTitle() {
-      // Acceder directamente a la propiedad title del objeto task
+
       return this.task && this.task.title ? this.task.title : '(Sin título)';
     },
 
@@ -53,10 +53,10 @@ export default {
       @dragstart="$emit('dragstart', $event)"
   >
     <div class="task-content">
-      <!-- Usar la propiedad computada para mostrar el título -->
+      <!-- Use the property computed -->
       <h3 class="task-title" :class="{'task-missing': !task.title}">{{ taskTitle }}</h3>
 
-      <!-- Usar la propiedad computada para mostrar la descripción -->
+      <!-- Use the computed property to show the description -->
       <p class="task-description" :class="{'text-muted': !task.description}">{{ taskDescription }}</p>
     </div>
 

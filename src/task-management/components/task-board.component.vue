@@ -23,7 +23,7 @@ export default {
   },
   async created() {
     try {
-      // Cargar el tablero desde la API (por defecto carga el tablero con ID 1)
+      // Get the task board data
       this.taskBoard = await TaskBoardApi.load();
       this.loading = false;
     } catch (error) {
@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     openNewTaskDialog() {
-      // Reset del formulario
+      // Reset the new task data
       this.newTask = {
         title: '',
         description: '',
@@ -46,12 +46,12 @@ export default {
 
     async saveTask() {
       if (!this.newTask.title.trim()) {
-        return; // No permitir tareas sin título
+        return; // Dont save if title is empty
       }
 
       try {
         if (this.editingTask) {
-          // Actualizar tarea existente
+          // Update existing task
           await this.taskBoard.updateTask(
               this.editingTask.id,
               this.newTask.columnId,
@@ -61,7 +61,7 @@ export default {
               }
           );
         } else {
-          // Crear nueva tarea
+          // Create new task
           await this.taskBoard.createTask(
               this.newTask.title,
               this.newTask.description,
@@ -72,7 +72,7 @@ export default {
         this.taskDialog = false;
       } catch (error) {
         console.error('Error guardando la tarea:', error);
-        // Aquí podrías mostrar un mensaje de error al usuario
+        // Here you could show an error message to the user
       }
     },
 
@@ -92,7 +92,6 @@ export default {
           await this.taskBoard.deleteTask(taskId, columnId);
         } catch (error) {
           console.error('Error eliminando la tarea:', error);
-          // Aquí podrías mostrar un mensaje de error al usuario
         }
       }
     },
@@ -103,7 +102,6 @@ export default {
           await this.taskBoard.moveTask(taskId, sourceColumnId, targetColumnId);
         } catch (error) {
           console.error('Error moviendo la tarea:', error);
-          // Aquí podrías mostrar un mensaje de error al usuario
         }
       }
     }
@@ -124,18 +122,16 @@ export default {
       />
     </div>
 
-    <!-- Estado de carga -->
+
     <div v-if="loading" class="loading-state">
       <p>Cargando tablero...</p>
     </div>
 
-    <!-- Mensaje de error -->
     <div v-else-if="error" class="error-state">
       <p>{{ error }}</p>
       <pv-button label="Reintentar" @click="created" />
     </div>
 
-    <!-- Tablero cargado correctamente -->
     <div v-else class="board-container">
       <task-column-component
           v-for="column in taskBoard.columns"
@@ -147,7 +143,6 @@ export default {
       />
     </div>
 
-    <!-- Diálogo para crear/editar tareas -->
     <pv-dialog
         v-model:visible="taskDialog"
         :header="editingTask ? $t('tasks.edit') : $t('tasks.create')"
@@ -236,7 +231,7 @@ export default {
   min-height: 400px;
 }
 
-/* Estados de carga y error */
+
 .loading-state, .error-state {
   display: flex;
   flex-direction: column;
@@ -251,7 +246,7 @@ export default {
   color: #f44336;
 }
 
-/* Estilos para el diálogo de tareas */
+
 :deep(.task-dialog) {
   padding: 0;
 }
