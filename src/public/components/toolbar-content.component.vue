@@ -7,10 +7,7 @@ export default {
 </script>
 
 <template>
-  <pv-toolbar class="sidebar-toolbar flex flex-column" style="border-radius:0; background-color:#fff; border:none; padding:0;">
-    <template #start>
-      <div class="h-4rem"></div>
-    </template>
+  <pv-toolbar class="toolbar-custom">
     <template #center>
       <div class="flex flex-column">
         <router-link to="/home">{{ $t('toolbar.home') }}</router-link>
@@ -30,25 +27,24 @@ export default {
 </template>
 
 <style scoped>
-a,
-router-link {
-  padding: 16px 48px;
+.toolbar-custom {
+  height: 100vh;
+  flex-direction: column;
+  display: flex;
+  background-color: #fff;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+}
+
+a {
+  padding: 25px 48px;
   text-decoration: none;
   color: #000;
-  display: block;
 }
-
-a:hover,
-router-link:hover {
-  background-color: #EAEAEA;
+a:hover {
+  background-color: #3A506B;
+  color: #fff;
   transition: 0.3s ease-in-out;
-  justify-content: flex-start;
-}
-
-.router-link-active, .router-link-exact-active {
-
-  background-color: #f0f0f5;
-  color: #4ed8c7;
-  border-left: 3px solid #4ed8c7;
 }
 </style>

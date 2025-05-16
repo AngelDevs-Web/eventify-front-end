@@ -9,13 +9,33 @@
 </script>
 
 <template>
-  <header-content></header-content>
-  <div class="flex">
-    <toolbar-content></toolbar-content>
-    <router-view></router-view>
+  <div class="app-wrapper">
+    <header-content />
+    <div class="layout-body">
+      <toolbar-content />
+      <div class="main-content">
+        <router-view></router-view>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
+.app-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* 🔒 bloquea scroll externo */
+}
 
+.layout-body {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.main-content {
+  flex-grow: 1;
+  overflow-y: auto; /* ✅ solo aquí habrá scroll si se necesita */
+}
 </style>

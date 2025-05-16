@@ -102,7 +102,6 @@ import CertificationsList from '../../profile-management/components/certificatio
 import AlbumsPageComponent from '../../profile-management/components/album-display.component.vue';
 import ReviewsComponent from '../../profile-management/components/reviews.component.vue';
 import ServicesComponent from '../../profile-management/components/services.component.vue';
-import ProfileSettingsPageComponent from '../../profile-management/components/profile-settings-page.component.vue';
 export default {
   name: 'ProfilePageComponent',
   components: {
@@ -112,7 +111,6 @@ export default {
     AlbumsPageComponent,
     ReviewsComponent,
     ServicesComponent,
-    ProfileSettingsPageComponent
   },
   data() {
     return {
