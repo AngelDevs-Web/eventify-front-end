@@ -6,6 +6,8 @@ import ProfileComponent from "../public/pages/profile.component.vue";
 import taskBoardComponent from "../task-management/components/task-board.component.vue";
 import EventPageComponent from "../event-management/pages/event-page.component.vue";
 
+const TaskManagementComponent = () => import('../task-management/pages/task-management.component.vue');
+
 const routes = [
     {path: '/home', name: 'Home', component: HomeComponent, meta: {title: 'Home'}},
     {path: '/calendar', name: 'CalendarView', component: CalendarViewComponent, meta: {title: 'Calendar'}},
@@ -16,7 +18,9 @@ const routes = [
     {path:'/events/:id/edit', name:"event-edit", component: () => import('../event-management/components/create-and-edit-event.component.vue'),
     props: route=>({id:route.params.id})},
     {path: '/tasks', name: 'Tasks', component: taskBoardComponent, meta: {title: 'Tasks'}},
-    {path:"/", name:"Default", redirect:'/home'}
+    {path:"/", name:"Default", redirect:'/home'},
+    { path: '/tasks',name: 'tasks',      component: TaskManagementComponent,     meta: { title: 'Tasks'}},
+
 ];
 
 
