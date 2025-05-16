@@ -8,9 +8,83 @@
     "quotes": "Cotizaciones",
     "messages": "Mensajes",
     "subscriptions": "Suscripciones",
-    "certifications": "Certificaciones"
+    "certifications": "Certificaciones",
+    "settings": "Configuración"
   },
-
+  "profilePage": {
+    "title": "Mi Perfil",
+    "loading": "Cargando información del perfil...",
+    "errorLoading": "Error al cargar los datos del perfil. Por favor, asegúrate de que JSON Server esté funcionando.",
+    "tabs": {
+      "information": "Información",
+      "albums": "Álbumes",
+      "reviews": "Reseñas",
+      "services": "Servicios"
+    }
+  },
+  "common": {
+    "retry": "Reintentar"
+  },
+  "profile": {
+    "profilePhoto": "Foto de perfil",
+    "contactInformation": "Información de contacto",
+    "emailAddress": "Correo electrónico:",
+    "phoneNumber": "Número de teléfono:",
+    "location": "Ubicación:",
+    "website": "Sitio web:",
+    "aboutMe": "Sobre mí"
+  },
+  "statistics": {
+    "title": "Mis Estadísticas",
+    "completedEvents": "Eventos Completados",
+    "sentQuotes": "Presupuestos Enviados",
+    "servedCustomers": "Clientes Atendidos",
+    "averageRating": "Calificación Promedio"
+  },
+  "certifications": {
+    "title": "Certificaciones",
+    "noCertifications": "No hay certificaciones disponibles"
+  },
+  "albums": {
+    "title": "Mis álbumes de eventos",
+    "subtitle": "Muestra tu trabajo con álbumes de fotos profesionales.",
+    "createButton": "+ Crear álbum",
+    "sortBy": "Ordenar por:",
+    "sortRecent": "Más recientes",
+    "sortOldest": "Más antiguos",
+    "sortNameAsc": "Nombre (A-Z)",
+    "sortNameDesc": "Nombre (Z-A)",
+    "sortPhotos": "Número de fotos",
+    "show": "Mostrar:",
+    "showCount": "{count} álbumes",
+    "selectAll": "Seleccionar todo",
+    "deleteSelected": "Eliminar seleccionados ({count})",
+    "loading": "Cargando álbumes...",
+    "retry": "Reintentar",
+    "empty": "No se encontraron álbumes. Crea tu primer álbum para mostrar tu trabajo.",
+    "createNew": "Crear nuevo álbum",
+    "emptyPage": "No hay álbumes para mostrar en esta página.",
+    "goToFirst": "Ir a la primera página",
+    "photosCount": "{count} fotos",
+    "edit": "Editar",
+    "viewAlbum": "Ver álbum",
+    "paginationInfo": "Mostrando {from} - {to} de {total} álbumes",
+    "previous": "« Anterior",
+    "next": "Siguiente »",
+    "confirmDeleteTitle": "Confirmar eliminación",
+    "confirmDeleteMessage": "¿Estás seguro de que deseas eliminar {count} {albums} seleccionados? Esta acción no se puede deshacer.",
+    "singularAlbum": "álbum",
+    "pluralAlbums": "álbumes",
+    "cancel": "Cancelar",
+    "deleting": "Eliminando...",
+    "delete": "Eliminar",
+    "errorLoading": "Error al cargar los álbumes. Asegúrate de que JSON Server esté funcionando.",
+    "invalidDate": "Fecha inválida",
+    "viewAlbumFuture": "La funcionalidad para ver el álbum se implementará en el futuro",
+    "saveError": "Error al guardar el álbum.",
+    "deleteSuccess": "{count} álbum(es) eliminado(s) correctamente.",
+    "deleteError": "Error al eliminar algunos álbumes. Por favor, inténtalo de nuevo."
+  },
   "eventManagement": {
     "pageTitle": "Mis Eventos",
     "actions": {

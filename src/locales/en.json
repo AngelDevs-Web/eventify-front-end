@@ -8,9 +8,83 @@
     "quotes": "Quotes",
     "messages": "Messages",
     "subscriptions": "Subscriptions",
-    "certifications": "Certifications"
+    "certifications": "Certifications",
+    "settings": "Settings"
   },
-
+  "profilePage": {
+    "title": "My Profile",
+    "loading": "Loading profile information...",
+    "errorLoading": "Failed to load profile data. Please make sure JSON Server is running.",
+    "tabs": {
+      "information": "Information",
+      "albums": "Albums",
+      "reviews": "Reviews",
+      "services": "Services"
+    }
+  },
+  "common": {
+    "retry": "Retry"
+  },
+  "profile": {
+    "profilePhoto": "Profile photo",
+    "contactInformation": "Contact Information",
+    "emailAddress": "Email Address:",
+    "phoneNumber": "Phone number:",
+    "location": "Location:",
+    "website": "Website:",
+    "aboutMe": "About me"
+  },
+  "statistics": {
+    "title": "My Statistics",
+    "completedEvents": "Completed Events",
+    "sentQuotes": "Sent Quotes",
+    "servedCustomers": "Served Customers",
+    "averageRating": "Average Rating"
+  },
+  "certifications": {
+    "title": "Certifications",
+    "noCertifications": "No certifications available"
+  },
+  "albums": {
+    "title": "My Event Albums",
+    "subtitle": "Showcase your work with professional photo albums.",
+    "createButton": "+ Create Album",
+    "sortBy": "Sort by:",
+    "sortRecent": "Most recent",
+    "sortOldest": "Oldest first",
+    "sortNameAsc": "Name (A-Z)",
+    "sortNameDesc": "Name (Z-A)",
+    "sortPhotos": "Number of photos",
+    "show": "Show:",
+    "showCount": "{count} albums",
+    "selectAll": "Select All",
+    "deleteSelected": "Delete Selected ({count})",
+    "loading": "Loading albums...",
+    "retry": "Retry",
+    "empty": "No albums found. Create your first album to showcase your work.",
+    "createNew": "Create New Album",
+    "emptyPage": "No albums to display on this page.",
+    "goToFirst": "Go to first page",
+    "photosCount": "{count} photos",
+    "edit": "Edit",
+    "viewAlbum": "View album",
+    "paginationInfo": "Showing {from} - {to} of {total} albums",
+    "previous": "« Previous",
+    "next": "Next »",
+    "confirmDeleteTitle": "Confirm Deletion",
+    "confirmDeleteMessage": "Are you sure you want to delete {count} selected {albums}? This action cannot be undone.",
+    "singularAlbum": "album",
+    "pluralAlbums": "albums",
+    "cancel": "Cancel",
+    "deleting": "Deleting...",
+    "delete": "Delete",
+    "errorLoading": "Failed to load albums. Please make sure JSON Server is running.",
+    "invalidDate": "Invalid date",
+    "viewAlbumFuture": "View album functionality will be implemented in the future",
+    "saveError": "Failed to save album.",
+    "deleteSuccess": "{count} album(s) successfully deleted.",
+    "deleteError": "Failed to delete some albums. Please try again."
+  },
   "eventManagement": {
     "pageTitle": "My Events",
     "actions": {
