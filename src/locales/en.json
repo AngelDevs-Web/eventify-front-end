@@ -193,7 +193,7 @@
     "column-3": "In Progress",
     "column-4": "Completed"
   },
-  "common": {
+  "commonTask": {
     "required": "is required"
   }
 }

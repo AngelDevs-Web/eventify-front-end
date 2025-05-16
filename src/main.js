@@ -4,6 +4,8 @@ import App from './App.vue'
 import i18n from "./i18n/index.js";
 import router from './router/index.js'
 import PrimeVue from 'primevue/config';
+import Textarea from 'primevue/textarea';
+import AutoComplete from 'primevue/autocomplete';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 import Material from '@primeuix/themes/material';
@@ -48,6 +50,8 @@ app.use(PrimeVue,{theme:{preset:Material},ripple:true})
     .component('pv-date-picker',DatePicker)
     .component('pv-select',Select)
     .component('pv-divider',Divider)
+    .component('pv-textarea', Textarea)
+    .component('pv-dropdown', AutoComplete)
     .mount('#app')
 
 
