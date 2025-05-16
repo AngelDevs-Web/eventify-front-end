@@ -12,13 +12,15 @@ import {
     Button,
     Column,
     ConfirmationService, ConfirmDialog,
-    DataTable, DatePicker,
+    DataTable,
     Dialog,
     DialogService, Divider, InputGroup, InputGroupAddon, InputNumber, InputText, Select, SelectButton,
     Toast,
     ToastService,
-    Toolbar
+    Toolbar,
+    DatePicker
 } from "primevue";
+import FullCalendar from "@fullcalendar/vue3";
 
 const app = createApp(App)
 
@@ -37,6 +39,8 @@ app.use(PrimeVue,{theme:{preset:Material},ripple:true})
     .component('pv-confirm-dialog',ConfirmDialog)
     .component('pv-select-button',SelectButton)
     .component('pv-avatar',Avatar)
+    .component('pv-calendar',DatePicker)
+    .component('pv-full-calendar', FullCalendar)
     .component('pv-input-group',InputGroup)
     .component('pv-input-group-addon',InputGroupAddon)
     .component('pv-input-text',InputText)
