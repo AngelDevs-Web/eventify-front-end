@@ -1,3 +1,12 @@
 {
-
+  "toolbar": {
+    "home": "Inicio",
+    "profile": "Perfil",
+    "calendar": "Calendario",
+    "events": "Eventos",
+    "tasks": "Tareas",
+    "quotes": "Cotizaciones",
+    "messages": "Mensajes",
+    "subscriptions": "Suscripciones"
+  }
 }

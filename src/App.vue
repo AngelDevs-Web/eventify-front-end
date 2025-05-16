@@ -12,6 +12,7 @@
   <header-content></header-content>
   <div class="flex">
     <toolbar-content></toolbar-content>
+    <router-view></router-view>
   </div>
 </template>
 
