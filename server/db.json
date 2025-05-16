@@ -1204,6 +1204,64 @@
       "eventDate": "2025-07-08"
     }
   ],
+  "services-items": [
+    {
+      "id": "108351ab-51a0-4c02-84fa-100835a2c256",
+      "description": "Catering",
+      "quantity": 100,
+      "unitPrice": 11,
+      "totalPrice": 1100,
+      "quoteOrderId": "fdb0d4ac-45b4-49ef-95f2-89b09174f5f3"
+    },
+    {
+      "id": "09193fcb-29c5-4178-aab5-356abe095085",
+      "description": "Catering - Almuerzos para invitados",
+      "quantity": 150,
+      "unitPrice": 11,
+      "totalPrice": 1650,
+      "quoteOrderId": "c5acaf2d-91e1-4421-8a81-869b58adb27c"
+    },
+    {
+      "id": "c390c6c1-1ea7-4318-9a54-eb2b0e9864ac",
+      "description": "DJ y Parlantes",
+      "quantity": 1,
+      "unitPrice": 550,
+      "totalPrice": 550,
+      "quoteOrderId": "c5acaf2d-91e1-4421-8a81-869b58adb27c"
+    },
+    {
+      "id": "d8bcda3e-fb37-41dc-a8f3-15e3896b4f24",
+      "description": "Decoracion",
+      "quantity": 1,
+      "unitPrice": 670,
+      "totalPrice": 670,
+      "quoteOrderId": "c5acaf2d-91e1-4421-8a81-869b58adb27c"
+    },
+    {
+      "id": "9a03c014-1ca8-4578-8f3e-6340f9a009f7",
+      "description": "Catering",
+      "quantity": 120,
+      "unitPrice": 11,
+      "totalPrice": 1320,
+      "quoteOrderId": "9036a5d1-80e3-425f-9593-cf6ea1bed99a"
+    },
+    {
+      "id": "15746f5b-e5b1-4abc-a089-ac06afe881c7",
+      "description": "Decoracion temática",
+      "quantity": 1,
+      "unitPrice": 690,
+      "totalPrice": 690,
+      "quoteOrderId": "9036a5d1-80e3-425f-9593-cf6ea1bed99a"
+    },
+    {
+      "id": "979e86a8-350b-4a40-8176-d5d4b5683d09",
+      "description": "DJ y Parlantes",
+      "quantity": 1,
+      "unitPrice": 700,
+      "totalPrice": 700,
+      "quoteOrderId": "9036a5d1-80e3-425f-9593-cf6ea1bed99a"
+    }
+  ],
   "events": [
     {
       "id": 1,
