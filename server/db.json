@@ -191,5 +191,88 @@
       "location": "Location 5",
       "status": "upcoming"
     }
+  ],
+  "boards": [
+    {
+      "id": 1,
+      "title": "Proyecto Website",
+      "description": "Tareas para el desarrollo del website"
+    }
+  ],
+  "columns": [
+    {
+      "id": 1,
+      "boardId": 1,
+      "title": "Por hacer",
+      "order": 1
+    },
+    {
+      "id": 2,
+      "boardId": 1,
+      "title": "En progreso",
+      "order": 2
+    },
+    {
+      "id": 3,
+      "boardId": 1,
+      "title": "Por revisar",
+      "order": 3
+    },
+    {
+      "id": 4,
+      "boardId": 1,
+      "title": "Completadas",
+      "order": 4
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "columnId": 3,
+      "title": "Diseñar página de inicio",
+      "description": "Crear wireframes y diseño visual",
+      "order": 2,
+      "createdAt": "2025-05-10T10:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "columnId": 4,
+      "title": "Implementar autenticación",
+      "description": "Sistema de login y registro",
+      "order": 1,
+      "createdAt": "2025-05-10T11:30:00.000Z"
+    },
+    {
+      "id": 3,
+      "columnId": 4,
+      "title": "Desarrollar componentes UI",
+      "description": "Crear botones, formularios y layouts",
+      "order": 2,
+      "createdAt": "2025-05-11T09:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "columnId": 1,
+      "title": "Campaña en redes sociales",
+      "description": "Planear publicaciones para Instagram y Facebook",
+      "order": 1,
+      "createdAt": "2025-05-12T16:45:00.000Z"
+    },
+    {
+      "columnId": 2,
+      "title": "Probando",
+      "description": "Probando hacer un UPDATE",
+      "order": 1,
+      "createdAt": "2025-05-15T22:00:22.734Z",
+      "id": 6
+    },
+    {
+      "columnId": 3,
+      "title": "aasd",
+      "description": "asdasdasdasdasda",
+      "order": 2,
+      "createdAt": "2025-05-16T05:42:32.229Z",
+      "id": 7
+    }
   ]
 }
