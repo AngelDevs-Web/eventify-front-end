@@ -864,6 +864,314 @@
       ]
     }
   ],
+  "reviews": [
+    {
+      "id": 1,
+      "reviewer": "Maria Lopez",
+      "eventName": "María and Juan's wedding",
+      "eventDate": "2025-05-15",
+      "rating": 5.0,
+      "content": "Andrea has been exceptional in planning our wedding. She attended to each of our requirements with professionalism and creativity. Her attention to detail and problem-solving skills made the whole process much easier. Totally recommended!",
+      "date": "2025-05-15",
+      "responded": false
+    },
+    {
+      "id": 2,
+      "reviewer": "ABC Company",
+      "eventName": "Annual Conference",
+      "eventDate": "2025-06-22",
+      "rating": 5.0,
+      "content": "Excellent service for our annual conference. The organization was impeccable and everything went according to plan. The attendees were very satisfied with the event. We will definitely be using your services again for future events.",
+      "date": "2025-06-30",
+      "responded": false
+    },
+    {
+      "id": 3,
+      "reviewer": "Carlos Ramirez",
+      "eventName": "Launch Party",
+      "eventDate": "2025-04-10",
+      "rating": 4.0,
+      "content": "Very professional service for our product launch. The team was responsive and accommodating to our needs. The venue was perfect for our event. Only a few minor details could have been improved, but overall we are very satisfied.",
+      "date": "2025-04-15",
+      "responded": true
+    },
+    {
+      "id": 4,
+      "reviewer": "Laura Garcia",
+      "eventName": "Business Meeting",
+      "eventDate": "2025-03-25",
+      "rating": 4.0,
+      "content": "Organized a business meeting for our executives. The service was professional and everything was set up as requested. The catering was excellent and the technical support was very helpful. Would recommend for future corporate events.",
+      "date": "2025-03-30",
+      "responded": false
+    },
+    {
+      "id": 5,
+      "reviewer": "Miguel Torres",
+      "eventName": "Birthday Party",
+      "eventDate": "2025-02-12",
+      "rating": 5.0,
+      "content": "Amazing service for my daughter's birthday party. The decorations were beautiful and exactly what we wanted. The entertainment for the kids was fantastic and kept them engaged the whole time. Would definitely use again!",
+      "date": "2025-02-15",
+      "responded": true
+    },
+    {
+      "id": 6,
+      "reviewer": "Sofia Martinez",
+      "eventName": "Graduation Ceremony",
+      "eventDate": "2025-01-20",
+      "rating": 4.0,
+      "content": "The graduation ceremony was well organized. The team was attentive to our requirements and the setup was exactly as we discussed. The only reason I'm not giving 5 stars is because there was a small delay in starting, but otherwise everything was perfect.",
+      "date": "2025-01-25",
+      "responded": false
+    },
+    {
+      "id": 7,
+      "reviewer": "Tech Solutions Inc.",
+      "eventName": "Product Demonstration",
+      "eventDate": "2024-12-10",
+      "rating": 3.0,
+      "content": "The event was generally well organized, but there were some issues with the audio-visual equipment during our presentation which caused some disruptions. The team was quick to respond and fix the issues, but it did impact our presentation somewhat.",
+      "date": "2024-12-15",
+      "responded": true
+    },
+    {
+      "id": 8,
+      "reviewer": "Luis Mendoza",
+      "eventName": "Anniversary Celebration",
+      "eventDate": "2024-11-28",
+      "rating": 5.0,
+      "content": "Everything was perfect for our anniversary celebration. The venue was beautifully decorated, the food was excellent, and the service was impeccable. All our guests commented on how wonderful the event was. Thank you for making our day special!",
+      "date": "2024-12-01",
+      "responded": false
+    },
+    {
+      "id": 9,
+      "reviewer": "Edutech Solutions",
+      "eventName": "Educational Workshop",
+      "eventDate": "2024-11-15",
+      "rating": 4.0,
+      "content": "The workshop setup was excellent and met all our requirements. The team was helpful and responsive throughout the planning process. The only improvement could have been better WiFi connectivity for participants.",
+      "date": "2024-11-20",
+      "responded": true
+    },
+    {
+      "id": 10,
+      "reviewer": "Ana Rodriguez",
+      "eventName": "Family Reunion",
+      "eventDate": "2024-10-05",
+      "rating": 5.0,
+      "content": "Our family reunion was a huge success thanks to the amazing organization. The outdoor setup was beautiful, the activities were fun for all ages, and the catering was delicious. Everyone had a wonderful time and we have memories that will last a lifetime.",
+      "date": "2024-10-10",
+      "responded": false
+    },
+    {
+      "id": 11,
+      "reviewer": "Global Marketing Ltd",
+      "eventName": "Marketing Seminar",
+      "eventDate": "2024-09-20",
+      "rating": 4.0,
+      "content": "The seminar was well organized with great attention to detail. The registration process was smooth and the facilities were excellent. The only suggestion would be to improve the signage around the venue to help attendees navigate more easily.",
+      "date": "2024-09-25",
+      "responded": false
+    },
+    {
+      "id": 12,
+      "reviewer": "Elena Gomez",
+      "eventName": "Art Exhibition",
+      "eventDate": "2024-09-10",
+      "rating": 3.0,
+      "content": "The exhibition space was adequate and the setup was as discussed. However, there were issues with the lighting that affected the display of some artwork. The team tried to fix it but couldn't fully resolve the problem.",
+      "date": "2024-09-15",
+      "responded": true
+    },
+    {
+      "id": 13,
+      "reviewer": "Roberto Sanchez",
+      "eventName": "Cooking Workshop",
+      "eventDate": "2024-08-05",
+      "rating": 5.0,
+      "content": "The cooking workshop was a great success! The kitchen space was perfectly set up, all ingredients and equipment were ready as requested, and the team was very helpful throughout the event. Will definitely book again for future workshops.",
+      "date": "2024-08-10",
+      "responded": false
+    },
+    {
+      "id": 14,
+      "reviewer": "Healthcare Institute",
+      "eventName": "Medical Conference",
+      "eventDate": "2024-07-15",
+      "rating": 4.0,
+      "content": "The conference was well organized with good facilities for presentations and breakout sessions. The technical support was excellent. The only improvement could be in the catering options, which were somewhat limited for a full-day event.",
+      "date": "2024-07-20",
+      "responded": true
+    },
+    {
+      "id": 15,
+      "reviewer": "Patricia Vega",
+      "eventName": "Fashion Show",
+      "eventDate": "2024-06-28",
+      "rating": 5.0,
+      "content": "The fashion show was absolutely phenomenal! The runway setup, lighting, and sound system were perfect. The backstage organization was excellent, allowing models and designers to prepare without any issues. Couldn't have asked for a better event!",
+      "date": "2024-07-03",
+      "responded": false
+    },
+    {
+      "id": 16,
+      "reviewer": "Daniel Ortiz",
+      "eventName": "Book Launch",
+      "eventDate": "2024-06-10",
+      "rating": 2.0,
+      "content": "While the venue was nice, there were several issues with the organization. The seating arrangement was not as discussed, the sound system had problems, and the book signing table was not set up properly. These issues somewhat marred what should have been a special event.",
+      "date": "2024-06-15",
+      "responded": true
+    },
+    {
+      "id": 17,
+      "reviewer": "Fitness First Gym",
+      "eventName": "Fitness Competition",
+      "eventDate": "2024-05-20",
+      "rating": 4.0,
+      "content": "The competition was well organized with good equipment and space for participants. The registration process was smooth and the timing system worked well. The only issue was limited seating for spectators, which should be improved for future events.",
+      "date": "2024-05-25",
+      "responded": false
+    },
+    {
+      "id": 18,
+      "reviewer": "Carmen Ruiz",
+      "eventName": "Engagement Party",
+      "eventDate": "2024-05-05",
+      "rating": 5.0,
+      "content": "Our engagement party was absolutely magical! The decorations were exactly what we envisioned, the food was delicious, and the service was impeccable. All our guests had a wonderful time and the photos turned out beautifully. Thank you for making our day so special!",
+      "date": "2024-05-10",
+      "responded": true
+    },
+    {
+      "id": 19,
+      "reviewer": "Finance Partners",
+      "eventName": "Investment Seminar",
+      "eventDate": "2024-04-15",
+      "rating": 4.0,
+      "content": "The seminar was well organized with good facilities for presentations. The registration was efficient and the technical support was helpful. The only suggestion would be to improve the air conditioning as the room got quite warm during the afternoon session.",
+      "date": "2024-04-20",
+      "responded": false
+    },
+    {
+      "id": 20,
+      "reviewer": "Isabella Torres",
+      "eventName": "Sweet Sixteen Party",
+      "eventDate": "2024-04-01",
+      "rating": 5.0,
+      "content": "My daughter's sweet sixteen party was a dream come true! The decorations, music, and overall atmosphere were perfect. The team took care of every detail and made sure everything ran smoothly. It was a night to remember for everyone, especially my daughter!",
+      "date": "2024-04-05",
+      "responded": false
+    }
+  ],
+  "services": [
+    {
+      "id": "1",
+      "userId": "1",
+      "title": "Complete Wedding Planning",
+      "description": "Includes planning from the beginning to the end: selection of venues, vendors, decorations, event timeline, budget, event day coordination.",
+      "priceFrom": 30000,
+      "priceTo": 45000,
+      "currency": "S/",
+      "category": "Wedding",
+      "isActive": true,
+      "createdAt": "2025-01-10T15:30:00.000Z",
+      "updatedAt": "2025-01-10T15:30:00.000Z"
+    },
+    {
+      "id": "2",
+      "userId": "1",
+      "title": "Corporate Event Organization",
+      "description": "Includes conference, seminar, and company party planning: logistics, catering, decoration, supplier coordination, activity planning, guest management.",
+      "priceFrom": 25000,
+      "priceTo": 60000,
+      "currency": "S/",
+      "category": "Corporate",
+      "isActive": true,
+      "createdAt": "2025-01-12T10:45:00.000Z",
+      "updatedAt": "2025-02-20T14:15:00.000Z"
+    },
+    {
+      "id": "3",
+      "userId": "1",
+      "title": "Quinceañera parties",
+      "description": "It includes complete supervision on the day of the event to ensure that each detail is carried out as planned. Coordination with all involved providers (catering, decoration, music, photography, among others), management of the timeline (entrance, waltz, show, toast) and agile solutions for any unforeseen issues. We take care of making the celebration unforgettable and worry-free.",
+      "priceFrom": 10000,
+      "priceTo": 15000,
+      "currency": "S/",
+      "category": "Birthday Parties",
+      "isActive": true,
+      "createdAt": "2025-02-05T09:20:00.000Z",
+      "updatedAt": "2025-03-15T11:30:00.000Z"
+    },
+    {
+      "id": "4",
+      "userId": "1",
+      "title": "Day-of Wedding Coordination",
+      "description": "Professional coordination on your wedding day, ensuring every detail runs smoothly. Includes timeline management, vendor coordination, and ensuring all elements are properly set up.",
+      "priceFrom": 8000,
+      "priceTo": 12000,
+      "currency": "S/",
+      "category": "Wedding",
+      "isActive": true,
+      "createdAt": "2025-03-01T16:45:00.000Z",
+      "updatedAt": "2025-03-01T16:45:00.000Z"
+    },
+    {
+      "id": "5",
+      "userId": "1",
+      "title": "Destination Wedding Planning",
+      "description": "Complete planning for weddings at beach destinations, mountains, or international locations. Includes venue research, travel logistics, accommodations for guests, and coordination with local vendors.",
+      "priceFrom": 40000,
+      "priceTo": 60000,
+      "currency": "S/",
+      "category": "Wedding",
+      "isActive": true,
+      "createdAt": "2025-03-10T14:20:00.000Z",
+      "updatedAt": "2025-03-10T14:20:00.000Z"
+    },
+    {
+      "id": "6",
+      "userId": "1",
+      "title": "Corporate Team Building",
+      "description": "Design and execution of team building activities for companies. Includes outdoor activities, workshops, competitive games, and post-event analysis to improve team performance.",
+      "priceFrom": 15000,
+      "priceTo": 35000,
+      "currency": "S/",
+      "category": "Corporate",
+      "isActive": true,
+      "createdAt": "2025-02-15T09:15:00.000Z",
+      "updatedAt": "2025-02-15T09:15:00.000Z"
+    },
+    {
+      "id": "7",
+      "userId": "2",
+      "title": "Luxury Wedding Planning",
+      "description": "Elite wedding planning service for couples seeking a truly extraordinary experience. Includes exclusive venues, premium decorations, gourmet catering, and high-end entertainment.",
+      "priceFrom": 75000,
+      "priceTo": 150000,
+      "currency": "S/",
+      "category": "Wedding",
+      "isActive": true,
+      "createdAt": "2025-01-05T11:30:00.000Z",
+      "updatedAt": "2025-01-05T11:30:00.000Z"
+    },
+    {
+      "id": "8",
+      "userId": "2",
+      "title": "Wedding Decoration",
+      "description": "Decoration service specializing in creating unique ambiances for weddings. Includes floral arrangements, lighting, furniture, and personalized decorative elements.",
+      "priceFrom": 20000,
+      "priceTo": 35000,
+      "currency": "S/",
+      "category": "Wedding",
+      "isActive": true,
+      "createdAt": "2025-01-20T14:45:00.000Z",
+      "updatedAt": "2025-01-20T14:45:00.000Z"
+    }
+  ],
   "quotes": [
     {
       "id": "fdb0d4ac-45b4-49ef-95f2-89b09174f5f3",
@@ -894,64 +1202,6 @@
       "totalPrice": 2710,
       "state": "Pending",
       "eventDate": "2025-07-08"
-    }
-  ],
-  "services": [
-    {
-      "id": "108351ab-51a0-4c02-84fa-100835a2c256",
-      "description": "Catering",
-      "quantity": 100,
-      "unitPrice": 11,
-      "totalPrice": 1100,
-      "quoteOrderId": "fdb0d4ac-45b4-49ef-95f2-89b09174f5f3"
-    },
-    {
-      "id": "09193fcb-29c5-4178-aab5-356abe095085",
-      "description": "Catering - Almuerzos para invitados",
-      "quantity": 150,
-      "unitPrice": 11,
-      "totalPrice": 1650,
-      "quoteOrderId": "c5acaf2d-91e1-4421-8a81-869b58adb27c"
-    },
-    {
-      "id": "c390c6c1-1ea7-4318-9a54-eb2b0e9864ac",
-      "description": "DJ y Parlantes",
-      "quantity": 1,
-      "unitPrice": 550,
-      "totalPrice": 550,
-      "quoteOrderId": "c5acaf2d-91e1-4421-8a81-869b58adb27c"
-    },
-    {
-      "id": "d8bcda3e-fb37-41dc-a8f3-15e3896b4f24",
-      "description": "Decoracion",
-      "quantity": 1,
-      "unitPrice": 670,
-      "totalPrice": 670,
-      "quoteOrderId": "c5acaf2d-91e1-4421-8a81-869b58adb27c"
-    },
-    {
-      "id": "9a03c014-1ca8-4578-8f3e-6340f9a009f7",
-      "description": "Catering",
-      "quantity": 120,
-      "unitPrice": 11,
-      "totalPrice": 1320,
-      "quoteOrderId": "9036a5d1-80e3-425f-9593-cf6ea1bed99a"
-    },
-    {
-      "id": "15746f5b-e5b1-4abc-a089-ac06afe881c7",
-      "description": "Decoracion temática",
-      "quantity": 1,
-      "unitPrice": 690,
-      "totalPrice": 690,
-      "quoteOrderId": "9036a5d1-80e3-425f-9593-cf6ea1bed99a"
-    },
-    {
-      "id": "979e86a8-350b-4a40-8176-d5d4b5683d09",
-      "description": "DJ y Parlantes",
-      "quantity": 1,
-      "unitPrice": 700,
-      "totalPrice": 700,
-      "quoteOrderId": "9036a5d1-80e3-425f-9593-cf6ea1bed99a"
     }
   ],
   "events": [
