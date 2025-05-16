@@ -5,37 +5,37 @@ const API_URL = 'http://localhost:3000'; // Ajusta esto a la URL de tu json-serv
 
 const EventService = {
     /**
-     * Obtener todos los eventos
-     * @param {Object} params - Parámetros opcionales para filtrado
-     * @returns {Promise} Promise con los datos de los eventos
+     * Get all events
+     * @param {Object} params - Optional parameters for filtering
+     * @returns {Promise} Promise with the event data
      */
     getEvents(params = {}) {
         return axios.get(`${API_URL}/events`, { params });
     },
 
     /**
-     * Obtener un evento específico por su ID
-     * @param {Number|String} id - ID del evento
-     * @returns {Promise} Promise con los datos del evento
+     * Get a specific event by its ID
+     * @param {Number|String} id - Event ID
+     * @returns {Promise} Promise with the event data
      */
     getEventById(id) {
         return axios.get(`${API_URL}/events/${id}`);
     },
 
     /**
-     * Crear un nuevo evento
-     * @param {Object} eventData - Datos del nuevo evento
-     * @returns {Promise} Promise con la respuesta
+     * Create a new event
+     * @param {Object} eventData - Data for the new event
+     * @returns {Promise} Promise with the response
      */
     createEvent(eventData) {
         return axios.post(`${API_URL}/events`, eventData);
     },
 
     /**
-     * Actualizar un evento existente
-     * @param {Number|String} id - ID del evento a actualizar
-     * @param {Object} eventData - Nuevos datos para el evento
-     * @returns {Promise} Promise con la respuesta
+     * Update an existing event
+     * @param {Number|String} id - ID of the event to update
+     * @param {Object} eventData - New data for the event
+     * @returns {Promise} Promise with the response
      */
     updateEvent(id, eventData) {
         return axios.put(`${API_URL}/events/${id}`, eventData);
@@ -51,9 +51,10 @@ const EventService = {
     },
 
     /**
-     * Eliminar múltiples eventos
-     * @param {Array} ids - Array de IDs de eventos a eliminar
-     * @returns {Promise} Promise con todas las operaciones
+     *
+     * Delete multiple events
+     * @param {Array} ids - Array of event IDs to delete
+     * @returns {Promise} Promise with all operations
      */
     deleteMultipleEvents(ids) {
         // Crear un array de promesas para eliminar cada evento
