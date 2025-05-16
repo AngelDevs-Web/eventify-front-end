@@ -12,6 +12,9 @@ const routes = [
     {path: '/quotes', name: 'Quotes', component: QuoteOrderManagementComponent, meta: {title: 'Quotes'}},
     {path: '/profiles', name: 'Profile', component: ProfileComponent, meta: {title: 'Profile'}},
     {path:'/events', name:'Events',component: EventPageComponent, meta: {title: 'Events'}},
+    {path: '/events/create', name:'event-create', component: () => import('../event-management/components/create-and-edit-event.component.vue')},
+    {path:'/events/:id/edit', name:"event-edit", component: () => import('../event-management/components/create-and-edit-event.component.vue'),
+    props: route=>({id:route.params.id})},
     {path: '/tasks', name: 'Tasks', component: taskBoardComponent, meta: {title: 'Tasks'}},
     {path:"/", name:"Default", redirect:'/home'}
 ];
