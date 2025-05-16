@@ -1,29 +1,94 @@
 {
-  "users": [
+  "quotes": [
     {
-      "id": "1",
-      "name": "Andrea Ramirez",
-      "title": "Event Organizer",
-      "email": "andrea.ramirez@gmail.com",
-      "phone": "+51 999 888 777",
-      "location": "Peru, Lima, Surco",
-      "website": "www.andrearamirez-events.com",
-      "bio": "Event organizer with over 8 years of experience. Specialized in weddings, corporate events, and XV birthday parties. Creator of unforgettable moments with attention to detail and personalized service.",
-      "profileImage": "https://b2472105.smushcdn.com/2472105/wp-content/uploads/2023/01/Perfil-Profesional-_48-820x1024.jpg?lossy=1&strip=1&webp=1"
+      "id": "fdb0d4ac-45b4-49ef-95f2-89b09174f5f3",
+      "title": "Conferencia Ethical Hacking",
+      "eventType": "Conference",
+      "guestQuantity": 100,
+      "location": "Av El Sol 234",
+      "totalPrice": 1100,
+      "state": "Pending",
+      "eventDate": "2025-05-31"
     },
     {
-      "id": "2",
-      "name": "Carlos Mendoza",
-      "title": "Wedding Planner",
-      "email": "carlos.mendoza@gmail.com",
-      "phone": "+51 987 654 321",
-      "location": "Peru, Lima, Miraflores",
-      "website": "www.carlosmendoza-weddings.com",
-      "bio": "Wedding planner with 5 years of experience. Specialized in luxury weddings and destination ceremonies. Known for creating elegant and personalized celebrations.",
-      "profileImage": "https://www.cristianprado.cl/wp-content/uploads/2021/03/49B5179-1024x683.jpg"
+      "id": "c5acaf2d-91e1-4421-8a81-869b58adb27c",
+      "title": "Boda de Rosa Gonzales",
+      "eventType": "Wedding",
+      "guestQuantity": 150,
+      "location": "Av El Sol 234",
+      "totalPrice": 2870,
+      "state": "Pending",
+      "eventDate": "2025-08-19"
+    },
+    {
+      "id": "9036a5d1-80e3-425f-9593-cf6ea1bed99a",
+      "title": "Quinceañera Ariana Mendoza",
+      "eventType": "Quinceanera",
+      "guestQuantity": 120,
+      "location": "Calle Los Rosales 123",
+      "totalPrice": 2710,
+      "state": "Pending",
+      "eventDate": "2025-07-08"
     }
-    ],
-
+  ],
+  "services": [
+    {
+      "id": "108351ab-51a0-4c02-84fa-100835a2c256",
+      "description": "Catering",
+      "quantity": 100,
+      "unitPrice": 11,
+      "totalPrice": 1100,
+      "quoteOrderId": "fdb0d4ac-45b4-49ef-95f2-89b09174f5f3"
+    },
+    {
+      "id": "09193fcb-29c5-4178-aab5-356abe095085",
+      "description": "Catering - Almuerzos para invitados",
+      "quantity": 150,
+      "unitPrice": 11,
+      "totalPrice": 1650,
+      "quoteOrderId": "c5acaf2d-91e1-4421-8a81-869b58adb27c"
+    },
+    {
+      "id": "c390c6c1-1ea7-4318-9a54-eb2b0e9864ac",
+      "description": "DJ y Parlantes",
+      "quantity": 1,
+      "unitPrice": 550,
+      "totalPrice": 550,
+      "quoteOrderId": "c5acaf2d-91e1-4421-8a81-869b58adb27c"
+    },
+    {
+      "id": "d8bcda3e-fb37-41dc-a8f3-15e3896b4f24",
+      "description": "Decoracion",
+      "quantity": 1,
+      "unitPrice": 670,
+      "totalPrice": 670,
+      "quoteOrderId": "c5acaf2d-91e1-4421-8a81-869b58adb27c"
+    },
+    {
+      "id": "9a03c014-1ca8-4578-8f3e-6340f9a009f7",
+      "description": "Catering",
+      "quantity": 120,
+      "unitPrice": 11,
+      "totalPrice": 1320,
+      "quoteOrderId": "9036a5d1-80e3-425f-9593-cf6ea1bed99a"
+    },
+    {
+      "id": "15746f5b-e5b1-4abc-a089-ac06afe881c7",
+      "description": "Decoracion temática",
+      "quantity": 1,
+      "unitPrice": 690,
+      "totalPrice": 690,
+      "quoteOrderId": "9036a5d1-80e3-425f-9593-cf6ea1bed99a"
+    },
+    {
+      "id": "979e86a8-350b-4a40-8176-d5d4b5683d09",
+      "description": "DJ y Parlantes",
+      "quantity": 1,
+      "unitPrice": 700,
+      "totalPrice": 700,
+      "quoteOrderId": "9036a5d1-80e3-425f-9593-cf6ea1bed99a"
+    }
+  ],
   "events": [
     {
       "id": 1,
@@ -69,9 +134,17 @@
       "location": "Event Hall",
       "status": "Active",
       "userId": 1
+    },
+    {
+      "title": "Graduacion Colegio Trilce",
+      "date": "2025-05-29",
+      "customerName": "Fabrizio",
+      "location": "Av El Sol 234",
+      "status": "Active",
+      "userId": 1,
+      "id": 6
     }
   ],
-
   "events-calendar": [
     {
       "id": 1,
@@ -119,6 +192,4 @@
       "status": "upcoming"
     }
   ]
-
-
 }
