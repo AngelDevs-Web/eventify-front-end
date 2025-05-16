@@ -17,8 +17,10 @@ import {
     DialogService, SelectButton,
     Toast,
     ToastService,
-    Toolbar
+    Toolbar,
+    DatePicker
 } from "primevue";
+import FullCalendar from "@fullcalendar/vue3";
 
 const app = createApp(App)
 
@@ -37,6 +39,8 @@ app.use(PrimeVue,{theme:{preset:Material},ripple:true})
     .component('pv-confirm-dialog',ConfirmDialog)
     .component('pv-select-button',SelectButton)
     .component('pv-avatar',Avatar)
+    .component('pv-calendar',DatePicker)
+    .component('pv-full-calendar', FullCalendar)
     .mount('#app')
 
 
