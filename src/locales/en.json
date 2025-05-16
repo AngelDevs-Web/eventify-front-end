@@ -85,6 +85,28 @@
     "deleteSuccess": "{count} album(s) successfully deleted.",
     "deleteError": "Failed to delete some albums. Please try again."
   },
+  "reviews": {
+    "averageScore": "Average score",
+    "basedOn": "Based on {count} reviews",
+    "stars": "stars",
+    "star": "star",
+    "filterBy": "Filter by:",
+    "allReviews": "All the reviews",
+    "sortBy": "Sort by:",
+    "mostRecent": "Most recent",
+    "highestRating": "Highest rating",
+    "lowestRating": "Lowest rating",
+    "page": "Page {current} of {total}",
+    "previous": "Previous",
+    "next": "Next",
+    "respond": "Respond",
+    "respondAgain": "Respond again",
+    "loadingReviews": "Loading reviews...",
+    "errorLoading": "Failed to load reviews",
+    "retry": "Retry",
+    "noReviews": "No reviews found",
+    "noReviewsFiltered": "No reviews match the selected filter"
+  },
   "eventManagement": {
     "pageTitle": "My Events",
     "actions": {

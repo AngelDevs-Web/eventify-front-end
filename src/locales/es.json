@@ -85,6 +85,28 @@
     "deleteSuccess": "{count} álbum(es) eliminado(s) correctamente.",
     "deleteError": "Error al eliminar algunos álbumes. Por favor, inténtalo de nuevo."
   },
+  "reviews": {
+    "averageScore": "Puntuación media",
+    "basedOn": "Basado en {count} reseñas",
+    "stars": "estrellas",
+    "star": "estrella",
+    "filterBy": "Filtrar por:",
+    "allReviews": "Todas las reseñas",
+    "sortBy": "Ordenar por:",
+    "mostRecent": "Más recientes",
+    "highestRating": "Mayor puntuación",
+    "lowestRating": "Menor puntuación",
+    "page": "Página {current} de {total}",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "respond": "Responder",
+    "respondAgain": "Responder de nuevo",
+    "loadingReviews": "Cargando reseñas...",
+    "errorLoading": "Error al cargar las reseñas",
+    "retry": "Reintentar",
+    "noReviews": "No se encontraron reseñas",
+    "noReviewsFiltered": "No hay reseñas que coincidan con el filtro seleccionado"
+  },
   "eventManagement": {
     "pageTitle": "Mis Eventos",
     "actions": {
