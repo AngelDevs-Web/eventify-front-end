@@ -7,6 +7,73 @@
     "tasks": "Tareas",
     "quotes": "Cotizaciones",
     "messages": "Mensajes",
-    "subscriptions": "Suscripciones"
+    "subscriptions": "Suscripciones",
+    "certifications": "Certificaciones"
+  },
+
+  "eventManagement": {
+    "pageTitle": "Mis Eventos",
+    "actions": {
+      "selectAll": "Seleccionar Todo",
+      "deleteSelected": "Eliminar Seleccionados",
+      "search": "Buscar eventos...",
+      "newEvent": "+ Nuevo Evento",
+      "edit": "Editar",
+      "cancel": "Cancelar",
+      "delete": "Eliminar",
+      "save": "Guardar",
+      "update": "Actualizar",
+      "create": "Crear"
+    },
+    "filters": {
+      "all": "Todos",
+      "active": "Activos",
+      "pending": "Por confirmar",
+      "cancelled": "Cancelado"
+    },
+    "sort": {
+      "recent": "Recientes",
+      "oldest": "Antiguos",
+      "title": "Título"
+    },
+    "status": {
+      "active": "Activo",
+      "toBeConfirmed": "Por confirmar",
+      "cancelled": "Cancelado"
+    },
+    "form": {
+      "createTitle": "Crear Nuevo Evento",
+      "editTitle": "Editar Evento",
+      "fields": {
+        "title": "Título del Evento",
+        "titlePlaceholder": "Ingrese el título del evento",
+        "date": "Fecha del Evento",
+        "customer": "Nombre del Cliente",
+        "customerPlaceholder": "Ingrese el nombre del cliente",
+        "location": "Ubicación",
+        "locationPlaceholder": "Ingrese la ubicación del evento",
+        "status": "Estado"
+      },
+      "buttons": {
+        "cancel": "Cancelar",
+        "create": "Crear Evento",
+        "update": "Actualizar Evento"
+      }
+    },
+    "pagination": {
+      "showing": "Mostrando",
+      "of": "de",
+      "previous": "Anterior",
+      "next": "Siguiente"
+    },
+    "confirmation": {
+      "title": "Confirmar Eliminación",
+      "message": "¿Está seguro que desea eliminar {count} evento(s) seleccionado(s)? Esta acción no se puede deshacer.",
+      "singleMessage": "¿Está seguro que desea eliminar este evento? Esta acción no se puede deshacer."
+    },
+    "labels": {
+      "customer": "Cliente:",
+      "place": "Lugar:"
+    }
   }
 }
