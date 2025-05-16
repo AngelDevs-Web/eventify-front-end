@@ -2,7 +2,7 @@ import { Service } from '../model/service.entity';
 
 class ServiceService {
     constructor() {
-        this.baseUrl = 'http://localhost:3000';
+        this.baseUrl = import.meta.env.VITE_API_BASE_URL;
     }
 
     /**
