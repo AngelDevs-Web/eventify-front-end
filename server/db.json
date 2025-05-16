@@ -1,4 +1,869 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "name": "Andrea Ramirez",
+      "title": "Event Organizer",
+      "email": "andrea.ramirez@gmail.com",
+      "phone": "+51 999 888 777",
+      "location": "Peru, Lima, Surco",
+      "website": "www.andrearamirez-events.com",
+      "bio": "Event organizer with over 8 years of experience. Specialized in weddings, corporate events, and XV birthday parties. Creator of unforgettable moments with attention to detail and personalized service.",
+      "profileImage": "placeholder"
+    },
+    {
+      "id": 2,
+      "name": "Carlos Mendoza",
+      "title": "Wedding Planner",
+      "email": "carlos.mendoza@gmail.com",
+      "phone": "+51 987 654 321",
+      "location": "Peru, Lima, Miraflores",
+      "website": "www.carlosmendoza-weddings.com",
+      "bio": "Wedding planner with 5 years of experience. Specialized in luxury weddings and destination ceremonies. Known for creating elegant and personalized celebrations.",
+      "profileImage": "placeholder"
+    }
+  ],
+  "statistics": [
+    {
+      "id": 1,
+      "userId": 1,
+      "completedEvents": 48,
+      "sentQuotes": 67,
+      "servedCustomers": 35,
+      "averageRating": 4.8
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "completedEvents": 32,
+      "sentQuotes": 45,
+      "servedCustomers": 28,
+      "averageRating": 4.5
+    }
+  ],
+  "certifications": [
+    {
+      "id": 1,
+      "userId": 1,
+      "list": [
+        "Certificate in Event Management",
+        "Experience Design",
+        "Premium Wedding Planning"
+      ]
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "list": [
+        "Wedding Planning Certification",
+        "Luxury Events Specialist",
+        "International Protocols Expert"
+      ]
+    }
+  ],
+  "albums": [
+    {
+      "id": 1,
+      "userId": 1,
+      "title": "María and Juan's wedding",
+      "description": "A beautiful wedding ceremony at the beach",
+      "date": "2025-05-15",
+      "photos": [
+        {
+          "id": 1,
+          "title": "Bride getting ready",
+          "description": "The bride preparing for the ceremony",
+          "url": "bride-prepare.jpg",
+          "uploadDate": "2025-05-16"
+        },
+        {
+          "id": 2,
+          "title": "Wedding ceremony",
+          "description": "The beautiful ceremony at sunset",
+          "url": "ceremony.jpg",
+          "uploadDate": "2025-05-16"
+        },
+        {
+          "id": 3,
+          "title": "First dance",
+          "description": "The couple's first dance as husband and wife",
+          "url": "first-dance.jpg",
+          "uploadDate": "2025-05-16"
+        },
+        {
+          "id": 4,
+          "title": "Cutting the cake",
+          "description": "The couple cutting their wedding cake",
+          "url": "cake-cutting.jpg",
+          "uploadDate": "2025-05-16"
+        },
+        {
+          "id": 5,
+          "title": "Family photo",
+          "description": "Family gathering for a group photo",
+          "url": "family-photo.jpg",
+          "uploadDate": "2025-05-16"
+        },
+        {
+          "id": 6,
+          "title": "Reception",
+          "description": "The beautiful reception hall",
+          "url": "reception.jpg",
+          "uploadDate": "2025-05-16"
+        },
+        {
+          "id": 7,
+          "title": "Bride and Groom",
+          "description": "Newlyweds on the beach",
+          "url": "couple-beach.jpg",
+          "uploadDate": "2025-05-16"
+        },
+        {
+          "id": 8,
+          "title": "Flower arrangements",
+          "description": "Beautiful floral designs",
+          "url": "flowers.jpg",
+          "uploadDate": "2025-05-16"
+        },
+        {
+          "id": 9,
+          "title": "Table settings",
+          "description": "Elegant table decorations",
+          "url": "tables.jpg",
+          "uploadDate": "2025-05-16"
+        },
+        {
+          "id": 10,
+          "title": "Guests dancing",
+          "description": "Everyone enjoying the party",
+          "url": "dancing.jpg",
+          "uploadDate": "2025-05-16"
+        },
+        {
+          "id": 11,
+          "title": "Beach sunset",
+          "description": "Beautiful sunset view from the venue",
+          "url": "sunset.jpg",
+          "uploadDate": "2025-05-16"
+        },
+        {
+          "id": 12,
+          "title": "Wedding favors",
+          "description": "Custom gifts for the guests",
+          "url": "favors.jpg",
+          "uploadDate": "2025-05-16"
+        },
+        {
+          "id": 13,
+          "title": "Bride's bouquet",
+          "description": "The beautiful bridal bouquet",
+          "url": "bouquet.jpg",
+          "uploadDate": "2025-05-16"
+        },
+        {
+          "id": 14,
+          "title": "Venue entrance",
+          "description": "Decorated entrance to the venue",
+          "url": "entrance.jpg",
+          "uploadDate": "2025-05-16"
+        },
+        {
+          "id": 15,
+          "title": "Wedding car",
+          "description": "The decorated car for the newlyweds",
+          "url": "car.jpg",
+          "uploadDate": "2025-05-16"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "title": "Annual Conference of Company ABC",
+      "description": "Corporate conference with keynote speakers and networking",
+      "date": "2025-06-22",
+      "photos": [
+        {
+          "id": 16,
+          "title": "Conference hall",
+          "description": "The main conference venue",
+          "url": "conference-hall.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 17,
+          "title": "Welcome desk",
+          "description": "Registration area for attendees",
+          "url": "welcome-desk.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 18,
+          "title": "Keynote speaker",
+          "description": "Main speaker presenting on stage",
+          "url": "keynote.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 19,
+          "title": "Panel discussion",
+          "description": "Industry experts in discussion",
+          "url": "panel.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 20,
+          "title": "Networking area",
+          "description": "Attendees networking during breaks",
+          "url": "networking.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 21,
+          "title": "Product showcase",
+          "description": "Company products on display",
+          "url": "showcase.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 22,
+          "title": "Coffee break",
+          "description": "Refreshments between sessions",
+          "url": "coffee-break.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 23,
+          "title": "Workshop session",
+          "description": "Interactive workshop with attendees",
+          "url": "workshop.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 24,
+          "title": "Company booth",
+          "description": "ABC Company's main exhibition booth",
+          "url": "booth.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 25,
+          "title": "Award ceremony",
+          "description": "Annual awards presentation",
+          "url": "awards.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 26,
+          "title": "CEO speech",
+          "description": "CEO addressing the attendees",
+          "url": "ceo.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 27,
+          "title": "Tech demonstration",
+          "description": "New technology being showcased",
+          "url": "tech-demo.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 28,
+          "title": "Conference lunch",
+          "description": "Catered lunch for attendees",
+          "url": "lunch.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 29,
+          "title": "Breakout session",
+          "description": "Small group discussions",
+          "url": "breakout.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 30,
+          "title": "Q&A session",
+          "description": "Audience questions with speakers",
+          "url": "qa.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 31,
+          "title": "Conference badges",
+          "description": "Branded attendee badges",
+          "url": "badges.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 32,
+          "title": "Event staff",
+          "description": "Team managing the conference",
+          "url": "staff.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 33,
+          "title": "Venue exterior",
+          "description": "Outside view of the conference center",
+          "url": "exterior.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 34,
+          "title": "Promotional materials",
+          "description": "Brochures and handouts",
+          "url": "promo.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 35,
+          "title": "VIP lounge",
+          "description": "Special area for VIP attendees",
+          "url": "vip.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 36,
+          "title": "Conference agenda",
+          "description": "Printed schedule of events",
+          "url": "agenda.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 37,
+          "title": "Corporate gifts",
+          "description": "Branded merchandise for attendees",
+          "url": "gifts.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 38,
+          "title": "Closing remarks",
+          "description": "Final address to attendees",
+          "url": "closing.jpg",
+          "uploadDate": "2025-06-23"
+        },
+        {
+          "id": 39,
+          "title": "Group photo",
+          "description": "All conference participants",
+          "url": "group.jpg",
+          "uploadDate": "2025-06-23"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "title": "Corporate party XYZ",
+      "description": "End of year celebration for XYZ Company",
+      "date": "2025-07-10",
+      "photos": [
+        {
+          "id": 40,
+          "title": "Party entrance",
+          "description": "Decorated entrance to the venue",
+          "url": "party-entrance.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 41,
+          "title": "Cocktail hour",
+          "description": "Guests enjoying drinks before dinner",
+          "url": "cocktail.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 42,
+          "title": "Welcome speech",
+          "description": "Company president addressing employees",
+          "url": "welcome.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 43,
+          "title": "Dinner setting",
+          "description": "Elegant dinner table arrangements",
+          "url": "dinner.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 44,
+          "title": "Entertainment",
+          "description": "Live band performing",
+          "url": "band.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 45,
+          "title": "Dance floor",
+          "description": "Employees dancing",
+          "url": "dance-floor.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 46,
+          "title": "Photo booth",
+          "description": "Fun photo booth with props",
+          "url": "photo-booth.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 47,
+          "title": "Dessert table",
+          "description": "Assortment of desserts",
+          "url": "desserts.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 48,
+          "title": "Award ceremony",
+          "description": "Employee recognition awards",
+          "url": "employee-awards.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 49,
+          "title": "Team building activity",
+          "description": "Interactive game for employees",
+          "url": "team-building.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 50,
+          "title": "CEO toast",
+          "description": "CEO giving a toast",
+          "url": "toast.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 51,
+          "title": "Party favors",
+          "description": "Gifts for attendees",
+          "url": "party-favors.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 52,
+          "title": "Company logo display",
+          "description": "Creative display of the company logo",
+          "url": "logo-display.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 53,
+          "title": "Department group photos",
+          "description": "Teams posing together",
+          "url": "departments.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 54,
+          "title": "Buffet station",
+          "description": "Food buffet setup",
+          "url": "buffet.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 55,
+          "title": "Bar area",
+          "description": "Custom cocktail bar",
+          "url": "bar.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 56,
+          "title": "Venue decorations",
+          "description": "Themed decorations throughout venue",
+          "url": "decorations.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 57,
+          "title": "Raffle drawing",
+          "description": "Prize raffle for employees",
+          "url": "raffle.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 58,
+          "title": "Year in review",
+          "description": "Presentation of company achievements",
+          "url": "year-review.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 59,
+          "title": "Executive team",
+          "description": "Company executives at the party",
+          "url": "executives.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 60,
+          "title": "Venue exterior at night",
+          "description": "Night view of the venue",
+          "url": "night-venue.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 61,
+          "title": "Special performance",
+          "description": "Surprise entertainment act",
+          "url": "special-act.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 62,
+          "title": "Catering staff",
+          "description": "Service team for the event",
+          "url": "catering.jpg",
+          "uploadDate": "2025-07-11"
+        },
+        {
+          "id": 63,
+          "title": "Networking moment",
+          "description": "Employees connecting at the party",
+          "url": "party-networking.jpg",
+          "uploadDate": "2025-07-11"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "title": "Ana's Baby Shower",
+      "description": "Celebration for Ana's first baby",
+      "date": "2025-08-05",
+      "photos": [
+        {
+          "id": 64,
+          "title": "Decorated venue",
+          "description": "Baby shower venue setup",
+          "url": "shower-venue.jpg",
+          "uploadDate": "2025-08-06"
+        },
+        {
+          "id": 65,
+          "title": "Gift table",
+          "description": "Table with presents for the baby",
+          "url": "gift-table.jpg",
+          "uploadDate": "2025-08-06"
+        },
+        {
+          "id": 66,
+          "title": "Mom-to-be",
+          "description": "Ana enjoying her shower",
+          "url": "mom-to-be.jpg",
+          "uploadDate": "2025-08-06"
+        },
+        {
+          "id": 67,
+          "title": "Custom cake",
+          "description": "Special baby-themed cake",
+          "url": "baby-cake.jpg",
+          "uploadDate": "2025-08-06"
+        },
+        {
+          "id": 68,
+          "title": "Games area",
+          "description": "Setup for baby shower games",
+          "url": "games.jpg",
+          "uploadDate": "2025-08-06"
+        },
+        {
+          "id": 69,
+          "title": "Dessert table",
+          "description": "Sweets and treats for guests",
+          "url": "baby-desserts.jpg",
+          "uploadDate": "2025-08-06"
+        },
+        {
+          "id": 70,
+          "title": "Diaper cake",
+          "description": "Creative diaper arrangement",
+          "url": "diaper-cake.jpg",
+          "uploadDate": "2025-08-06"
+        },
+        {
+          "id": 71,
+          "title": "Guest book",
+          "description": "Book for guests to leave messages",
+          "url": "guest-book.jpg",
+          "uploadDate": "2025-08-06"
+        },
+        {
+          "id": 72,
+          "title": "Party favors",
+          "description": "Take-home gifts for guests",
+          "url": "shower-favors.jpg",
+          "uploadDate": "2025-08-06"
+        },
+        {
+          "id": 73,
+          "title": "Photo props",
+          "description": "Fun props for pictures",
+          "url": "props.jpg",
+          "uploadDate": "2025-08-06"
+        },
+        {
+          "id": 74,
+          "title": "Opening gifts",
+          "description": "Ana opening baby presents",
+          "url": "opening-gifts.jpg",
+          "uploadDate": "2025-08-06"
+        },
+        {
+          "id": 75,
+          "title": "Friends group photo",
+          "description": "Ana with her closest friends",
+          "url": "friends.jpg",
+          "uploadDate": "2025-08-06"
+        },
+        {
+          "id": 76,
+          "title": "Themed decorations",
+          "description": "Baby-themed decor details",
+          "url": "baby-decor.jpg",
+          "uploadDate": "2025-08-06"
+        },
+        {
+          "id": 77,
+          "title": "Wishing tree",
+          "description": "Tree with wishes for the baby",
+          "url": "wish-tree.jpg",
+          "uploadDate": "2025-08-06"
+        },
+        {
+          "id": 78,
+          "title": "Family photo",
+          "description": "Ana with family members",
+          "url": "shower-family.jpg",
+          "uploadDate": "2025-08-06"
+        },
+        {
+          "id": 79,
+          "title": "Refreshment table",
+          "description": "Drinks and refreshments setup",
+          "url": "refreshments.jpg",
+          "uploadDate": "2025-08-06"
+        },
+        {
+          "id": 80,
+          "title": "Activity station",
+          "description": "Creative activity for guests",
+          "url": "activity.jpg",
+          "uploadDate": "2025-08-06"
+        },
+        {
+          "id": 81,
+          "title": "Balloon arrangement",
+          "description": "Special balloon decoration",
+          "url": "balloons.jpg",
+          "uploadDate": "2025-08-06"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "title": "Pedro's Graduation",
+      "description": "Graduation celebration for Pedro",
+      "date": "2025-06-20",
+      "photos": [
+        {
+          "id": 82,
+          "title": "Graduate in cap and gown",
+          "description": "Pedro in graduation attire",
+          "url": "graduate.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 83,
+          "title": "Ceremony venue",
+          "description": "University auditorium",
+          "url": "graduation-venue.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 84,
+          "title": "Diploma moment",
+          "description": "Receiving the diploma on stage",
+          "url": "diploma.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 85,
+          "title": "Family celebration",
+          "description": "Pedro with family after graduation",
+          "url": "grad-family.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 86,
+          "title": "Friends group",
+          "description": "Pedro with classmates",
+          "url": "classmates.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 87,
+          "title": "Celebration dinner",
+          "description": "Special dinner after ceremony",
+          "url": "grad-dinner.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 88,
+          "title": "Graduation cake",
+          "description": "Custom cake for the occasion",
+          "url": "grad-cake.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 89,
+          "title": "Toast moment",
+          "description": "Raising glasses to the graduate",
+          "url": "grad-toast.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 90,
+          "title": "Gift table",
+          "description": "Presents for Pedro",
+          "url": "grad-gifts.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 91,
+          "title": "Decorated venue",
+          "description": "Party venue for the celebration",
+          "url": "grad-venue.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 92,
+          "title": "University campus",
+          "description": "Beautiful campus view",
+          "url": "campus.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 93,
+          "title": "Cap throwing",
+          "description": "Traditional cap toss",
+          "url": "cap-toss.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 94,
+          "title": "With professors",
+          "description": "Pedro with faculty members",
+          "url": "professors.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 95,
+          "title": "Graduation decorations",
+          "description": "Themed decor for the party",
+          "url": "grad-decor.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 96,
+          "title": "Speech moment",
+          "description": "Pedro giving a thank you speech",
+          "url": "grad-speech.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 97,
+          "title": "Photo with dean",
+          "description": "Official photo with university dean",
+          "url": "dean.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 98,
+          "title": "Celebration toast",
+          "description": "Family toast to Pedro's success",
+          "url": "family-toast.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 99,
+          "title": "Guests arriving",
+          "description": "Guests arriving at the celebration",
+          "url": "arriving.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 100,
+          "title": "Graduation program",
+          "description": "Official ceremony program",
+          "url": "program.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 101,
+          "title": "Entertainment",
+          "description": "Live music at the celebration",
+          "url": "grad-music.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 102,
+          "title": "Memory book",
+          "description": "Guest book with messages",
+          "url": "memory-book.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 103,
+          "title": "Photo booth fun",
+          "description": "Guests enjoying photo booth",
+          "url": "grad-booth.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 104,
+          "title": "Formal portrait",
+          "description": "Official graduation portrait",
+          "url": "formal.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 105,
+          "title": "University tradition",
+          "description": "Special university tradition",
+          "url": "tradition.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 106,
+          "title": "Graduation banner",
+          "description": "Congratulations banner at venue",
+          "url": "banner.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 107,
+          "title": "Party atmosphere",
+          "description": "Celebration in full swing",
+          "url": "party.jpg",
+          "uploadDate": "2025-06-21"
+        },
+        {
+          "id": 108,
+          "title": "Proud parents",
+          "description": "Pedro's parents celebrating",
+          "url": "parents.jpg",
+          "uploadDate": "2025-06-21"
+        }
+      ]
+    }
+  ],
   "quotes": [
     {
       "id": "fdb0d4ac-45b4-49ef-95f2-89b09174f5f3",
