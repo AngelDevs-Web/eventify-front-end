@@ -5,7 +5,7 @@ import { TaskColumn } from './task-column.entity.js';
 import { Task } from './task.entity.js';
 
 /**
- * Clase que representa el tablero completo de tareas
+ * Class representing a task board in the system.
  */
 export class TaskBoardApi {
     constructor(id = null, title = '', description = '', columns = []) {
@@ -17,7 +17,7 @@ export class TaskBoardApi {
 
     static async load(boardId = 1) {
         try {
-            // Cargar datos del tablero desde la API
+            // Update the boardId to the one passed in
             const boardData = await apiService.loadBoard(boardId);
 
             // Convertir columnas y tareas a nuestras clases del modelo
@@ -42,7 +42,7 @@ export class TaskBoardApi {
             );
         } catch (error) {
             console.error('Error cargando el tablero:', error);
-            // Si hay un error, devolver un tablero por defecto
+            // If there's an error, return a default board
             return TaskBoardApi.createDefault();
         }
     }
@@ -65,7 +65,7 @@ export class TaskBoardApi {
             const column = this.findColumn(columnId);
             if (!column) return null;
 
-            // Crear la tarea en la API
+            // Create the task in the API
             const newTaskData = {
                 columnId,
                 title,
@@ -77,7 +77,7 @@ export class TaskBoardApi {
             const response = await apiService.createTask(newTaskData);
             const createdTaskData = response.data;
 
-            // Crear instancia de Task con los datos devueltos
+            // Create a new Task instance
             const newTask = new Task(
                 createdTaskData.id,
                 createdTaskData.title,
@@ -85,7 +85,7 @@ export class TaskBoardApi {
                 new Date(createdTaskData.createdAt)
             );
 
-            // Actualizar el modelo local
+            // Update the local model
             column.addTask(newTask);
             return newTask;
         } catch (error) {
@@ -103,10 +103,10 @@ export class TaskBoardApi {
 
             if (!sourceColumn || !targetColumn) return false;
 
-            // Mover en la API
+            // Move the task in the API
             await apiService.moveTask(taskId, sourceColumnId, targetColumnId);
 
-            // Actualizar modelo local
+            // Update the local model
             const task = sourceColumn.removeTask(taskId);
             if (task) {
                 targetColumn.addTask(task);
@@ -128,17 +128,17 @@ export class TaskBoardApi {
             const task = column.findTask(taskId);
             if (!task) return null;
 
-            // Obtener datos actuales de la tarea
+            // Obtain the current task data from the API
             const taskResponse = await apiService.getTask(taskId);
             const currentTaskData = taskResponse.data;
 
-            // Actualizar en la API
+            // Udate the task in the API
             const updatedResponse = await apiService.updateTask(taskId, {
                 ...currentTaskData,
                 ...data
             });
 
-            // Actualizar el modelo local
+            // Udate the local model
             task.update(data);
             return task;
         } catch (error) {
@@ -152,10 +152,10 @@ export class TaskBoardApi {
             const column = this.findColumn(columnId);
             if (!column) return false;
 
-            // Eliminar de la API
+            // Delete the task in the API
             await apiService.deleteTask(taskId);
 
-            // Eliminar del modelo local
+            // Delete the task from the local model
             return column.removeTask(taskId) !== null;
         } catch (error) {
             console.error('Error eliminando tarea:', error);

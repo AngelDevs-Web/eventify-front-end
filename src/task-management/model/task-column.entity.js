@@ -2,7 +2,7 @@
 import { Task } from './task.entity.js';
 
 /**
- * Clase que representa una columna de tareas en el tablero
+ * Class representing a task column in the board.
  */
 export class TaskColumn {
     constructor(id, title, tasks = []) {

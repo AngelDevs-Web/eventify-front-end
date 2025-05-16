@@ -1,7 +1,7 @@
 // src/task-management/model/task.entity.js
 
 /**
- * Clase que representa una tarea individual en el sistema
+ * Class representing an individual task in the system.
  */
 export class Task {
     constructor(id, title, description = '', createdAt = new Date()) {
