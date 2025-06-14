@@ -73,73 +73,44 @@ export default {
           userId: props.userId
         };
 
+        console.log('About to save service with data:', serviceData);
+
         let savedService;
 
         // If editing, update the service
         if (isEditing.value) {
           // Ensure ID is carried over
           serviceData.id = props.service.id;
-          console.log('Editing service with ID:', serviceData.id);
-
           serviceData.createdAt = props.service.createdAt || new Date().toISOString();
           serviceData.updatedAt = new Date().toISOString();
           serviceData.isActive = props.service.isActive !== undefined ? props.service.isActive : true;
 
           console.log('Updating service with data:', serviceData);
 
-          try {
-            // Create Service instance
-            const service = new Service(
-                serviceData.id,
-                serviceData.title,
-                serviceData.description,
-                serviceData.userId,
-                serviceData.currency,
-                serviceData.priceFrom,
-                serviceData.priceTo,
-                serviceData.category,
-                serviceData.createdAt,
-                serviceData.updatedAt,
-                serviceData.isActive
-            );
+          // Create Service instance - PASA UN OBJETO, NO PARÁMETROS INDIVIDUALES
+          const service = new Service(serviceData);
+          console.log('Service object created:', service);
+          console.log('Service DTO:', service.toDTO());
 
-            savedService = await serviceService.updateService(service);
-            console.log('Service updated successfully:', savedService);
-          } catch (err) {
-            console.error('Error in service update process:', err);
-            throw err;
-          }
+          savedService = await serviceService.updateService(service);
+          console.log('Service updated successfully:', savedService);
         }
         // If creating, create a new service
         else {
           serviceData.createdAt = new Date().toISOString();
           serviceData.updatedAt = new Date().toISOString();
           serviceData.isActive = true;
+          // No incluir ID para que JSON Server lo genere
 
           console.log('Creating service with data:', serviceData);
 
-          try {
-            // Create Service instance
-            const service = new Service(
-                null, // ID will be assigned by backend
-                serviceData.title,
-                serviceData.description,
-                serviceData.userId,
-                serviceData.currency,
-                serviceData.priceFrom,
-                serviceData.priceTo,
-                serviceData.category,
-                serviceData.createdAt,
-                serviceData.updatedAt,
-                serviceData.isActive
-            );
+          // Create Service instance - PASA UN OBJETO, NO PARÁMETROS INDIVIDUALES
+          const service = new Service(serviceData);
+          console.log('Service object created:', service);
+          console.log('Service DTO:', service.toDTO());
 
-            savedService = await serviceService.createService(service);
-            console.log('Service created successfully:', savedService);
-          } catch (err) {
-            console.error('Error in service creation process:', err);
-            throw err;
-          }
+          savedService = await serviceService.createService(service);
+          console.log('Service created successfully:', savedService);
         }
 
         console.log('Service saved with ID:', savedService?.id);
@@ -155,6 +126,9 @@ export default {
         });
       } catch (err) {
         console.error('Error saving service:', err);
+        console.error('Error details:', err.response?.data);
+        console.error('Error status:', err.response?.status);
+
         error.value = 'Error saving service. Please try again.';
 
         // Emit save event with error information
