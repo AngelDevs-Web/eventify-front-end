@@ -510,6 +510,7 @@ export default {
 .services-container {
   padding: 30px;
   position: relative;
+  text-align: left;
 }
 
 .services-header {

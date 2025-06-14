@@ -402,6 +402,7 @@ export default {
   padding: 20px;
   margin-bottom: 20px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
 }
 
 .average-score {
@@ -515,6 +516,7 @@ export default {
 
 .review-info, .response-info {
   flex: 1;
+  text-align: left;
 }
 
 .review-info h3, .response-info h4 {
@@ -569,6 +571,7 @@ export default {
   font-size: 14px;
   line-height: 1.5;
   color: #333;
+  text-align: justify;
 }
 
 .review-response {
