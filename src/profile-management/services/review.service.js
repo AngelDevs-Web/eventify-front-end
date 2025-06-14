@@ -1,176 +1,165 @@
 import { Review } from '../model/review.entity';
+import axios from 'axios';
+
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 class ReviewService {
-    constructor() {
-        this.baseUrl = 'http://localhost:3000';
-    }
-
     /**
-     * Obtiene todas las reseñas
-     * @returns {Promise<Review[]>} Lista de reseñas
+     * Gets all reviews
+     * @returns {Promise<Review[]>} List of reviews
      */
     async getAllReviews() {
         try {
-            const response = await fetch(`${this.baseUrl}/reviews`);
-
-            if (!response.ok) {
-                throw new Error(`Error al obtener reseñas: ${response.status}`);
-            }
-
-            const data = await response.json();
-            return data.map(dto => Review.fromDTO(dto));
+            const response = await axios.get(`${API_URL}/reviews`);
+            const data = response.data;
+            // Handle both array response and object with data property
+            const reviewsArray = Array.isArray(data) ? data : data.reviews || [];
+            return reviewsArray.map(dto => Review.fromDTO(dto));
         } catch (error) {
-            console.error('Error en getAllReviews:', error);
+            console.error('Error in getAllReviews:', error);
             throw error;
         }
     }
 
     /**
-     * Obtiene una reseña por su ID
-     * @param {number} id - ID de la reseña
-     * @returns {Promise<Review>} Reseña encontrada
+     * Gets a review by its ID
+     * @param {number} id - Review ID
+     * @returns {Promise<Review>} Found review
      */
     async getReviewById(id) {
         try {
-            const response = await fetch(`${this.baseUrl}/reviews/${id}`);
-
-            if (!response.ok) {
-                throw new Error(`Error al obtener reseña ${id}: ${response.status}`);
-            }
-
-            const data = await response.json();
-            return Review.fromDTO(data);
+            const response = await axios.get(`${API_URL}/reviews/${id}`);
+            return Review.fromDTO(response.data);
         } catch (error) {
-            console.error(`Error en getReviewById(${id}):`, error);
+            console.error(`Error in getReviewById(${id}):`, error);
             throw error;
         }
     }
 
     /**
-     * Crea una nueva reseña
-     * @param {Review} review - Reseña a crear
-     * @returns {Promise<Review>} Reseña creada
+     * Creates a new review
+     * @param {Review} review - Review to create
+     * @returns {Promise<Review>} Created review
      */
     async createReview(review) {
         try {
-            const response = await fetch(`${this.baseUrl}/reviews`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(review.toDTO())
-            });
-
-            if (!response.ok) {
-                throw new Error(`Error al crear reseña: ${response.status}`);
-            }
-
-            const data = await response.json();
-            return Review.fromDTO(data);
+            const response = await axios.post(`${API_URL}/reviews`, review.toDTO());
+            return Review.fromDTO(response.data);
         } catch (error) {
-            console.error('Error en createReview:', error);
+            console.error('Error in createReview:', error);
             throw error;
         }
     }
 
     /**
-     * Actualiza una reseña existente
-     * @param {Review} review - Reseña a actualizar
-     * @returns {Promise<Review>} Reseña actualizada
+     * Updates an existing review
+     * @param {Review} review - Review to update
+     * @returns {Promise<Review>} Updated review
      */
     async updateReview(review) {
         try {
-            const response = await fetch(`${this.baseUrl}/reviews/${review.id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(review.toDTO())
-            });
-
-            if (!response.ok) {
-                throw new Error(`Error al actualizar reseña ${review.id}: ${response.status}`);
-            }
-
-            const data = await response.json();
-            return Review.fromDTO(data);
+            const response = await axios.put(`${API_URL}/reviews/${review.id}`, review.toDTO());
+            return Review.fromDTO(response.data);
         } catch (error) {
-            console.error(`Error en updateReview:`, error);
+            console.error(`Error in updateReview:`, error);
             throw error;
         }
     }
 
     /**
-     * Elimina una reseña
-     * @param {number} id - ID de la reseña a eliminar
-     * @returns {Promise<boolean>} true si se eliminó correctamente
+     * Updates a review partially
+     * @param {number} id - Review ID
+     * @param {Object} reviewData - Partial review data to update
+     * @returns {Promise<Review>} Updated review
+     */
+    async patchReview(id, reviewData) {
+        try {
+            const response = await axios.patch(`${API_URL}/reviews/${id}`, reviewData);
+            return Review.fromDTO(response.data);
+        } catch (error) {
+            console.error(`Error in patchReview:`, error);
+            throw error;
+        }
+    }
+
+    /**
+     * Deletes a review
+     * @param {number} id - ID of the review to delete
+     * @returns {Promise<boolean>} true if deleted successfully
      */
     async deleteReview(id) {
         try {
-            const response = await fetch(`${this.baseUrl}/reviews/${id}`, {
-                method: 'DELETE'
-            });
-
-            if (!response.ok) {
-                throw new Error(`Error al eliminar reseña ${id}: ${response.status}`);
-            }
-
+            await axios.delete(`${API_URL}/reviews/${id}`);
             return true;
         } catch (error) {
-            console.error(`Error en deleteReview(${id}):`, error);
+            console.error(`Error in deleteReview(${id}):`, error);
             throw error;
         }
     }
 
     /**
-     * Responde a una reseña
-     * @param {number} id - ID de la reseña
-     * @param {string} responseText - Texto de la respuesta
-     * @returns {Promise<Review>} Reseña actualizada con respuesta
+     * Responds to a review
+     * @param {number} id - Review ID
+     * @param {string} responseText - Response text
+     * @returns {Promise<Review>} Updated review with response
      */
     async respondToReview(id, responseText) {
         try {
-            // Primero obtenemos la reseña
+            // First get the review
             const review = await this.getReviewById(id);
 
-            // Actualizamos los campos de respuesta
-            review.response = responseText;
-            review.responded = true;
-            review.responseDate = new Date().toISOString();
+            // Update response fields
+            const updatedData = {
+                response: responseText,
+                responded: true,
+                responseDate: new Date().toISOString()
+            };
 
-            // Guardamos los cambios
-            return this.updateReview(review);
+            // Save changes using patch
+            return await this.patchReview(id, updatedData);
         } catch (error) {
-            console.error(`Error en respondToReview(${id}):`, error);
+            console.error(`Error in respondToReview(${id}):`, error);
             throw error;
         }
     }
 
     /**
-     * Filtra reseñas por rating
-     * @param {number|string} rating - Rating para filtrar (o 'all' para todos)
-     * @returns {Promise<Review[]>} Reseñas filtradas
+     * Filters reviews by rating
+     * @param {number|string} rating - Rating to filter by (or 'all' for all)
+     * @returns {Promise<Review[]>} Filtered reviews
      */
     async filterReviewsByRating(rating) {
         try {
-            const reviews = await this.getAllReviews();
+            let url = `${API_URL}/reviews`;
 
-            if (rating === 'all') {
-                return reviews;
+            // If your API supports query parameters for filtering
+            if (rating !== 'all') {
+                url += `?rating=${rating}`;
             }
 
-            return reviews.filter(review => review.rating === Number(rating));
+            const response = await axios.get(url);
+            const data = response.data;
+            const reviewsArray = Array.isArray(data) ? data : data.reviews || [];
+
+            // Client-side filtering as fallback
+            if (rating !== 'all') {
+                return reviewsArray
+                    .filter(review => review.rating === Number(rating))
+                    .map(dto => Review.fromDTO(dto));
+            }
+
+            return reviewsArray.map(dto => Review.fromDTO(dto));
         } catch (error) {
-            console.error(`Error en filterReviewsByRating(${rating}):`, error);
+            console.error(`Error in filterReviewsByRating(${rating}):`, error);
             throw error;
         }
     }
 
     /**
-     * Ordena reseñas según criterio
-     * @param {string} criteria - Criterio de ordenamiento: 'recent', 'highest', 'lowest'
-     * @param {Review[]} reviews - Reseñas a ordenar
-     * @returns {Review[]} Reseñas ordenadas
+     * Sorts reviews by criteria
+     * @param {string} criteria - Sort criteria: 'recent', 'highest', 'lowest'
+     * @param {Review[]} reviews - Reviews to sort
+     * @returns {Review[]} Sorted reviews
      */
     sortReviews(criteria, reviews) {
         const reviewsCopy = [...reviews];
@@ -188,8 +177,8 @@ class ReviewService {
     }
 
     /**
-     * Obtiene estadísticas de las reseñas
-     * @returns {Promise<Object>} Estadísticas de reseñas
+     * Gets review statistics
+     * @returns {Promise<Object>} Review statistics
      */
     async getReviewStats() {
         try {
@@ -209,11 +198,11 @@ class ReviewService {
                 };
             }
 
-            // Calcular promedio
+            // Calculate average
             const sum = reviews.reduce((acc, review) => acc + review.rating, 0);
             const averageRating = sum / reviews.length;
 
-            // Calcular distribución
+            // Calculate distribution
             const ratingDistribution = {
                 5: 0,
                 4: 0,
@@ -232,7 +221,7 @@ class ReviewService {
                 ratingDistribution
             };
         } catch (error) {
-            console.error('Error en getReviewStats:', error);
+            console.error('Error in getReviewStats:', error);
             throw error;
         }
     }
