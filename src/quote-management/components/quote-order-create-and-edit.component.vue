@@ -16,25 +16,27 @@ export default {
     item:null,
     serviceList:Array,
     isEdit:false,
-    visible:false
+    visible:false,
+    organizerId:String
   },
-  emits:['cancel-requested','save-requested','change-visible','quote-order-created','quote-order-updated'],
+  emits:['close-dialog','cancel-requested','save-requested','change-visible','quote-order-created','quote-order-updated'],
   data(){
     return{
-      id:uuidv4(),
+      id:'',
       title:'',
       eventType:'',
-      eventDate: null,
+      eventDate: new Date(),
       guestQuantity: 0,
-      state:'Pending',
+      status:'Pending',
       location:'',
       eventTypeOptions:['Wedding','Conference','Quinceanera','Graduation'],
-
+      hostId:"def-abc",
 
       submitted:false,
       serviceDialogVisible:false,
       serviceItems:[],
       deletedServices:[],
+      createdServices:[],
 
 
       quoteOrderService: new QuoteOrderService()
@@ -50,55 +52,77 @@ export default {
       this.$emit("save-requested",this.item);
     },
     onCreateNewService(service){
-      const servItem = new ServiceItem(service);
+      const servItem = new ServiceItem({...service});
       servItem.unitPrice = parseFloat(service.unitPrice.toFixed(2));
       servItem.totalPrice = parseFloat(service.totalPrice.toFixed(2));
-      servItem.quoteOrderId = this.id;
       this.serviceItems.push(servItem);
+      this.createdServices.push(servItem);
     },
 
     onCreateQuoteOrder(){
       let serviceItemService= new ServiceItemService();
-      console.log(this.eventDate);
-      this.eventDate = this.eventDate.toISOString().split("T")[0]
-      console.log(this.eventDate)
 
-
-      let item = {id: this.id, title: this.title, eventType: this.eventType,
+      let quoteResource = {title: this.title, eventType: this.eventType,
         eventDate: this.eventDate,guestQuantity: this.guestQuantity, location:this.location,
-        totalPrice: this.getTotalPrice(), state: this.state
+        totalPrice: this.getTotalPrice(), status: this.status,organizerId:this.organizerId,
+        hostId:this.hostId
       };
-      let quoteOrder = new Quote({...item})
+      //let quoteOrder = new Quote({...item})
 
       if(this.isEdit){
-        this.quoteOrderService.update(quoteOrder.id, quoteOrder);
-        this.$emit('quote-order-updated',quoteOrder);
-        if(this.deletedServices.length > 0){
-          this.deletedServices.forEach(serviceId => {
-            serviceItemService.delete(serviceId).then(()=>{
-              console.log('Service deleted successfully');
-            }).catch(err=>{console.log(err);});
+        let updatedQuoteResource = {title: this.title, eventType: this.eventType,guestQuantity: this.guestQuantity, location:this.location,totalPrice: this.getTotalPrice(), eventDate: this.eventDate}
+        this.quoteOrderService.update(this.id, updatedQuoteResource).then(response => {
+          let updatedQuote = new Quote({...response});
+          this.$emit('quote-order-updated',updatedQuote);
+          this.$emit('close-dialog');
 
-          })
-          this.deletedServices = [];
-        }
+          if(this.deletedServices.length > 0){
+            this.deletedServices.forEach(serviceId => {
+              serviceItemService.delete(updatedQuote.id,serviceId).then(()=>{
+                console.log('Service deleted successfully');
+              }).catch(err=>{console.log(err);});
+
+            })
+          }
+          if(this.createdServices.length > 0){
+            this.createdServices.forEach(serviceItem => {
+              let resource = {description:serviceItem.description, quantity:serviceItem.quantity, unitPrice:serviceItem.unitPrice, totalPrice:serviceItem.totalPrice, quoteId:updatedQuote.id};
+              serviceItemService.create(updatedQuote.id,resource).then((response) => {
+                serviceItem = new ServiceItem({...response})
+              });
+            })
+          }
+          this.clearForm();
+        });
+
       }else{
         console.log('Creating a new Quote order');
-        this.quoteOrderService.create(quoteOrder);
-        this.serviceItems.forEach(serviceItem => {
-          serviceItemService.create(serviceItem)
-        })
-        this.$emit('quote-order-created',quoteOrder);
+        this.quoteOrderService.create(quoteResource).then((response)=>{
+          if(response && response.id){
+            let quote = new Quote({...quoteResource});
+            quote.id = response.id;
+            this.serviceItems.forEach(serviceItem => {
+              let resource = {description:serviceItem.description, quantity:serviceItem.quantity, unitPrice:serviceItem.unitPrice, totalPrice:serviceItem.totalPrice, quoteId:quote.id};
+              serviceItemService.create(quote.id,resource).then((response) => {
+                serviceItem = new ServiceItem({...response})
+              });
+            })
+            this.$emit('quote-order-created',quote);
+            this.$emit('close-dialog');
+            this.clearForm();
+          }else {
+            console.error('Cannot get ID of the quote.');
+          }
+        }).catch(error=>{console.error('Error creating quote:  ',error)});
+        /**/
+
       }
 
 
-
-      this.$emit('change-visible',false);
-      this.clearForm();
     },
 
     onCancel(){
-      this.$emit('change-visible',false);
+      this.$emit('close-dialog');
       this.clearForm();
     },
 
@@ -106,10 +130,12 @@ export default {
       this.id = uuidv4();
       this.title = "";
       this.eventType = "";
-      this.eventDate = null;
+      this.eventDate = new Date();
       this.guestQuantity = 0;
       this.location = "";
       this.serviceItems = [];
+      this.createdServices = [];
+      this.deletedServices = [];
     },
 
     deleteServiceItem(id){
@@ -145,9 +171,6 @@ export default {
           this.guestQuantity = this.item.guestQuantity;
           this.location = this.item.location;
 
-          const [year, month, day] = this.item.eventDate.split('-');
-          this.eventDate = new Date(year, month - 1, day);
-
           let serviceItemService = new ServiceItemService();
           serviceItemService.getByQuoteOrderId(this.id).then((response) => {
             const newServiceItems = response.data.map(service => new ServiceItem({...service}));
@@ -175,13 +198,6 @@ export default {
       </div>
 
       <div>
-        <div class="flex flex-column form-group">
-          <label for="id">Id</label>
-          <pv-input-group>
-            <pv-input-group-addon><i class="pi pi-bookmark"></i></pv-input-group-addon>
-            <pv-input-text id="id" v-model="id" required></pv-input-text>
-          </pv-input-group>
-        </div>
         <div class="flex flex-column form-group">
           <label for="title">{{ $t('quoteOrder.title') }}</label>
           <pv-input-group>
@@ -236,8 +252,7 @@ export default {
           <p>{{ $t('quoteOrder.includedServices') }}</p>
         </div>
         <pv-data-table :value="serviceItems" table-style="min-width:50rem">
-          <pv-column field="id" header="ID"></pv-column>
-          <pv-column field="quoteOrderId" header="Quote ID"></pv-column>
+
           <pv-column field="description" header="Description"></pv-column>
           <pv-column field="quantity" header="Quantity"></pv-column>
           <pv-column field="unitPrice" header="Price">
@@ -260,7 +275,7 @@ export default {
         <div class="w-3">
 
           <pv-button class="w-full mt-4" label="Add New Service" @click="serviceDialogVisible=true"><i class="pi pi-plus-circle"></i> Add New Service</pv-button>
-          <service-item-create-and-edit-dialog v-on:create-new-service="onCreateNewService" :visible="serviceDialogVisible" :quote-order-id-prop="id" @change-visible="serviceDialogVisible=$event"></service-item-create-and-edit-dialog>
+          <service-item-create-and-edit-dialog @create-new-service="onCreateNewService" :visible="serviceDialogVisible" :quote-order-id-prop="id" @change-visible="serviceDialogVisible=$event"></service-item-create-and-edit-dialog>
 
         </div>
 
