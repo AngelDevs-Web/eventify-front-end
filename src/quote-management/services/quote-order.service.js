@@ -5,15 +5,25 @@ export class QuoteOrderService {
     resourceEndpoint = import.meta.env.VITE_QUOTE_ORDERS_ENDPOINT_PATH
 
     create(resource) {
-        return httpInstance.post(this.resourceEndpoint, resource);
+        return httpInstance.post(this.resourceEndpoint, resource)
+            .then(response => response.data)
+            .catch(error => {
+                console.log("Error creating quote:  ",error)
+                throw error;
+            });
     }
 
-    getAll(){
-        return httpInstance.get(`${this.resourceEndpoint}`);
+    getAll(organizerId){
+        return httpInstance.get(`/organizers/${organizerId}${this.resourceEndpoint}`);
     }
 
     update(id, resource) {
-        return httpInstance.put(`${this.resourceEndpoint}/${id}`, resource);
+        return httpInstance.put(`${this.resourceEndpoint}/${id}`, resource)
+            .then(response => response.data)
+            .catch(error => {
+                console.log("Error updating quote:  ",error)
+                throw error;
+            });
     }
 
     delete(id) {
