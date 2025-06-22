@@ -170,7 +170,7 @@ export default {
           this.eventType = this.item.eventType;
           this.guestQuantity = this.item.guestQuantity;
           this.location = this.item.location;
-
+          this.eventDate = this.item.eventDate;
           let serviceItemService = new ServiceItemService();
           serviceItemService.getByQuoteOrderId(this.id).then((response) => {
             const newServiceItems = response.data.map(service => new ServiceItem({...service}));
@@ -217,7 +217,7 @@ export default {
             <label>{{$t('quoteOrder.eventDate')}}</label>
             <pv-input-group>
               <pv-input-group-addon><i class="pi pi-calendar"></i></pv-input-group-addon>
-              <pv-date-picker v-model="eventDate" date-format="dd/mm/yy" fluid required/>
+              <pv-date-picker v-model="eventDate" date-format="dd/mm/yy"  fluid required/>
             </pv-input-group>
           </div>
         </div>
