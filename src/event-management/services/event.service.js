@@ -1,7 +1,6 @@
-// event.service.js
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000'; // Ajusta esto a la URL de tu json-server
+const API_URL = 'http://localhost:5247';
 
 const EventService = {
     /**
@@ -10,7 +9,8 @@ const EventService = {
      * @returns {Promise} Promise with the event data
      */
     getEvents(params = {}) {
-        return axios.get(`${API_URL}/events`, { params });
+      // return axios.get(`${API_URL}/events`, { params });
+        return axios.get(`${API_URL}/social-events`, {})
     },
 
     /**
@@ -19,7 +19,7 @@ const EventService = {
      * @returns {Promise} Promise with the event data
      */
     getEventById(id) {
-        return axios.get(`${API_URL}/events/${id}`);
+        return axios.get(`${API_URL}/social-events/${id}`);
     },
 
     /**
@@ -28,7 +28,8 @@ const EventService = {
      * @returns {Promise} Promise with the response
      */
     createEvent(eventData) {
-        return axios.post(`${API_URL}/events`, eventData);
+        //return axios.post(`${API_URL}/events`, eventData);
+        return axios.post(`${API_URL}/social-events`, eventData);
     },
 
     /**
@@ -47,7 +48,7 @@ const EventService = {
      * @returns {Promise} Promise con la respuesta
      */
     deleteEvent(id) {
-        return axios.delete(`${API_URL}/events/${id}`);
+        return axios.delete(`${API_URL}/social-events/${id}`);
     },
 
     /**
@@ -57,9 +58,13 @@ const EventService = {
      * @returns {Promise} Promise with all operations
      */
     deleteMultipleEvents(ids) {
-        // Crear un array de promesas para eliminar cada evento
+        // Crear un array de  para eliminar cada evento
         const deletePromises = ids.map(id => this.deleteEvent(id));
         return Promise.all(deletePromises);
+    },
+
+    getEventByCustomerName(customerName) {
+        return axios.get(`${API_URL}/social-events/${customerName}`);
     }
 };
 
