@@ -11,6 +11,37 @@
     "certifications": "Certifications",
     "settings": "Settings"
   },
+  "iam": {
+    "auth": {
+      "signIn": {
+        "title": "Sign In",
+        "subtitle": "Access your Eventify account",
+        "username": "Username",
+        "password": "Password",
+        "button": "Sign In",
+        "loading": "Signing in...",
+        "noAccount": "Don't have an account?",
+        "createAccount": "Create new account"
+      },
+      "signUp": {
+        "title": "Create Account",
+        "subtitle": "Join Eventify Platform",
+        "username": "Username",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "button": "Create Account",
+        "loading": "Creating account...",
+        "hasAccount": "Already have an account?",
+        "signIn": "Sign in"
+      },
+      "errors": {
+        "invalidCredentials": "Invalid username or password",
+        "passwordMismatch": "Passwords do not match",
+        "userExists": "Username already exists",
+        "networkError": "Network error. Please try again."
+      }
+    }
+  },
   "profilePage": {
     "title": "My Profile",
     "loading": "Loading profile information...",
@@ -245,5 +276,16 @@
     "quantity": "Quantity",
     "unitPrice": "Unit Price",
     "totalPrice": "Total Price"
+  },
+  "authoring-phrase": {
+    "intro": "Made with",
+    "use": "using",
+    "author": "by {brand} Developer Team"
+  },
+  "authentication-section": {
+    "welcome": "Welcome",
+    "sign-in": "Sign In",
+    "sign-up": "Sign Up",
+    "sign-out": "Sign Out"
   }
 }

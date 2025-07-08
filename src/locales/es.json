@@ -11,6 +11,37 @@
     "certifications": "Certificaciones",
     "settings": "Configuración"
   },
+  "iam": {
+    "auth": {
+      "signIn": {
+        "title": "Iniciar Sesión",
+        "subtitle": "Accede a tu cuenta de Eventify",
+        "username": "Usuario",
+        "password": "Contraseña",
+        "button": "Iniciar Sesión",
+        "loading": "Iniciando sesión...",
+        "noAccount": "¿No tienes cuenta?",
+        "createAccount": "Crear nueva cuenta"
+      },
+      "signUp": {
+        "title": "Crear Cuenta",
+        "subtitle": "Únete a Eventify Platform",
+        "username": "Usuario",
+        "password": "Contraseña",
+        "confirmPassword": "Confirmar Contraseña",
+        "button": "Crear Cuenta",
+        "loading": "Creando cuenta...",
+        "hasAccount": "¿Ya tienes cuenta?",
+        "signIn": "Iniciar sesión"
+      },
+      "errors": {
+        "invalidCredentials": "Usuario o contraseña inválidos",
+        "passwordMismatch": "Las contraseñas no coinciden",
+        "userExists": "El nombre de usuario ya existe",
+        "networkError": "Error de red. Inténtalo de nuevo."
+      }
+    }
+  },
   "profilePage": {
     "title": "Mi Perfil",
     "loading": "Cargando información del perfil...",
@@ -245,5 +276,16 @@
     "quantity": "Cantidad",
     "unitPrice": "Precio Unitario",
     "totalPrice": "Precio Total"
+  },
+  "authoring-phrase": {
+    "intro": "Hecho con",
+    "use": "utilizando",
+    "author":"por el Equipo de Desarrollo de {brand}"
+  },
+  "authentication-section": {
+    "welcome": "Bienvenido",
+    "sign-in": "Iniciar sesión",
+    "sign-up": "Registrarse",
+    "sign-out": "Cerrar sesión"
   }
 }

@@ -1,9 +1,10 @@
 <script>
 import LanguageSwitcher from "./language-switcher.component.vue";
+import AuthenticationSection from "../../iam/components/authentication-section.component.vue";
 
 export default {
   name: "header-content",
-  components: {LanguageSwitcher}
+  components: {AuthenticationSection, LanguageSwitcher}
 }
 </script>
 
@@ -18,6 +19,7 @@ export default {
       </template>
       <template #end>
         <div class="flex align-items-center justify-content-center">
+          <authentication-section></authentication-section>
           <language-switcher></language-switcher>
           <pv-avatar class="ml-4" label="U" shape="circle"></pv-avatar>
         </div>
