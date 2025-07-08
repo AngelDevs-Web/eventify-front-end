@@ -4,16 +4,19 @@ import axios from 'axios';
 const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 class ServiceService {
+    constructor() {
+        this.baseUrl = API_URL;
+    }
     /**
-     * Gets all services for a user
-     * @param {number} userId - User ID
+     * Gets all services for a profile
+     * @param {number} profileId - Profile ID
      * @returns {Promise<Service[]>} List of services
      */
-    async getServicesByUserId(userId) {
+    async getServicesByUserId(profileId) {
         try {
-            console.log(`Fetching services for user ${userId}...`);
+            console.log(`Fetching services for profile ${profileId}...`);
 
-            const response = await axios.get(`${API_URL}/services?userId=${userId}`);
+            const response = await axios.get(`${API_URL}/profiles/${profileId}/service-catalogs`);
             const data = response.data;
 
             console.log('Raw services data:', data); // Log raw data for debugging
@@ -40,13 +43,13 @@ class ServiceService {
                         id: serviceData.id || null,
                         title: serviceData.title || 'Unknown service',
                         description: serviceData.description || '',
-                        userId: serviceData.userId || userId,
+                        profileId: serviceData.profileId || profileId,
                         ...serviceData
                     };
                 }
             });
 
-            console.log(`Processed ${services.length} services for user ${userId}`);
+            console.log(`Processed ${services.length} services for profile ${profileId}`);
             return services;
         } catch (error) {
             console.error('Error in getServicesByUserId:', error);
@@ -58,9 +61,9 @@ class ServiceService {
      * Gets all services
      * @returns {Promise<Service[]>} List of all services
      */
-    async getAllServices() {
+    async getAllServices(profileId) {
         try {
-            const response = await axios.get(`${API_URL}/services`);
+            const response = await axios.get(`${API_URL}/profiles/${profileId}/service-catalogs`);
             const data = response.data;
 
             // Handle both array response and object with data property
@@ -77,9 +80,9 @@ class ServiceService {
      * @param {number} id - Service ID
      * @returns {Promise<Service>} Found service
      */
-    async getServiceById(id) {
+    async getServiceById(profileId, id) {
         try {
-            const response = await axios.get(`${API_URL}/services/${id}`);
+            const response = await axios.get(`${API_URL}/profiles/${profileId}/service-catalogs/${id}`);
             return Service.fromDTO(response.data);
         } catch (error) {
             console.error(`Error in getServiceById(${id}):`, error);
@@ -107,7 +110,7 @@ class ServiceService {
 
             console.log('Service DTO being sent:', serviceDTO);
 
-            const response = await axios.post(`${API_URL}/services`, serviceDTO);
+            const response = await axios.post(`${API_URL}/profiles/${service.profileId}/service-catalogs`, serviceDTO);
             const data = response.data;
 
             console.log('Service created API response:', data);
@@ -137,7 +140,7 @@ class ServiceService {
     async updateService(service) {
         try {
             const serviceDTO = service.toDTO ? service.toDTO() : service;
-            const response = await axios.put(`${API_URL}/services/${service.id}`, serviceDTO);
+            const response = await axios.put(`${API_URL}/profiles/${service.profileId}/service-catalogs/${service.id}`, serviceDTO);
             return Service.fromDTO(response.data);
         } catch (error) {
             console.error(`Error in updateService:`, error);
@@ -152,9 +155,9 @@ class ServiceService {
      * @param {Object} serviceData - Partial service data to update
      * @returns {Promise<Service>} Updated service
      */
-    async patchService(id, serviceData) {
+    async patchService(profileId, id, serviceData) {
         try {
-            const response = await axios.patch(`${API_URL}/services/${id}`, serviceData);
+            const response = await axios.patch(`${API_URL}/profiles/${profileId}/service-catalogs/${id}`, serviceData);
             return Service.fromDTO(response.data);
         } catch (error) {
             console.error(`Error in patchService:`, error);
@@ -168,10 +171,10 @@ class ServiceService {
      * @param {number} id - ID of the service to delete
      * @returns {Promise<boolean>} true if deleted successfully
      */
-    async deleteService(id) {
+    async deleteService(id, profileId) {
         try {
             console.log('Attempting to delete service with ID:', id);
-            const response = await axios.delete(`${API_URL}/services/${id}`);
+            const response = await axios.delete(`${API_URL}/profiles/${profileId}/service-catalogs/${id}`);
             console.log('Delete response:', response.status);
             return true;
         } catch (error) {
@@ -187,21 +190,18 @@ class ServiceService {
      * @param {string} filters.category - Category to filter by
      * @param {number} filters.minPrice - Minimum price
      * @param {number} filters.maxPrice - Maximum price
-     * @param {number} filters.userId - User ID to filter by
+     * @param {number} filters.profileId - Profile ID to filter by
      * @returns {Promise<Service[]>} Filtered services
      */
     async filterServices(filters = {}) {
         try {
             const params = new URLSearchParams();
 
-            if (filters.userId) {
-                params.append('userId', filters.userId);
-            }
             if (filters.category) {
                 params.append('category', filters.category);
             }
 
-            const url = `${API_URL}/services${params.toString() ? '?' + params.toString() : ''}`;
+            const url = `${API_URL}/profiles/${filters.profileId}/service-catalogs${params.toString() ? '?' + params.toString() : ''}`;
             const response = await axios.get(url);
 
             let services = Array.isArray(response.data) ? response.data : response.data.services || [];

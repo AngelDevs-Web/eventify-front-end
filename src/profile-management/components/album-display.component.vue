@@ -7,7 +7,7 @@ export default {
     AlbumFormComponent
   },
   props: {
-    userId: {
+    profileId: {
       type: Number,
       required: true
     }
@@ -18,7 +18,7 @@ export default {
       error: null,
       albums: [],
       sortOption: 'recent',
-      apiUrl: 'http://localhost:3000',
+      apiUrl: import.meta.env.VITE_API_BASE_URL,
       showAlbumForm: false,
       editAlbumId: null,
       currentPage: 1,
@@ -168,8 +168,8 @@ export default {
       this.error = null;
 
       try {
-        console.log(`Fetching albums for user ${this.userId}`);
-        const response = await fetch(`${this.apiUrl}/albums?userId=${this.userId}`);
+        console.log(`Fetching albums for profile ${this.profileId}`);
+        const response = await fetch(`${this.apiUrl}/profiles/${this.profileId}/albums`);
 
         if (!response.ok) {
           throw new Error(`Error fetching albums: ${response.status}`);
@@ -350,7 +350,7 @@ export default {
       try {
         // In a real app, this could be a batch DELETE request
         const deletePromises = this.selectedAlbums.map(albumId =>
-            fetch(`${this.apiUrl}/albums/${albumId}`, {
+            fetch(`${this.apiUrl}/profiles/${this.profileId}/albums/${albumId}`, {
               method: 'DELETE'
             })
         );
@@ -380,7 +380,7 @@ export default {
     <album-form-component
         v-if="showAlbumForm"
         :album-id="editAlbumId"
-        :user-id="userId"
+        :profile-id="profileId"
         @cancel="cancelAlbumForm"
         @album-saved="handleAlbumSaved"
     />

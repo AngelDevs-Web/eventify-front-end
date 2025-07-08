@@ -49,10 +49,10 @@ export default {
   },
 
   /**
-   * @event new-item-requested - Emitted when user clicks the "New" button
-   * @event edit-item-requested - Emitted when user clicks the edit button for an item, includes the item data
-   * @event delete-item-requested - Emitted when user confirms deletion of a single item, includes the item data
-   * @event delete-selected-items-requested - Emitted when user confirms deletion of selected items, includes an array of selected items
+   * @event new-item-requested - Emitted when profile clicks the "New" button
+   * @event edit-item-requested - Emitted when profile clicks the edit button for an item, includes the item data
+   * @event delete-item-requested - Emitted when profile confirms deletion of a single item, includes the item data
+   * @event delete-selected-items-requested - Emitted when profile confirms deletion of selected items, includes an array of selected items
    */
   emits: ['new-item-requested', 'edit-item-requested', 'delete-item-requested', 'delete-selected-items-requested'],
 

@@ -1,9 +1,9 @@
-// src/profile-management/model/user.entity.js
+// src/profile-management/model/profile.entity.js
 
 /**
- * Entidad Usuario dentro del Bounded Context de perfil de usuario
+ * Profile Entity
  */
-export class User {
+export class profile {
     constructor({
                     id = '',
                     nombre = '',
@@ -28,7 +28,7 @@ export class User {
         this.biografia = biografia;
     }
 
-    get nombreCompleto() {
+    get fullName() {
         return `${this.nombre} ${this.apellido}`;
     }
 
@@ -48,6 +48,6 @@ export class User {
     }
 
     static fromJSON(json) {
-        return new User(json);
+        return new profile(json);
     }
 }

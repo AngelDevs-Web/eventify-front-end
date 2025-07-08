@@ -1,53 +1,33 @@
-// profile.service.js modificado para usar ID fijo
-const API_URL = 'http://localhost:3000';
+// Servicio para obtener datos de perfil desde la API real
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 export default {
     /**
      * Obtiene todos los datos del perfil de un usuario
-     * @returns {Promise} Objeto con los datos completos del perfil
+     * @param {number} profileId Identificador del perfil
+     * @returns {Promise<Object>} Datos del perfil junto a estadísticas y certificaciones
      */
-    async getProfileData() {
+    async getProfileData(profileId = 1) {
         try {
-            // Usar siempre el userId 1 para garantizar que tengamos datos
-            const userId = 1;
+            console.log(`Fetching profile with ID: ${profileId}`);
 
-            // Log para ayudar a depurar
-            console.log(`Fetching user profile with ID: ${userId}`);
+            const response = await fetch(`${API_URL}/profiles/${profileId}`);
+            if (!response.ok) {
+                throw new Error(`Error fetching profile: ${response.status}`);
+            }
 
-            // URLs completas para verificación
-            const userUrl = `${API_URL}/users/${userId}`;
-            const statsUrl = `${API_URL}/statistics?userId=${userId}`;
-            const certsUrl = `${API_URL}/certifications?userId=${userId}`;
+            const profile = await response.json();
 
-            console.log('Requesting:', userUrl, statsUrl, certsUrl);
-
-            // Realizar todas las peticiones en paralelo
-            const [userResponse, statsResponse, certsResponse] = await Promise.all([
-                fetch(userUrl).then(res => {
-                    if (!res.ok) throw new Error(`Error fetching user: ${res.status}`);
-                    return res.json();
-                }),
-                fetch(statsUrl).then(res => {
-                    if (!res.ok) throw new Error(`Error fetching statistics: ${res.status}`);
-                    return res.json();
-                }),
-                fetch(certsUrl).then(res => {
-                    if (!res.ok) throw new Error(`Error fetching certifications: ${res.status}`);
-                    return res.json();
-                })
-            ]);
-
-            console.log('Responses received:',
-                'User:', userResponse,
-                'Stats:', statsResponse,
-                'Certs:', certsResponse
-            );
-
-            // Preparar los datos para devolver
             return {
-                user: userResponse,
-                statistics: statsResponse.length > 0 ? statsResponse[0] : {},
-                certifications: certsResponse.length > 0 ? certsResponse[0] : { list: [] }
+                user: {
+                    name: profile.fullName,
+                    email: profile.email,
+                    location: profile.streetAddress,
+                    title: profile.role,
+                    profileImage: null
+                },
+                statistics: {},
+                certifications: { list: [] }
             };
         } catch (error) {
             console.error('Error fetching profile data:', error);

@@ -1,7 +1,7 @@
 export class Service {
     constructor({
                     id = null,
-                    userId = null,
+                    profileId = null,
                     title = '',
                     description = '',
                     priceFrom = 0,
@@ -13,7 +13,7 @@ export class Service {
                     updatedAt = new Date().toISOString()
                 } = {}) {
         this.id = id;
-        this.userId = userId;
+        this.profileId = profileId;
         this.title = title;
         this.description = description;
         this.priceFrom = priceFrom;
@@ -28,7 +28,7 @@ export class Service {
     static fromDTO(dto) {
         return new Service({
             id: dto.id,
-            userId: dto.userId,
+            profileId: dto.profileId,
             title: dto.title,
             description: dto.description,
             priceFrom: dto.priceFrom,
@@ -44,7 +44,7 @@ export class Service {
     toDTO() {
         return {
             id: this.id,
-            userId: this.userId,
+            profileId: this.profileId,
             title: this.title,
             description: this.description,
             priceFrom: this.priceFrom,

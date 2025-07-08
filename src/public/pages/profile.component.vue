@@ -37,14 +37,14 @@
               <div class="content-area">
                 <!-- Profile information component -->
                 <profile-information
-                    :profile-image="user.profileImage"
-                    :name="user.name"
-                    :title="user.title"
-                    :email="user.email"
-                    :phone="user.phone"
-                    :location="user.location"
-                    :website="user.website"
-                    :bio="user.bio"
+                    :profile-image=null
+                    :name="profileId.name"
+                    :title="profileId.title"
+                    :email="profileId.email"
+                    :phone="profileId.phone"
+                    :location="profileId.location"
+                    :website="profileId.website"
+                    :bio="profileId.bio"
                 />
               </div>
 
@@ -76,7 +76,7 @@
           <!-- Albums tab -->
           <div v-else-if="activeTab === 'albums'" class="tab-pane">
             <!-- Albums page component -->
-            <albums-page-component :userId="userId" />
+            <albums-page-component :profileId="profileId" />
           </div>
 
           <!-- Reviews tab -->
@@ -87,7 +87,7 @@
 
           <!-- Services tab -->
           <div v-else-if="activeTab === 'services'" class="tab-pane">
-            <services-component :user-id="userId" />
+            <services-component :profile-id="profileId" />
           </div>
 
         </div>
@@ -102,7 +102,8 @@ import CertificationsList from '../../profile-management/components/certificatio
 import AlbumsPageComponent from '../../profile-management/components/album-display.component.vue';
 import ReviewsComponent from '../../profile-management/components/reviews.component.vue';
 import ServicesComponent from '../../profile-management/components/services.component.vue';
-import ProfileSettingsPageComponent from '../../profile-management/components/profile-settings-page.component.vue';
+//import ProfileSettingsPageComponent from '../../profile-management/components/profile-settings-page.component.vue';
+import profileService from '../../shared/services/profile.service.js';
 export default {
   name: 'ProfilePageComponent',
   components: {
@@ -112,13 +113,13 @@ export default {
     AlbumsPageComponent,
     ReviewsComponent,
     ServicesComponent,
-    ProfileSettingsPageComponent
+    //ProfileSettingsPageComponent
   },
   data() {
     return {
       loading: true,
       error: null,
-      userId: 1,
+      profileId: 1,
       activeTab: 'information',
       tabs: [
         { id: 'information', labelKey: 'profilePage.tabs.information' },
@@ -126,9 +127,18 @@ export default {
         { id: 'reviews', labelKey: 'profilePage.tabs.reviews' },
         { id: 'services', labelKey: 'profilePage.tabs.services' },
       ],
-      apiUrl: 'http://localhost:3000',
-      // Profile data
-      user: {},
+      apiUrl: import.meta.env.VITE_API_BASE_URL,
+      // Profile data with defaults to avoid undefined errors
+      user: {
+        profileImage: null,
+        name: '',
+        title: '',
+        email: '',
+        phone: '',
+        location: '',
+        website: '',
+        bio: ''
+      },
       statistics: {},
       certifications: { list: [] }
     };
@@ -149,36 +159,10 @@ export default {
       this.error = null;
 
       try {
-        console.log(`Fetching profile data for user ${this.userId}`);
-
-        // Make all requests in parallel
-        const [userResponse, statsResponse, certsResponse] = await Promise.all([
-          fetch(`${this.apiUrl}/users/${this.userId}`),
-          fetch(`${this.apiUrl}/statistics?userId=${this.userId}`),
-          fetch(`${this.apiUrl}/certifications?userId=${this.userId}`)
-        ]);
-
-        // Check if any request failed
-        if (!userResponse.ok) {
-          throw new Error(`Error fetching user data: ${userResponse.status}`);
-        }
-        if (!statsResponse.ok) {
-          throw new Error(`Error fetching statistics: ${statsResponse.status}`);
-        }
-        if (!certsResponse.ok) {
-          throw new Error(`Error fetching certifications: ${certsResponse.status}`);
-        }
-
-        // Process responses
-        this.user = await userResponse.json();
-
-        const statsData = await statsResponse.json();
-        this.statistics = statsData.length > 0 ? statsData[0] : {};
-
-        const certsData = await certsResponse.json();
-        this.certifications = certsData.length > 0 ? certsData[0] : { list: [] };
-
-        console.log('Profile data loaded successfully');
+        const data = await profileService.getProfileData(this.profileId);
+        this.user = data.user;
+        this.statistics = data.statistics;
+        this.certifications = data.certifications;
         this.loading = false;
       } catch (error) {
         console.error('Error loading profile data:', error);

@@ -10,7 +10,7 @@ export default {
     CreateAndEditServiceComponent
   },
   props: {
-    userId: {
+    profileId: {
       type: [Number, String],
       required: true
     }
@@ -27,7 +27,7 @@ export default {
     const currentPage = ref(1);
     const itemsPerPage = ref(5);
 
-    // Loading states for better user feedback
+    // Loading states for better profile feedback
     const savingService = ref(false);
     const deletingService = ref(false);
 
@@ -72,10 +72,13 @@ export default {
     // Check server connection
     const checkServerConnection = async () => {
       try {
-        const response = await fetch(`${serviceService.baseUrl}/services?userId=${props.userId}`, {
-          method: 'HEAD',
-          signal: AbortSignal.timeout(3000)
-        });
+        const response = await fetch(
+            `${serviceService.baseUrl}/profiles/${props.profileId}/service-catalogs`,
+            {
+              method: 'HEAD',
+              signal: AbortSignal.timeout(3000)
+            }
+        );
         serverConnected.value = response.ok;
       } catch (error) {
         console.warn('Server connection check failed:', error);
@@ -84,15 +87,15 @@ export default {
       return serverConnected.value;
     };
 
-    // Load user services
+    // Load profile services
     const fetchServices = async () => {
       loading.value = true;
       error.value = null;
 
       try {
-        console.log(`Fetching services for user ${props.userId}...`);
+        console.log(`Fetching services for profile ${props.profileId}...`);
 
-        const result = await serviceService.getServicesByUserId(props.userId);
+        const result = await serviceService.getServicesByUserId(props.profileId);
 
         console.log('Fetched services result:', result);
 
@@ -229,7 +232,7 @@ export default {
         }
 
         // Attempt to delete the service
-        const result = await serviceService.deleteService(serviceToDelete.value.id);
+        const result = await serviceService.deleteService(serviceToDelete.value.id, props.profileId);
 
         console.log('Delete service result:', result);
 
@@ -279,7 +282,7 @@ export default {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 seconds
 
-        const response = await fetch(`${serviceService.baseUrl}/services/${serviceToDelete.value.id}`, {
+        const response = await fetch(`${serviceService.baseUrl}/profiles/${props.profileId}/service-catalogs/${serviceToDelete.value.id}`, {
           method: 'DELETE',
           signal: controller.signal
         });
@@ -467,7 +470,7 @@ export default {
       <div class="modal-content">
         <create-and-edit-service-component
             :service="editingService"
-            :user-id="userId"
+            :profile-id="profileId"
             @save="handleServiceSaved"
             @cancel="closeModal"
         />

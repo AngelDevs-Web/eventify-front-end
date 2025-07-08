@@ -11,7 +11,7 @@ export default {
       type: Object,
       default: null
     },
-    userId: {
+    profileId: {
       type: [Number, String],
       required: true
     }
@@ -70,7 +70,7 @@ export default {
           priceFrom: parseFloat(priceFrom.value),
           priceTo: parseFloat(priceTo.value),
           category: category.value.trim(),
-          userId: props.userId
+          profileId: props.profileId
         };
 
         console.log('About to save service with data:', serviceData);

@@ -8,7 +8,7 @@ export default {
       type: [Number, String],
       default: null
     },
-    userId: {
+    profileId: {
       type: Number,
       required: true
     }
@@ -42,7 +42,7 @@ export default {
           (this.selectedFiles.length > 0 || this.existingPhotos.length > 0);
     },
     apiUrl() {
-      return 'http://localhost:3000';
+      return import.meta.env.VITE_API_BASE_URL;
     }
   },
   created() {
@@ -78,7 +78,7 @@ export default {
     },
     async loadEvents() {
       try {
-        const response = await fetch(`${this.apiUrl}/events?userId=${this.userId}`);
+        const response = await fetch(`${this.apiUrl}/events?profileId=${this.profileId}`);
         if (response.ok) {
           this.events = await response.json();
           return;
@@ -98,18 +98,19 @@ export default {
       if (!this.albumId) return;
 
       try {
-        const response = await fetch(`${this.apiUrl}/albums/${this.albumId}`);
+        const response = await fetch(
+            `${this.apiUrl}/profiles/${this.profileId}/albums/${this.albumId}`);
         if (!response.ok) {
           throw new Error(`Error fetching album: ${response.status}`);
         }
 
         const albumData = await response.json();
         this.albumData = {
-          title: albumData.title || '',
-          date: this.formatDateForInput(albumData.date) || this.formatDateForInput(new Date()),
-          eventId: albumData.eventId || '',
-          description: albumData.description || '',
-          visibility: albumData.visibility || 'public'
+          title: albumData.name || '',
+          date: this.formatDateForInput(new Date()),
+          eventId: '',
+          description: '',
+          visibility: 'public'
         };
 
         if (albumData.photos && albumData.photos.length > 0) {
@@ -170,7 +171,7 @@ export default {
       try {
         let savedAlbumId;
         const albumData = {
-          userId: this.userId,
+          profileId: this.profileId,
           title: this.albumData.title,
           description: this.albumData.description,
           date: this.albumData.date,
@@ -179,7 +180,7 @@ export default {
         };
 
         if (this.isEditMode) {
-          const response = await fetch(`${this.apiUrl}/albums/${this.albumId}`, {
+          const response = await fetch(`${this.apiUrl}/profiles/${this.profileId}/albums/${this.albumId}`, {
             method: 'GET'
           });
 
@@ -208,7 +209,7 @@ export default {
 
           albumData.photos = [...remainingPhotos, ...newPhotos];
 
-          await fetch(`${this.apiUrl}/albums/${this.albumId}`, {
+          await fetch(`${this.apiUrl}/profiles/${this.profileId}/albums/${this.albumId}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json'
@@ -230,7 +231,7 @@ export default {
             };
           });
 
-          const response = await fetch(`${this.apiUrl}/albums`, {
+          const response = await fetch(`${this.apiUrl}/profiles/${this.profileId}/albums`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
