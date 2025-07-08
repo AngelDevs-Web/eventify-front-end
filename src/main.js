@@ -20,7 +20,7 @@ import {
     Toast,
     ToastService,
     Toolbar,
-    DatePicker
+    DatePicker, Tag
 } from "primevue";
 import FullCalendar from "@fullcalendar/vue3";
 
@@ -52,7 +52,5 @@ app.use(PrimeVue,{theme:{preset:Material},ripple:true})
     .component('pv-divider',Divider)
     .component('pv-textarea', Textarea)
     .component('pv-dropdown', AutoComplete)
+    .component('pv-tag',Tag)
     .mount('#app')
-
-
-
