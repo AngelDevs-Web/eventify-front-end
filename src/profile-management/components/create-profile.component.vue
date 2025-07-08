@@ -12,6 +12,9 @@ const form = ref({
   city: '',
   postalCode: '',
   country: '',
+  phoneNumber: '',
+  webSite: '',
+  biography: '',
   role: ''
 });
 
@@ -47,6 +50,9 @@ async function submitForm() {
     <div><input v-model="form.city" placeholder="City" /></div>
     <div><input v-model="form.postalCode" placeholder="Postal Code" /></div>
     <div><input v-model="form.country" placeholder="Country" /></div>
+    <div><input v-model="form.phoneNumber" placeholder="Phone Number" /></div>
+    <div><input v-model="form.webSite" placeholder="Website" /></div>
+    <div><textarea v-model="form.biography" placeholder="Biography"></textarea></div>
     <div>
       <select v-model="form.role">
         <option value="">Select a role</option>
@@ -73,7 +79,7 @@ form {
   gap: 1rem;
 }
 
-input, select {
+input, select, textarea {
   width: 100%;
   padding: 0.5rem 0.75rem;
   font-size: 1rem;
@@ -83,7 +89,7 @@ input, select {
   transition: border 0.2s;
 }
 
-input:focus, select:focus {
+input:focus, select:focus, textarea:focus {
   outline: none;
   border-color: #3b82f6;
   background: #fff;

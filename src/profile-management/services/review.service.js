@@ -1,5 +1,5 @@
 import { Review } from '../model/review.entity';
-import axios from 'axios';
+import httpInstance from '../../shared/services/http.instance.js';
 
 const API_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -10,7 +10,7 @@ class ReviewService {
      */
     async getAllReviews() {
         try {
-            const response = await axios.get(`${API_URL}/reviews`);
+            const response = await httpInstance.get(`${API_URL}/reviews`);
             const data = response.data;
             // Handle both array response and object with data property
             const reviewsArray = Array.isArray(data) ? data : data.reviews || [];
@@ -28,7 +28,7 @@ class ReviewService {
      */
     async getReviewById(id) {
         try {
-            const response = await axios.get(`${API_URL}/reviews/${id}`);
+            const response = await httpInstance.get(`${API_URL}/reviews/${id}`);
             return Review.fromDTO(response.data);
         } catch (error) {
             console.error(`Error in getReviewById(${id}):`, error);
@@ -43,7 +43,7 @@ class ReviewService {
      */
     async createReview(review) {
         try {
-            const response = await axios.post(`${API_URL}/reviews`, review.toDTO());
+            const response = await httpInstance.post(`${API_URL}/reviews`, review.toDTO());
             return Review.fromDTO(response.data);
         } catch (error) {
             console.error('Error in createReview:', error);
@@ -58,7 +58,7 @@ class ReviewService {
      */
     async updateReview(review) {
         try {
-            const response = await axios.put(`${API_URL}/reviews/${review.id}`, review.toDTO());
+            const response = await httpInstance.put(`${API_URL}/reviews/${review.id}`, review.toDTO());
             return Review.fromDTO(response.data);
         } catch (error) {
             console.error(`Error in updateReview:`, error);
@@ -74,7 +74,7 @@ class ReviewService {
      */
     async patchReview(id, reviewData) {
         try {
-            const response = await axios.patch(`${API_URL}/reviews/${id}`, reviewData);
+            const response = await httpInstance.patch(`${API_URL}/reviews/${id}`, reviewData);
             return Review.fromDTO(response.data);
         } catch (error) {
             console.error(`Error in patchReview:`, error);
@@ -89,7 +89,7 @@ class ReviewService {
      */
     async deleteReview(id) {
         try {
-            await axios.delete(`${API_URL}/reviews/${id}`);
+            await httpInstance.delete(`${API_URL}/reviews/${id}`);
             return true;
         } catch (error) {
             console.error(`Error in deleteReview(${id}):`, error);
@@ -137,7 +137,7 @@ class ReviewService {
                 url += `?rating=${rating}`;
             }
 
-            const response = await axios.get(url);
+            const response = await httpInstance.get(url);
             const data = response.data;
             const reviewsArray = Array.isArray(data) ? data : data.reviews || [];
 

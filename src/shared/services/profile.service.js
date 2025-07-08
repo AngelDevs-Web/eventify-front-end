@@ -1,4 +1,6 @@
-// Servicio para obtener datos de perfil desde la API real
+// Servicio para obtener datos de perfil desde la API real utilizando axios
+import httpInstance from './http.instance.js';
+
 const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 export default {
@@ -11,12 +13,7 @@ export default {
         try {
             console.log(`Fetching profile with ID: ${profileId}`);
 
-            const response = await fetch(`${API_URL}/profiles/${profileId}`);
-            if (!response.ok) {
-                throw new Error(`Error fetching profile: ${response.status}`);
-            }
-
-            const profile = await response.json();
+            const { data: profile } = await httpInstance.get(`${API_URL}/profiles/${profileId}`);
 
             return {
                 user: {
@@ -33,5 +30,4 @@ export default {
             console.error('Error fetching profile data:', error);
             throw error;
         }
-    }
-};
+    }};

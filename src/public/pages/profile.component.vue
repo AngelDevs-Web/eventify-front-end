@@ -37,14 +37,15 @@
               <div class="content-area">
                 <!-- Profile information component -->
                 <profile-information
-                    :profile-image=null
-                    :name="profileId.name"
-                    :title="profileId.title"
-                    :email="profileId.email"
-                    :phone="profileId.phone"
-                    :location="profileId.location"
-                    :website="profileId.website"
-                    :bio="profileId.bio"
+                    :profile-id="profileId"
+                    :profile-image="user.profileImage"
+                    :name="user.name"
+                    :title="user.title"
+                    :email="user.email"
+                    :phone="user.phone"
+                    :location="user.location"
+                    :website="user.website"
+                    :bio="user.bio"
                 />
               </div>
 
@@ -106,6 +107,13 @@ import ServicesComponent from '../../profile-management/components/services.comp
 import profileService from '../../shared/services/profile.service.js';
 export default {
   name: 'ProfilePageComponent',
+  // Accept id as a prop so router can provide the dynamic profile id
+  props: {
+    id: {
+      type: [Number, String],
+      default: null
+    }
+  },
   components: {
     ProfileInformation,
     StatisticsDisplay,
@@ -144,6 +152,11 @@ export default {
     };
   },
   created() {
+    // Use the id prop if provided, otherwise fall back to the route param
+    const routeId = this.id ?? this.$route.params.id;
+    if (routeId) {
+      this.profileId = parseInt(routeId);
+    }
     this.loadProfileData();
 
     // Check if there is an active tab in the URL
@@ -177,6 +190,22 @@ export default {
       const url = new URL(window.location);
       url.searchParams.set('tab', newTab);
       window.history.pushState({}, '', url);
+    },
+    // React when the route id changes (e.g., user navigates to another profile)
+    '$route.params.id'(newId) {
+      const parsed = newId ? parseInt(newId) : 1;
+      if (parsed !== this.profileId) {
+        this.profileId = parsed;
+        this.loadProfileData();
+      }
+    },
+    // Also react if the id prop changes directly via router props
+    id(newId) {
+      const parsed = newId ? parseInt(newId) : 1;
+      if (parsed !== this.profileId) {
+        this.profileId = parsed;
+        this.loadProfileData();
+      }
     }
   }
 }

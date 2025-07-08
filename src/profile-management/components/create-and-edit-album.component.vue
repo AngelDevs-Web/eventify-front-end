@@ -1,5 +1,6 @@
 <!-- create-and-edit-album.component.vue -->
 <script>
+import httpInstance from '../../shared/services/http.instance.js';
 export default {
   name: 'AlbumFormComponent',
   props: {
@@ -78,11 +79,9 @@ export default {
     },
     async loadEvents() {
       try {
-        const response = await fetch(`${this.apiUrl}/events?profileId=${this.profileId}`);
-        if (response.ok) {
-          this.events = await response.json();
-          return;
-        }
+        const { data } = await httpInstance.get(`${this.apiUrl}/events?profileId=${this.profileId}`);
+        this.events = data;
+        return;
       } catch (error) {
         console.error('Error loading events:', error);
       }
@@ -98,13 +97,8 @@ export default {
       if (!this.albumId) return;
 
       try {
-        const response = await fetch(
+        const { data: albumData } = await httpInstance.get(
             `${this.apiUrl}/profiles/${this.profileId}/albums/${this.albumId}`);
-        if (!response.ok) {
-          throw new Error(`Error fetching album: ${response.status}`);
-        }
-
-        const albumData = await response.json();
         this.albumData = {
           title: albumData.name || '',
           date: this.formatDateForInput(new Date()),
@@ -113,7 +107,7 @@ export default {
           visibility: 'public'
         };
 
-        if (albumData.photos && albumData.photos.length > 0) {
+        if (Array.isArray(albumData.photos)) {
           this.existingPhotos = [...albumData.photos];
         }
       } catch (error) {
@@ -171,75 +165,28 @@ export default {
       try {
         let savedAlbumId;
         const albumData = {
-          profileId: this.profileId,
-          title: this.albumData.title,
-          description: this.albumData.description,
-          date: this.albumData.date,
-          eventId: this.albumData.eventId || null,
-          visibility: this.albumData.visibility
+          name: this.albumData.title,
+          photos: []
         };
 
         if (this.isEditMode) {
-          const response = await fetch(`${this.apiUrl}/profiles/${this.profileId}/albums/${this.albumId}`, {
-            method: 'GET'
-          });
+          const { data: currentAlbum } = await httpInstance.get(`${this.apiUrl}/profiles/${this.profileId}/albums/${this.albumId}`);
 
-          if (!response.ok) {
-            throw new Error(`Error fetching album: ${response.status}`);
-          }
+          const remainingPhotos = Array.isArray(currentAlbum.photos)
+            ? currentAlbum.photos.filter(p => !this.photosToDelete.includes(p))
+            : [];
 
-          const currentAlbum = await response.json();
-
-          const remainingPhotos = currentAlbum.photos.filter(
-              photo => !this.photosToDelete.includes(photo.id)
-          );
-
-          // Add new photos (simulated - in a real app you would upload the files)
-          const newPhotos = this.selectedFiles.map((file, index) => {
-            // Generate a unique ID for each new photo
-            const newId = Math.max(0, ...remainingPhotos.map(p => p.id)) + index + 1;
-            return {
-              id: newId,
-              title: file.name.split('.')[0] || `Photo ${newId}`,
-              description: '',
-              url: `photo-${newId}.jpg`, // URL simulada
-              uploadDate: new Date().toISOString().split('T')[0]
-            };
-          });
+          const newPhotos = this.selectedFiles.map(file => file.name);
 
           albumData.photos = [...remainingPhotos, ...newPhotos];
 
-          await fetch(`${this.apiUrl}/profiles/${this.profileId}/albums/${this.albumId}`, {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(albumData)
-          });
+          await httpInstance.put(`${this.apiUrl}/profiles/${this.profileId}/albums/${this.albumId}`, albumData);
 
           savedAlbumId = this.albumId;
         } else {
-          // Create a new album
-          // Add photos (simulated - in a real app you would upload the files)
-          albumData.photos = this.selectedFiles.map((file, index) => {
-            return {
-              id: index + 1,
-              title: file.name.split('.')[0] || `Photo ${index + 1}`,
-              description: '',
-              url: `photo-${index + 1}.jpg`, // URL simulada
-              uploadDate: new Date().toISOString().split('T')[0]
-            };
-          });
+          albumData.photos = this.selectedFiles.map(file => file.name);
 
-          const response = await fetch(`${this.apiUrl}/profiles/${this.profileId}/albums`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(albumData)
-          });
-
-          const newAlbum = await response.json();
+          const { data: newAlbum } = await httpInstance.post(`${this.apiUrl}/profiles/${this.profileId}/albums`, albumData);
           savedAlbumId = newAlbum.id;
         }
 

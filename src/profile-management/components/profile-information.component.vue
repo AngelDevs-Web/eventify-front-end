@@ -1,9 +1,14 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import profileService from '../services/profile.service.js';
 import { profile as ProfileEntity } from '../model/profile.entity.js';
 
-const profileId = 1; // TODO: Replace with dynamic ID as needed
+const props = defineProps({
+  profileId: {
+    type: [Number, String],
+    required: true
+  }
+});
 
 const profile = ref(null);
 const backupProfile = ref(null); // For canceling edits
@@ -17,24 +22,24 @@ const isEditing = ref(false);
  */
 function adaptProfile(response) {
   // Split fullName if available
-  let name = '';
-  let lastName = '';
+  let nombre = '';
+  let apellido = '';
   if (response.fullName) {
     const parts = response.fullName.split(' ');
-    name = parts[0] || '';
-    lastName = parts.slice(1).join(' ') || '';
+    nombre = parts[0] || '';
+    apellido = parts.slice(1).join(' ') || '';
   }
   return {
-    id: response.profileId,
-    name,
-    lastName,
-    title: response.role || '',
-    profileImage: response.profileImage || '',
+    id: response.id,
+    nombre,
+    apellido,
+    titulo: response.role || '',
+    avatarUrl: response.profileImage || '',
     email: response.email || '',
-    phone: response.phone || '',
-    streetAddress: response.streetAddress || '',
-    website: response.website || '',
-    bio: response.bio || ''
+    telefono: response.phoneNumber || '',
+    ubicacion: response.streetAddress || '',
+    sitioWeb: response.webSite || '',
+    biografia: response.biography || ''
   };
 }
 
@@ -46,7 +51,7 @@ async function fetchProfile() {
   error.value = '';
   success.value = '';
   try {
-    const response = await profileService.getProfileById(profileId);
+    const response = await profileService.getProfileById(props.profileId);
     profile.value = ProfileEntity.fromJSON(adaptProfile(response));
     backupProfile.value = ProfileEntity.fromJSON(adaptProfile(response));
   } catch (err) {
@@ -69,12 +74,12 @@ async function saveProfile() {
       fullName: `${profile.value.nombre} ${profile.value.apellido}`,
       email: profile.value.email,
       streetAddress: profile.value.ubicacion,
+      phoneNumber: profile.value.telefono,
+      webSite: profile.value.sitioWeb,
+      biography: profile.value.biografia,
       role: profile.value.titulo,
-      website: profile.value.sitioWeb,
-      bio: profile.value.biografia,
-      // Add more fields as needed if backend supports them
     };
-    const updated = await profileService.updateProfile(profileId, payload);
+    const updated = await profileService.updateProfile(props.profileId, payload);
     profile.value = ProfileEntity.fromJSON(adaptProfile(updated));
     backupProfile.value = ProfileEntity.fromJSON(adaptProfile(updated));
     isEditing.value = false;
@@ -108,7 +113,16 @@ const website = computed(() => profile.value ? profile.value.sitioWeb : '');
 const bio = computed(() => profile.value ? profile.value.biografia : '');
 const profileImage = computed(() => profile.value ? profile.value.avatarUrl : 'placeholder');
 
-onMounted(fetchProfile);
+// Load profile when component is mounted or when the id changes
+watch(
+  () => props.profileId,
+  () => {
+    if (props.profileId !== undefined && props.profileId !== null) {
+      fetchProfile();
+    }
+  },
+  { immediate: true }
+);
 </script>
 <template>
   <div class="profile-info-container">
@@ -134,13 +148,13 @@ onMounted(fetchProfile);
           <div class="contact-row">
             <div class="contact-label">{{ $t('profile.emailAddress') }}</div>
             <div class="contact-value" v-if="!isEditing">{{ email }}</div>
-            <input v-else v-model="profile.mail" placeholder="Email" />
+            <input v-else v-model="profile.email" placeholder="Email" />
           </div>
 
           <div class="contact-row">
             <div class="contact-label">{{ $t('profile.phoneNumber') }}</div>
             <div class="contact-value" v-if="!isEditing">{{ phone }}</div>
-            <input v-else v-model="profile.phone" placeholder="Phone" />
+            <input v-else v-model="profile.telefono" placeholder="Phone" />
           </div>
 
           <div class="contact-row">

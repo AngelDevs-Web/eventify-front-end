@@ -2,6 +2,7 @@
 import { ref, computed, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import serviceService from '../services/service.service';
+import httpInstance from '../../shared/services/http.instance.js';
 import CreateAndEditServiceComponent from './create-and-edit-services.component.vue';
 
 export default {
@@ -72,14 +73,11 @@ export default {
     // Check server connection
     const checkServerConnection = async () => {
       try {
-        const response = await fetch(
+        const response = await httpInstance.head(
             `${serviceService.baseUrl}/profiles/${props.profileId}/service-catalogs`,
-            {
-              method: 'HEAD',
-              signal: AbortSignal.timeout(3000)
-            }
+            { timeout: 3000 }
         );
-        serverConnected.value = response.ok;
+        serverConnected.value = response.status >= 200 && response.status < 300;
       } catch (error) {
         console.warn('Server connection check failed:', error);
         serverConnected.value = false;
@@ -282,14 +280,14 @@ export default {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 seconds
 
-        const response = await fetch(`${serviceService.baseUrl}/profiles/${props.profileId}/service-catalogs/${serviceToDelete.value.id}`, {
-          method: 'DELETE',
-          signal: controller.signal
-        });
+        const response = await httpInstance.delete(
+          `${serviceService.baseUrl}/profiles/${props.profileId}/service-catalogs/${serviceToDelete.value.id}`,
+          { signal: controller.signal }
+        );
 
         clearTimeout(timeoutId);
 
-        if (!response.ok) {
+        if (response.status < 200 || response.status >= 300) {
           throw new Error(`Error: ${response.status} - ${response.statusText}`);
         }
 
