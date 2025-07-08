@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5247';
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 const EventService = {
     /**
@@ -39,7 +39,7 @@ const EventService = {
      * @returns {Promise} Promise with the response
      */
     updateEvent(id, eventData) {
-        return axios.put(`${API_URL}/events/${id}`, eventData);
+        return axios.put(`${API_URL}/social-events/${id}`, eventData);
     },
 
     /**

@@ -1,6 +1,6 @@
 import {createRouter, createWebHistory} from "vue-router";
 import HomeComponent from "../public/pages/home.component.vue"
-import CalendarViewComponent from "../events/pages/calendar-view.component.vue";
+import CalendarViewComponent from "../event-management/pages/calendar-view.component.vue";
 import QuoteOrderManagementComponent from "../quote-management/pages/quote-order-management.component.vue";
 import ProfileComponent from "../public/pages/profile.component.vue";
 import taskBoardComponent from "../task-management/components/task-board.component.vue";
