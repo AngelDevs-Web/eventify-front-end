@@ -276,5 +276,16 @@
     "quantity": "Quantity",
     "unitPrice": "Unit Price",
     "totalPrice": "Total Price"
+  },
+  "authoring-phrase": {
+    "intro": "Made with",
+    "use": "using",
+    "author": "by {brand} Developer Team"
+  },
+  "authentication-section": {
+    "welcome": "Welcome",
+    "sign-in": "Sign In",
+    "sign-up": "Sign Up",
+    "sign-out": "Sign Out"
   }
 }
