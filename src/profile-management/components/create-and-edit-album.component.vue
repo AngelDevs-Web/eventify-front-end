@@ -113,7 +113,7 @@ export default {
           visibility: 'public'
         };
 
-        if (albumData.photos && albumData.photos.length > 0) {
+        if (Array.isArray(albumData.photos)) {
           this.existingPhotos = [...albumData.photos];
         }
       } catch (error) {
@@ -171,12 +171,8 @@ export default {
       try {
         let savedAlbumId;
         const albumData = {
-          profileId: this.profileId,
-          title: this.albumData.title,
-          description: this.albumData.description,
-          date: this.albumData.date,
-          eventId: this.albumData.eventId || null,
-          visibility: this.albumData.visibility
+          name: this.albumData.title,
+          photos: []
         };
 
         if (this.isEditMode) {
@@ -190,22 +186,11 @@ export default {
 
           const currentAlbum = await response.json();
 
-          const remainingPhotos = currentAlbum.photos.filter(
-              photo => !this.photosToDelete.includes(photo.id)
-          );
+          const remainingPhotos = Array.isArray(currentAlbum.photos)
+              ? currentAlbum.photos.filter(p => !this.photosToDelete.includes(p))
+              : [];
 
-          // Add new photos (simulated - in a real app you would upload the files)
-          const newPhotos = this.selectedFiles.map((file, index) => {
-            // Generate a unique ID for each new photo
-            const newId = Math.max(0, ...remainingPhotos.map(p => p.id)) + index + 1;
-            return {
-              id: newId,
-              title: file.name.split('.')[0] || `Photo ${newId}`,
-              description: '',
-              url: `photo-${newId}.jpg`, // URL simulada
-              uploadDate: new Date().toISOString().split('T')[0]
-            };
-          });
+          const newPhotos = this.selectedFiles.map(file => file.name);
 
           albumData.photos = [...remainingPhotos, ...newPhotos];
 
@@ -219,17 +204,7 @@ export default {
 
           savedAlbumId = this.albumId;
         } else {
-          // Create a new album
-          // Add photos (simulated - in a real app you would upload the files)
-          albumData.photos = this.selectedFiles.map((file, index) => {
-            return {
-              id: index + 1,
-              title: file.name.split('.')[0] || `Photo ${index + 1}`,
-              description: '',
-              url: `photo-${index + 1}.jpg`, // URL simulada
-              uploadDate: new Date().toISOString().split('T')[0]
-            };
-          });
+          albumData.photos = this.selectedFiles.map(file => file.name);
 
           const response = await fetch(`${this.apiUrl}/profiles/${this.profileId}/albums`, {
             method: 'POST',

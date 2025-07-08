@@ -175,7 +175,10 @@ export default {
           throw new Error(`Error fetching albums: ${response.status}`);
         }
 
-        this.albums = await response.json();
+        const data = await response.json();
+        this.albums = Array.isArray(data)
+            ? data.map(a => ({ ...a, title: a.name }))
+            : [];
         console.log(`Loaded ${this.albums.length} albums:`, this.albums);
 
         // Ensure the current page is valid after loading data

@@ -17,24 +17,24 @@ const isEditing = ref(false);
  */
 function adaptProfile(response) {
   // Split fullName if available
-  let name = '';
-  let lastName = '';
+  let nombre = '';
+  let apellido = '';
   if (response.fullName) {
     const parts = response.fullName.split(' ');
-    name = parts[0] || '';
-    lastName = parts.slice(1).join(' ') || '';
+    nombre = parts[0] || '';
+    apellido = parts.slice(1).join(' ') || '';
   }
   return {
-    id: response.profileId,
-    name,
-    lastName,
-    title: response.role || '',
-    profileImage: response.profileImage || '',
+    id: response.id,
+    nombre,
+    apellido,
+    titulo: response.role || '',
+    avatarUrl: response.profileImage || '',
     email: response.email || '',
-    phone: response.phone || '',
-    streetAddress: response.streetAddress || '',
-    website: response.website || '',
-    bio: response.bio || ''
+    telefono: response.phone || '',
+    ubicacion: response.streetAddress || '',
+    sitioWeb: response.website || '',
+    biografia: response.bio || ''
   };
 }
 
@@ -134,13 +134,13 @@ onMounted(fetchProfile);
           <div class="contact-row">
             <div class="contact-label">{{ $t('profile.emailAddress') }}</div>
             <div class="contact-value" v-if="!isEditing">{{ email }}</div>
-            <input v-else v-model="profile.mail" placeholder="Email" />
+            <input v-else v-model="profile.email" placeholder="Email" />
           </div>
 
           <div class="contact-row">
             <div class="contact-label">{{ $t('profile.phoneNumber') }}</div>
             <div class="contact-value" v-if="!isEditing">{{ phone }}</div>
-            <input v-else v-model="profile.phone" placeholder="Phone" />
+            <input v-else v-model="profile.telefono" placeholder="Phone" />
           </div>
 
           <div class="contact-row">
