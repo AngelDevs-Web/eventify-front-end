@@ -14,6 +14,8 @@ export class QuoteOrderService {
     }
 
     getAll(organizerId){
+        console.log(organizerId);
+        console.log(`/organizers/${organizerId}${this.resourceEndpoint}`)
         return httpInstance.get(`/organizers/${organizerId}${this.resourceEndpoint}`);
     }
 
