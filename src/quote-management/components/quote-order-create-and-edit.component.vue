@@ -17,7 +17,7 @@ export default {
     serviceList:Array,
     isEdit:false,
     visible:false,
-    organizerId:String
+    organizerId: Number
   },
   emits:['close-dialog','cancel-requested','save-requested','change-visible','quote-order-created','quote-order-updated'],
   data(){
@@ -30,7 +30,7 @@ export default {
       status:'Pending',
       location:'',
       eventTypeOptions:['Wedding','Conference','Quinceanera','Graduation'],
-      hostId:"def-abc",
+      hostId:2,
 
       submitted:false,
       serviceDialogVisible:false,
