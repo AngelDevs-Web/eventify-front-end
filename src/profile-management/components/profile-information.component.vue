@@ -1,10 +1,14 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted,watch } from 'vue';
 import profileService from '../services/profile.service.js';
 import { profile as ProfileEntity } from '../model/profile.entity.js';
 
-const profileId = 1; // TODO: Replace with dynamic ID as needed
-
+const props = defineProps({
+  profileId: {
+    type: [Number, String],
+    required: true
+  }
+});
 const profile = ref(null);
 const backupProfile = ref(null); // For canceling edits
 const loading = ref(false);
@@ -17,24 +21,24 @@ const isEditing = ref(false);
  */
 function adaptProfile(response) {
   // Split fullName if available
-  let nombre = '';
-  let apellido = '';
+  let name = '';
+  let lastName = '';
   if (response.fullName) {
     const parts = response.fullName.split(' ');
-    nombre = parts[0] || '';
-    apellido = parts.slice(1).join(' ') || '';
+    name = parts[0] || '';
+    lastName = parts.slice(1).join(' ') || '';
   }
   return {
     id: response.id,
-    nombre,
-    apellido,
-    titulo: response.role || '',
+    name,
+    lastName,
+    title: response.role || '',
     avatarUrl: response.profileImage || '',
     email: response.email || '',
-    telefono: response.phone || '',
-    ubicacion: response.streetAddress || '',
-    sitioWeb: response.website || '',
-    biografia: response.bio || ''
+    phone: response.phoneNumber || '',
+    location: response.streetAddress || '',
+    webSite: response.webSite || '',
+    biography: response.biography || ''
   };
 }
 
@@ -46,7 +50,7 @@ async function fetchProfile() {
   error.value = '';
   success.value = '';
   try {
-    const response = await profileService.getProfileById(profileId);
+    const response = await profileService.getProfileById(props.profileId);
     profile.value = ProfileEntity.fromJSON(adaptProfile(response));
     backupProfile.value = ProfileEntity.fromJSON(adaptProfile(response));
   } catch (err) {
@@ -66,15 +70,15 @@ async function saveProfile() {
   try {
     // Prepare payload for backend
     const payload = {
-      fullName: `${profile.value.nombre} ${profile.value.apellido}`,
+      fullName: `${profile.value.name} ${profile.value.lastName}`,
       email: profile.value.email,
-      streetAddress: profile.value.ubicacion,
-      role: profile.value.titulo,
-      website: profile.value.sitioWeb,
-      bio: profile.value.biografia,
-      // Add more fields as needed if backend supports them
+      streetAddress: profile.value.location,
+      phoneNumber: profile.value.phone,
+      webSite: profile.value.webSite,
+      biography: profile.value.biography,
+      role: profile.value.title,
     };
-    const updated = await profileService.updateProfile(profileId, payload);
+    const updated = await profileService.updateProfile(props.profileId, payload);
     profile.value = ProfileEntity.fromJSON(adaptProfile(updated));
     backupProfile.value = ProfileEntity.fromJSON(adaptProfile(updated));
     isEditing.value = false;
@@ -100,15 +104,25 @@ function cancelEdit() {
 
 // Computed properties for template bindings
 const name = computed(() => profile.value ? profile.value.fullName : '');
-const title = computed(() => profile.value ? profile.value.titulo : '');
+const title = computed(() => profile.value ? profile.value.title : '');
 const email = computed(() => profile.value ? profile.value.email : '');
-const phone = computed(() => profile.value ? profile.value.telefono : '');
-const location = computed(() => profile.value ? profile.value.ubicacion : '');
-const website = computed(() => profile.value ? profile.value.sitioWeb : '');
-const bio = computed(() => profile.value ? profile.value.biografia : '');
+const phone = computed(() => profile.value ? profile.value.phone : '');
+const location = computed(() => profile.value ? profile.value.location : '');
+const website = computed(() => profile.value ? profile.value.webSite : '');
+const bio = computed(() => profile.value ? profile.value.biography : '');
 const profileImage = computed(() => profile.value ? profile.value.avatarUrl : 'placeholder');
 
 onMounted(fetchProfile);
+// Load profile when component is mounted or when the id changes
+watch(
+    () => props.profileId,
+    () => {
+      if (props.profileId !== undefined && props.profileId !== null) {
+        fetchProfile();
+      }
+    },
+    { immediate: true }
+);
 </script>
 <template>
   <div class="profile-info-container">
@@ -140,13 +154,13 @@ onMounted(fetchProfile);
           <div class="contact-row">
             <div class="contact-label">{{ $t('profile.phoneNumber') }}</div>
             <div class="contact-value" v-if="!isEditing">{{ phone }}</div>
-            <input v-else v-model="profile.telefono" placeholder="Phone" />
+            <input v-else v-model="profile.phone" placeholder="Phone" />
           </div>
 
           <div class="contact-row">
             <div class="contact-label">{{ $t('profile.location') }}</div>
             <div class="contact-value" v-if="!isEditing">{{ location }}</div>
-            <input v-else v-model="profile.ubicacion" placeholder="Location" />
+            <input v-else v-model="profile.location" placeholder="Location" />
           </div>
 
           <div class="contact-row">
@@ -154,7 +168,7 @@ onMounted(fetchProfile);
             <div class="contact-value" v-if="!isEditing">
               <a :href="website" class="website-link">{{ website }}</a>
             </div>
-            <input v-else v-model="profile.sitioWeb" placeholder="Website" />
+            <input v-else v-model="profile.webSite" placeholder="Website" />
           </div>
         </div>
       </div>
@@ -162,7 +176,7 @@ onMounted(fetchProfile);
       <div class="about-section">
         <h3 class="section-title">{{ $t('profile.aboutMe') }}</h3>
         <p class="about-text" v-if="!isEditing">{{ bio }}</p>
-        <textarea v-else v-model="profile.biografia" placeholder="Biography"></textarea>
+        <textarea v-else v-model="profile.biography" placeholder="Biography"></textarea>
       </div>
 
       <div style="margin-top:2rem;">

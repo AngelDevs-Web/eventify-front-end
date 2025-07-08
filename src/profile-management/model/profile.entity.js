@@ -6,44 +6,44 @@
 export class profile {
     constructor({
                     id = '',
-                    nombre = '',
-                    apellido = '',
-                    titulo = '',
+                    name = '',
+                    lastName = '',
+                    title = '',
                     avatarUrl = '',
                     email = '',
-                    telefono = '',
-                    ubicacion = '',
-                    sitioWeb = '',
-                    biografia = ''
+                    phone = '',
+                    location = '',
+                    webSite = '',
+                    biography = ''
                 } = {}) {
         this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.titulo = titulo;
+        this.name = name;
+        this.lastName = lastName;
+        this.title = title;
         this.avatarUrl = avatarUrl;
         this.email = email;
-        this.telefono = telefono;
-        this.ubicacion = ubicacion;
-        this.sitioWeb = sitioWeb;
-        this.biografia = biografia;
+        this.phone = phone;
+        this.location = location;
+        this.webSite = webSite;
+        this.biography = biography;
     }
 
     get fullName() {
-        return `${this.nombre} ${this.apellido}`;
+        return `${this.name} ${this.lastName}`;
     }
 
     toJSON() {
         return {
             id: this.id,
-            nombre: this.nombre,
-            apellido: this.apellido,
-            titulo: this.titulo,
+            name: this.name,
+            lastName: this.lastName,
+            title: this.title,
             avatarUrl: this.avatarUrl,
             email: this.email,
-            telefono: this.telefono,
-            ubicacion: this.ubicacion,
-            sitioWeb: this.sitioWeb,
-            biografia: this.biografia
+            phone: this.phone,
+            location: this.location,
+            webSite: this.webSite,
+            biography: this.biography
         };
     }
 
