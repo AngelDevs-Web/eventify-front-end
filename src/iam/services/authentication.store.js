@@ -1,124 +1,108 @@
-// src/iam/services/authentication.store.js
+import {AuthenticationService} from "./authentication.service.js";
+import {defineStore} from "pinia";
+import {SignInResponse} from "../model/sign-in.response.js";
+import {SignUpResponse} from "../model/sign-up.response.js";
 
-import { defineStore } from 'pinia'
-import { AuthenticationService } from './authentication.service.js'
-import { SignInRequest } from '../model/sign-in.request.js'
-import { SignUpRequest } from '../model/sign-up.request.js'
+const authenticationService = new AuthenticationService();
 
-export const useAuthenticationStore = defineStore('authentication', {
-    state: () => ({
-        isAuthenticated: false,
-        user: null,
-        token: null,
-        loading: false,
-        error: null
-    }),
-
+/**
+ * Store definition for authentication
+ * @summary
+ * This store is responsible to manage the authentication state.
+ * It contains state for signed-in status, user ID, and username.
+ * It contains actions to sign-in, sign-up, and sign-out.
+ */
+export const useAuthenticationStore = defineStore('authentication',{
+    state: () => ({ signedIn: false, userId: 0, username: '' }),
     getters: {
-        isLoggedIn: (state) => state.isAuthenticated && !!state.token,
-        currentUser: (state) => state.user,
-        hasError: (state) => !!state.error
+        /**
+         * Getter to check if user is signed in
+         * @param state - Current state of the store
+         * @returns {boolean} - True if user is signed in, false otherwise
+         */
+        isSignedIn: (state) => state['signedIn'],
+        /**
+         * Getter to get the current user ID
+         * @param state - Current state of the store
+         * @returns {number} - Current user ID
+         */
+        currentUserId: (state) => state['userId'],
+        /**
+         * Getter to get the current username
+         * @param state - Current state of the store
+         * @returns {string} - Current username
+         */
+        currentUsername: (state) => state['username'],
+        /**
+         * Getter to get the current token
+         * @returns {string} - Current token
+         */
+        currentToken: () => localStorage.getItem('token')
     },
-
     actions: {
-        async signIn(username, password) {
-            this.loading = true
-            this.error = null
-
-            try {
-                const authService = new AuthenticationService()
-                const request = new SignInRequest(username, password)
-
-                // Validate request
-                const validation = request.validate()
-                if (!validation.isValid) {
-                    throw new Error(validation.errors.join(', '))
-                }
-
-                const response = await authService.signIn(request)
-
-                if (response.isValid()) {
-                    this.isAuthenticated = true
-                    this.user = response.user
-                    this.token = response.token
-
-                    // Store in localStorage
-                    localStorage.setItem('eventify_token', response.token)
-                    localStorage.setItem('eventify_user', JSON.stringify(response.user))
-
-                    console.log('User signed in successfully:', response.user.username)
-                    return response
-                } else {
-                    throw new Error('Invalid response from server')
-                }
-            } catch (error) {
-                this.error = error.message
-                console.error('Sign in failed:', error.message)
-                throw error
-            } finally {
-                this.loading = false
-            }
+        /**
+         * Action to sign-in
+         * @summary
+         * This action calls the sign-in API and updates the store state.
+         * If sign-in is successful, it sets the signed-in status, user ID, and username.
+         * It also saves the token in local storage.
+         * If sign-in fails, it redirects to the sign-in page.
+         * @param signInRequest - The {@link SignInRequest} object to sign-in
+         * @param router - Vue router instance
+         */
+        async signIn(signInRequest, router) {
+            authenticationService.signIn(signInRequest)
+                .then(response => {
+                    let signInResponse = new SignInResponse(response.data.id, response.data.username, response.data.token);
+                    this.signedIn = true;
+                    this.userId = signInResponse.id;
+                    this.username = signInResponse.username;
+                    localStorage.setItem('token', signInResponse.token);
+                    console.log(signInResponse);
+                    router.push({ name: 'Home' });
+                })
+                .catch(error => {
+                    console.log(error);
+                    router.push({ name: 'sign-in' });
+                });
         },
-
-        async signUp(username, password) {
-            this.loading = true
-            this.error = null
-
-            try {
-                const authService = new AuthenticationService()
-                const request = new SignUpRequest(username, password)
-
-                // Validate request
-                const validation = request.validate()
-                if (!validation.isValid) {
-                    throw new Error(validation.errors.join(', '))
-                }
-
-                const response = await authService.signUp(request)
-                console.log('User registered successfully')
-                return response
-            } catch (error) {
-                this.error = error.message
-                console.error('Sign up failed:', error.message)
-                throw error
-            } finally {
-                this.loading = false
-            }
+        async signUp(signUpdRequest, router) {
+            /**
+             * Action to sign-up
+             * @summary
+             * This action calls the sign-up API.
+             * If sign-up is successful, it redirects to the sign-in page.
+             * If sign-up fails, it redirects to the sign-up page.
+             * @param signUpdRequest - The {@link SignUpRequest} object to sign-up
+             * @param router - Vue router instance
+             */
+            authenticationService.signUp(signUpdRequest)
+                .then(response => {
+                    let signUpResponse = new SignUpResponse(response.data.message);
+                    router.push({ name: 'sign-in' });
+                    console.log(signUpResponse);
+                })
+                .catch(error => {
+                    console.log(error);
+                    router.push({ name: 'sign-up' });
+                });
         },
-
-        signOut() {
-            const authService = new AuthenticationService()
-            authService.logout()
-
-            this.isAuthenticated = false
-            this.user = null
-            this.token = null
-            this.error = null
-
-            console.log('User signed out')
-        },
-
-        initializeAuth() {
-            try {
-                const token = localStorage.getItem('eventify_token')
-                const user = localStorage.getItem('eventify_user')
-
-                if (token && user) {
-                    this.isAuthenticated = true
-                    this.user = JSON.parse(user)
-                    this.token = token
-                    console.log('Authentication restored from localStorage for user:', this.user.username)
-                } else {
-                    console.log('No previous authentication found')
-                }
-            } catch (error) {
-                console.error('Error initializing auth:', error)
-                this.signOut()
-            }
-        },
-
-        clearError() {
-            this.error = null
+        /**
+         * Action to sign-out
+         * @summary
+         * This action signs out the user.
+         * It sets the signed-in status to false, user ID to 0, and username to empty string.
+         * It also removes the token from local storage.
+         * It redirects to the sign-in page.
+         * @param router - Vue router instance
+         */
+        async signOut(router) {
+            this.signedIn = false;
+            this.userId = 0;
+            this.username = '';
+            localStorage.removeItem('token');
+            console.log('Signed out');
+            router.push({ name: 'sign-in' });
         }
     }
-})
+});
