@@ -26,7 +26,11 @@ export default {
       lastAddedAlbumId: null,
       selectedAlbums: [],
       showDeleteModal: false,
-      deletingAlbums: false
+      deletingAlbums: false,
+      showAlbumDetails: false,
+      albumDetails: null,
+      detailsLoading: false,
+      detailsError: null
     }
   },
   computed: {
@@ -249,10 +253,26 @@ export default {
       this.editAlbumId = albumId;
       this.showAlbumForm = true;
     },
-    viewAlbum(albumId) {
-      // In a real application, this would navigate to a detailed album view
-      alert(this.$t('albums.viewAlbumFuture'));
-      // For example: this.$router.push(`/profile/albums/${albumId}`);
+    async viewAlbum(albumId) {
+      this.detailsLoading = true;
+      this.detailsError = null;
+      try {
+        const response = await fetch(`${this.apiUrl}/profiles/${this.profileId}/albums/${albumId}`);
+        if (!response.ok) {
+          throw new Error(`Error fetching album: ${response.status}`);
+        }
+        this.albumDetails = await response.json();
+        this.showAlbumDetails = true;
+      } catch (error) {
+        console.error('Error fetching album details:', error);
+        this.detailsError = this.$t('albums.errorLoading');
+      } finally {
+        this.detailsLoading = false;
+      }
+    },
+    closeAlbumDetails() {
+      this.showAlbumDetails = false;
+      this.albumDetails = null;
     },
     cancelAlbumForm() {
       this.showAlbumForm = false;
@@ -579,6 +599,25 @@ export default {
             <span v-else>{{ $t('albums.delete') }}</span>
           </button>
         </div>
+      </div>
+    </div>
+  </div>
+  <!-- Album details modal -->
+  <div v-if="showAlbumDetails" class="modal-overlay">
+    <div class="details-modal">
+      <h3 class="modal-title">{{ albumDetails?.name }}</h3>
+
+      <div v-if="detailsLoading" class="modal-message">{{ $t('albums.loading') }}</div>
+      <div v-else-if="detailsError" class="modal-message">{{ detailsError }}</div>
+      <div v-else>
+        <p class="modal-message">{{ $t('albums.photosCount', { count: albumDetails.photos.length }) }}</p>
+        <ul class="details-photo-list">
+          <li v-for="(photo, index) in albumDetails.photos" :key="index">{{ photo }}</li>
+        </ul>
+      </div>
+
+      <div class="modal-actions">
+        <button class="cancel-btn" @click="closeAlbumDetails">{{ $t('common.close') }}</button>
       </div>
     </div>
   </div>
@@ -916,6 +955,25 @@ export default {
   border-radius: 8px;
   padding: 24px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.details-modal {
+  width: 90%;
+  max-width: 600px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.details-photo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.details-photo-list li {
+  margin-bottom: 8px;
+  word-break: break-all;
 }
 
 .modal-title {

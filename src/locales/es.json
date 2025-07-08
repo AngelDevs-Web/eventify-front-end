@@ -23,7 +23,8 @@
     }
   },
   "common": {
-    "retry": "Reintentar"
+    "retry": "Reintentar",
+    "close": "Cerrar"
   },
   "profile": {
     "profilePhoto": "Foto de perfil",
