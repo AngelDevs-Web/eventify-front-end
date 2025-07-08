@@ -23,8 +23,8 @@ const routes = [
     {path: '/tasks', name: 'Tasks', component: taskBoardComponent, meta: {title: 'Tasks'}},
     {path: '/social-events', name: 'SocialEvents', component: SocialEventscomponent, meta: {title: 'SocialEvents'} },
     { path: '/tasks',name: 'tasks',      component: TaskManagementComponent,     meta: { title: 'Tasks'}},
-    {path:"/", name:"Default", redirect:'/home'}
     {path: '/profiles/:id', name: 'ProfileInformation', component: ProfileComponent, meta: {title: 'Profile Info'}, props: true},
+    {path:"/", name:"Default", redirect:'/home'},
 ];
 
 
