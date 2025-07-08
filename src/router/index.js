@@ -5,6 +5,7 @@ import QuoteOrderManagementComponent from "../quote-management/pages/quote-order
 import ProfileComponent from "../public/pages/profile.component.vue";
 import taskBoardComponent from "../task-management/components/task-board.component.vue";
 import EventPageComponent from "../event-management/pages/event-page.component.vue";
+import SocialEventscomponent from "../event-management/pages/event-page.component.vue";
 
 const TaskManagementComponent = () => import('../task-management/pages/task-management.component.vue');
 
@@ -18,8 +19,9 @@ const routes = [
     {path:'/events/:id/edit', name:"event-edit", component: () => import('../event-management/components/create-and-edit-event.component.vue'),
     props: route=>({id:route.params.id})},
     {path: '/tasks', name: 'Tasks', component: taskBoardComponent, meta: {title: 'Tasks'}},
-    {path:"/", name:"Default", redirect:'/home'},
+    {path: '/social-events', name: 'SocialEvents', component: SocialEventscomponent, meta: {title: 'SocialEvents'} },
     { path: '/tasks',name: 'tasks',      component: TaskManagementComponent,     meta: { title: 'Tasks'}},
+    {path:"/", name:"Default", redirect:'/home'}
 
 ];
 

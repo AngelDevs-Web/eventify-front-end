@@ -6,14 +6,14 @@
 // Routes for events module
 export const eventRoutes = {
     // List events
-    list: '/events',
+    list: '/social-events',
 
     // Get event by ID
-    detail: id => `/events/${id}`,
+    detail: id => `/social-events/${id}`,
 
     // Create event
-    create: '/events/create',
+    create: '/social-events/create',
 
     // Edit event
-    edit: id => `/events/${id}/edit`
+    edit: id => `/social-events/${id}/edit`
 };
