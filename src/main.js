@@ -1,14 +1,15 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 import './style.css'
 import App from './App.vue'
-import i18n from "./i18n/index.js";
+import i18n from "./i18n/index.js"
 import router from './router/index.js'
-import PrimeVue from 'primevue/config';
-import Textarea from 'primevue/textarea';
-import AutoComplete from 'primevue/autocomplete';
-import 'primeflex/primeflex.css';
-import 'primeicons/primeicons.css';
-import Material from '@primeuix/themes/material';
+import PrimeVue from 'primevue/config'
+import Textarea from 'primevue/textarea'
+import AutoComplete from 'primevue/autocomplete'
+import 'primeflex/primeflex.css'
+import 'primeicons/primeicons.css'
+import Material from '@primeuix/themes/material'
 import {
     Avatar,
     Button,
@@ -21,12 +22,14 @@ import {
     ToastService,
     Toolbar,
     DatePicker, Tag
-} from "primevue";
-import FullCalendar from "@fullcalendar/vue3";
+} from "primevue"
+import FullCalendar from "@fullcalendar/vue3"
 
 const app = createApp(App)
+const pinia = createPinia()
 
-app.use(PrimeVue,{theme:{preset:Material},ripple:true})
+app.use(pinia)
+    .use(PrimeVue,{theme:{preset:Material},ripple:true})
     .use(ConfirmationService)
     .use(DialogService)
     .use(ToastService)
@@ -53,4 +56,31 @@ app.use(PrimeVue,{theme:{preset:Material},ripple:true})
     .component('pv-textarea', Textarea)
     .component('pv-dropdown', AutoComplete)
     .component('pv-tag',Tag)
-    .mount('#app')
+
+// Initialize authentication with error handling
+async function initAuth() {
+    try {
+        const { useAuthenticationStore } = await import('./iam/services/authentication.store.js')
+        const authStore = useAuthenticationStore()
+        authStore.initializeAuth()
+        console.log('Authentication initialized')
+    } catch (error) {
+        console.warn('Authentication not available:', error.message)
+        // Continue without auth - app should still work
+    }
+}
+
+// Initialize app
+async function initApp() {
+    try {
+        await initAuth()
+        app.mount('#app')
+        console.log('Eventify Platform loaded successfully')
+    } catch (error) {
+        console.error('Failed to initialize app:', error)
+        // Mount app anyway to show error state
+        app.mount('#app')
+    }
+}
+
+initApp()
