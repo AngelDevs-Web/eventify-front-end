@@ -14,7 +14,7 @@
   "profilePage": {
     "title": "Mi Perfil",
     "loading": "Cargando información del perfil...",
-    "errorLoading": "Error al cargar los datos del perfil. Por favor, asegúrate de que JSON Server esté funcionando.",
+    "errorLoading": "Error al cargar los datos del perfil. Asegúrate de que JSON Server esté ejecutándose.",
     "tabs": {
       "information": "Información",
       "albums": "Álbumes",
@@ -23,21 +23,22 @@
     }
   },
   "common": {
-    "retry": "Reintentar"
+    "retry": "Reintentar",
+    "close": "Cerrar"
   },
   "profile": {
     "profilePhoto": "Foto de perfil",
-    "contactInformation": "Información de contacto",
+    "contactInformation": "Información de Contacto",
     "emailAddress": "Correo electrónico:",
     "phoneNumber": "Número de teléfono:",
     "location": "Ubicación:",
     "website": "Sitio web:",
-    "aboutMe": "Sobre mí"
+    "aboutMe": "Acerca de mí"
   },
   "statistics": {
     "title": "Mis Estadísticas",
     "completedEvents": "Eventos Completados",
-    "sentQuotes": "Presupuestos Enviados",
+    "sentQuotes": "Cotizaciones Enviadas",
     "servedCustomers": "Clientes Atendidos",
     "averageRating": "Calificación Promedio"
   },
@@ -46,23 +47,23 @@
     "noCertifications": "No hay certificaciones disponibles"
   },
   "albums": {
-    "title": "Mis álbumes de eventos",
+    "title": "Mis Álbumes de Eventos",
     "subtitle": "Muestra tu trabajo con álbumes de fotos profesionales.",
-    "createButton": "+ Crear álbum",
+    "createButton": "+ Crear Álbum",
     "sortBy": "Ordenar por:",
-    "sortRecent": "Más recientes",
-    "sortOldest": "Más antiguos",
+    "sortRecent": "Más reciente",
+    "sortOldest": "Más antiguo",
     "sortNameAsc": "Nombre (A-Z)",
     "sortNameDesc": "Nombre (Z-A)",
     "sortPhotos": "Número de fotos",
     "show": "Mostrar:",
     "showCount": "{count} álbumes",
-    "selectAll": "Seleccionar todo",
-    "deleteSelected": "Eliminar seleccionados ({count})",
+    "selectAll": "Seleccionar Todo",
+    "deleteSelected": "Eliminar Seleccionados ({count})",
     "loading": "Cargando álbumes...",
     "retry": "Reintentar",
     "empty": "No se encontraron álbumes. Crea tu primer álbum para mostrar tu trabajo.",
-    "createNew": "Crear nuevo álbum",
+    "createNew": "Crear Nuevo Álbum",
     "emptyPage": "No hay álbumes para mostrar en esta página.",
     "goToFirst": "Ir a la primera página",
     "photosCount": "{count} fotos",
@@ -71,38 +72,38 @@
     "paginationInfo": "Mostrando {from} - {to} de {total} álbumes",
     "previous": "« Anterior",
     "next": "Siguiente »",
-    "confirmDeleteTitle": "Confirmar eliminación",
+    "confirmDeleteTitle": "Confirmar Eliminación",
     "confirmDeleteMessage": "¿Estás seguro de que deseas eliminar {count} {albums} seleccionados? Esta acción no se puede deshacer.",
     "singularAlbum": "álbum",
     "pluralAlbums": "álbumes",
     "cancel": "Cancelar",
     "deleting": "Eliminando...",
     "delete": "Eliminar",
-    "errorLoading": "Error al cargar los álbumes. Asegúrate de que JSON Server esté funcionando.",
+    "errorLoading": "Error al cargar álbumes. Asegúrate de que JSON Server esté ejecutándose.",
     "invalidDate": "Fecha inválida",
-    "viewAlbumFuture": "La funcionalidad para ver el álbum se implementará en el futuro",
+    "viewAlbumFuture": "La funcionalidad de ver álbum se implementará en el futuro",
     "saveError": "Error al guardar el álbum.",
-    "deleteSuccess": "{count} álbum(es) eliminado(s) correctamente.",
+    "deleteSuccess": "{count} álbum(es) eliminado(s) exitosamente.",
     "deleteError": "Error al eliminar algunos álbumes. Por favor, inténtalo de nuevo."
   },
   "reviews": {
-    "averageScore": "Puntuación media",
+    "averageScore": "Puntuación promedio",
     "basedOn": "Basado en {count} reseñas",
     "stars": "estrellas",
     "star": "estrella",
     "filterBy": "Filtrar por:",
     "allReviews": "Todas las reseñas",
     "sortBy": "Ordenar por:",
-    "mostRecent": "Más recientes",
-    "highestRating": "Mayor puntuación",
-    "lowestRating": "Menor puntuación",
+    "mostRecent": "Más reciente",
+    "highestRating": "Calificación más alta",
+    "lowestRating": "Calificación más baja",
     "page": "Página {current} de {total}",
     "previous": "Anterior",
     "next": "Siguiente",
     "respond": "Responder",
     "respondAgain": "Responder de nuevo",
     "loadingReviews": "Cargando reseñas...",
-    "errorLoading": "Error al cargar las reseñas",
+    "errorLoading": "Error al cargar reseñas",
     "retry": "Reintentar",
     "noReviews": "No se encontraron reseñas",
     "noReviewsFiltered": "No hay reseñas que coincidan con el filtro seleccionado"
@@ -124,12 +125,12 @@
     "filters": {
       "all": "Todos",
       "active": "Activos",
-      "pending": "Por confirmar",
-      "cancelled": "Cancelado"
+      "pending": "Pendientes",
+      "cancelled": "Cancelados"
     },
     "sort": {
-      "recent": "Recientes",
-      "oldest": "Antiguos",
+      "recent": "Reciente",
+      "oldest": "Más antiguo",
       "title": "Título"
     },
     "status": {
@@ -142,12 +143,12 @@
       "editTitle": "Editar Evento",
       "fields": {
         "title": "Título del Evento",
-        "titlePlaceholder": "Ingrese el título del evento",
+        "titlePlaceholder": "Ingresa el título del evento",
         "date": "Fecha del Evento",
         "customer": "Nombre del Cliente",
-        "customerPlaceholder": "Ingrese el nombre del cliente",
+        "customerPlaceholder": "Ingresa el nombre del cliente",
         "location": "Ubicación",
-        "locationPlaceholder": "Ingrese la ubicación del evento",
+        "locationPlaceholder": "Ingresa la ubicación del evento",
         "status": "Estado"
       },
       "buttons": {
@@ -164,8 +165,8 @@
     },
     "confirmation": {
       "title": "Confirmar Eliminación",
-      "message": "¿Está seguro que desea eliminar {count} evento(s) seleccionado(s)? Esta acción no se puede deshacer.",
-      "singleMessage": "¿Está seguro que desea eliminar este evento? Esta acción no se puede deshacer."
+      "message": "¿Estás seguro de que deseas eliminar {count} evento(s) seleccionado(s)? Esta acción no se puede deshacer.",
+      "singleMessage": "¿Estás seguro de que deseas eliminar este evento? Esta acción no se puede deshacer."
     },
     "labels": {
       "customer": "Cliente:",
@@ -173,35 +174,65 @@
     }
   },
   "tasks": {
-    "title": "Task Management",
-    "create": "Create New Task",
-    "edit": "Edit Task",
-    "taskTitle": "Task Title",
-    "taskDescription": "Description",
-    "column": "Column",
-    "empty": "No tasks in this column",
-    "emptyColumn": "Drag tasks here",
-    "addTask": "Add Task",
-    "cancel": "Cancel",
-    "save": "Save",
-    "delete": "Delete",
-    "confirmDelete": ", Are you sure you want to delete this task?",
-    "yes": "Yes",
+    "title": "Gestión de Tareas",
+    "create": "Crear Nueva Tarea",
+    "edit": "Editar Tarea",
+    "taskTitle": "Título de la Tarea",
+    "taskDescription": "Descripción",
+    "column": "Columna",
+    "empty": "No hay tareas en esta columna",
+    "emptyColumn": "Arrastra tareas aquí",
+    "addTask": "Agregar Tarea",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "confirmDelete": "¿Estás seguro de que deseas eliminar esta tarea?",
+    "yes": "Sí",
     "no": "No",
-    "column-1": "Tasks",
-    "column-2": "To Do",
-    "column-3": "In Progress",
-    "column-4": "Completed"
+    "column-1": "Tareas",
+    "column-2": "Por Hacer",
+    "column-3": "En Progreso",
+    "column-4": "Completado"
   },
   "commonTask": {
-    "required": "is required"
+    "required": "es requerido"
   },
-
-  "quoteOrder":{
-    "title": "Titulo",
+  "services": {
+    "myServices": "Mis Servicios",
+    "defineServices": "Define los servicios que ofreces a tus clientes.",
+    "addService": "Agregar Servicio",
+    "editService": "Editar Servicio",
+    "deleteService": "Eliminar Servicio",
+    "confirmDelete": "¿Estás seguro de que deseas eliminar este servicio?",
+    "serviceTitle": "Título del Servicio",
+    "description": "Descripción",
+    "priceRange": "Rango de Precio",
+    "category": "Categoría",
+    "from": "Desde",
+    "to": "Hasta",
+    "currency": "Moneda",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "basePrice": "Precio base:",
+    "loadingServices": "Cargando servicios...",
+    "errorLoading": "Error al cargar servicios",
+    "retry": "Reintentar",
+    "noServices": "Aún no has agregado ningún servicio.",
+    "addYourFirst": "Agrega tu primer servicio",
+    "successCreated": "Servicio creado exitosamente",
+    "successUpdated": "Servicio actualizado exitosamente",
+    "successDeleted": "Servicio eliminado exitosamente",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "page": "Página {current} de {total}",
+    "previous": "Anterior",
+    "next": "Siguiente"
+  },
+  "quoteOrder": {
+    "title": "Título",
     "eventType": "Tipo de Evento",
     "eventDate": "Fecha del Evento",
-    "guestQuantity": "Cantidad de Invitados",
+    "guestQuantity": "Número de Invitados",
     "location": "Ubicación",
     "state": "Estado",
     "includedServices": "Servicios Incluidos",
@@ -209,7 +240,7 @@
     "newQuote": "Nueva Cotización"
   },
   "serviceItem": {
-    "quoteOrder": "Cotización",
+    "quoteOrder": "Orden de Cotización",
     "description": "Descripción",
     "quantity": "Cantidad",
     "unitPrice": "Precio Unitario",

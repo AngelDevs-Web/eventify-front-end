@@ -7,6 +7,8 @@ import taskBoardComponent from "../task-management/components/task-board.compone
 import EventPageComponent from "../event-management/pages/event-page.component.vue";
 import SocialEventscomponent from "../event-management/pages/event-page.component.vue";
 
+
+
 const TaskManagementComponent = () => import('../task-management/pages/task-management.component.vue');
 
 const routes = [
@@ -22,7 +24,7 @@ const routes = [
     {path: '/social-events', name: 'SocialEvents', component: SocialEventscomponent, meta: {title: 'SocialEvents'} },
     { path: '/tasks',name: 'tasks',      component: TaskManagementComponent,     meta: { title: 'Tasks'}},
     {path:"/", name:"Default", redirect:'/home'}
-
+    {path: '/profiles/:id', name: 'ProfileInformation', component: ProfileComponent, meta: {title: 'Profile Info'}, props: true},
 ];
 
 

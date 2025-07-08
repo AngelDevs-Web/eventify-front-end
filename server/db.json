@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Andrea Ramirez",
       "title": "Event Organizer",
       "email": "andrea.ramirez@gmail.com",
@@ -12,7 +12,7 @@
       "profileImage": "https://b2472105.smushcdn.com/2472105/wp-content/uploads/2023/01/Perfil-Profesional-_48-820x1024.jpg?lossy=1&strip=1&webp=1"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Carlos Mendoza",
       "title": "Wedding Planner",
       "email": "carlos.mendoza@gmail.com",
@@ -25,7 +25,7 @@
   ],
   "statistics": [
     {
-      "id": 1,
+      "id": "1",
       "userId": 1,
       "completedEvents": 48,
       "sentQuotes": 67,
@@ -33,7 +33,7 @@
       "averageRating": 4.8
     },
     {
-      "id": 2,
+      "id": "2",
       "userId": 2,
       "completedEvents": 32,
       "sentQuotes": 45,
@@ -43,7 +43,7 @@
   ],
   "certifications": [
     {
-      "id": 1,
+      "id": "1",
       "userId": 1,
       "list": [
         "Certificate in Event Management",
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": "2",
       "userId": 2,
       "list": [
         "Wedding Planning Certification",
@@ -63,7 +63,7 @@
   ],
   "albums": [
     {
-      "id": 1,
+      "id": "1",
       "userId": 1,
       "title": "María and Juan's wedding",
       "description": "A beautiful wedding ceremony at the beach",
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": "2",
       "userId": 1,
       "title": "Annual Conference of Company ABC",
       "description": "Corporate conference with keynote speakers and networking",
@@ -354,7 +354,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": "3",
       "userId": 1,
       "title": "Corporate party XYZ",
       "description": "End of year celebration for XYZ Company",
@@ -531,7 +531,7 @@
       ]
     },
     {
-      "id": 4,
+      "id": "4",
       "userId": 1,
       "title": "Ana's Baby Shower",
       "description": "Celebration for Ana's first baby",
@@ -666,7 +666,7 @@
       ]
     },
     {
-      "id": 5,
+      "id": "5",
       "userId": 1,
       "title": "Pedro's Graduation",
       "description": "Graduation celebration for Pedro",
@@ -866,27 +866,27 @@
   ],
   "reviews": [
     {
-      "id": 1,
+      "id": "1",
       "reviewer": "Maria Lopez",
       "eventName": "María and Juan's wedding",
       "eventDate": "2025-05-15",
       "rating": 5,
       "content": "Andrea has been exceptional in planning our wedding. She attended to each of our requirements with professionalism and creativity. Her attention to detail and problem-solving skills made the whole process much easier. Totally recommended!",
       "date": "2025-05-15",
-      "responded": false
+      "responded": true
     },
     {
-      "id": 2,
+      "id": "2",
       "reviewer": "ABC Company",
       "eventName": "Annual Conference",
       "eventDate": "2025-06-22",
       "rating": 5,
       "content": "Excellent service for our annual conference. The organization was impeccable and everything went according to plan. The attendees were very satisfied with the event. We will definitely be using your services again for future events.",
       "date": "2025-06-30",
-      "responded": false
+      "responded": true
     },
     {
-      "id": 3,
+      "id": "3",
       "reviewer": "Carlos Ramirez",
       "eventName": "Launch Party",
       "eventDate": "2025-04-10",
@@ -896,7 +896,7 @@
       "responded": true
     },
     {
-      "id": 4,
+      "id": "4",
       "reviewer": "Laura Garcia",
       "eventName": "Business Meeting",
       "eventDate": "2025-03-25",
@@ -906,7 +906,7 @@
       "responded": false
     },
     {
-      "id": 5,
+      "id": "5",
       "reviewer": "Miguel Torres",
       "eventName": "Birthday Party",
       "eventDate": "2025-02-12",
@@ -916,7 +916,7 @@
       "responded": true
     },
     {
-      "id": 6,
+      "id": "6",
       "reviewer": "Sofia Martinez",
       "eventName": "Graduation Ceremony",
       "eventDate": "2025-01-20",
@@ -926,7 +926,7 @@
       "responded": false
     },
     {
-      "id": 7,
+      "id": "7",
       "reviewer": "Tech Solutions Inc.",
       "eventName": "Product Demonstration",
       "eventDate": "2024-12-10",
@@ -936,7 +936,7 @@
       "responded": true
     },
     {
-      "id": 8,
+      "id": "8",
       "reviewer": "Luis Mendoza",
       "eventName": "Anniversary Celebration",
       "eventDate": "2024-11-28",
@@ -946,7 +946,7 @@
       "responded": false
     },
     {
-      "id": 9,
+      "id": "9",
       "reviewer": "Edutech Solutions",
       "eventName": "Educational Workshop",
       "eventDate": "2024-11-15",
@@ -956,7 +956,7 @@
       "responded": true
     },
     {
-      "id": 10,
+      "id": "10",
       "reviewer": "Ana Rodriguez",
       "eventName": "Family Reunion",
       "eventDate": "2024-10-05",
@@ -966,7 +966,7 @@
       "responded": false
     },
     {
-      "id": 11,
+      "id": "11",
       "reviewer": "Global Marketing Ltd",
       "eventName": "Marketing Seminar",
       "eventDate": "2024-09-20",
@@ -976,7 +976,7 @@
       "responded": false
     },
     {
-      "id": 12,
+      "id": "12",
       "reviewer": "Elena Gomez",
       "eventName": "Art Exhibition",
       "eventDate": "2024-09-10",
@@ -986,7 +986,7 @@
       "responded": true
     },
     {
-      "id": 13,
+      "id": "13",
       "reviewer": "Roberto Sanchez",
       "eventName": "Cooking Workshop",
       "eventDate": "2024-08-05",
@@ -996,7 +996,7 @@
       "responded": false
     },
     {
-      "id": 14,
+      "id": "14",
       "reviewer": "Healthcare Institute",
       "eventName": "Medical Conference",
       "eventDate": "2024-07-15",
@@ -1006,7 +1006,7 @@
       "responded": true
     },
     {
-      "id": 15,
+      "id": "15",
       "reviewer": "Patricia Vega",
       "eventName": "Fashion Show",
       "eventDate": "2024-06-28",
@@ -1016,7 +1016,7 @@
       "responded": false
     },
     {
-      "id": 16,
+      "id": "16",
       "reviewer": "Daniel Ortiz",
       "eventName": "Book Launch",
       "eventDate": "2024-06-10",
@@ -1026,7 +1026,7 @@
       "responded": true
     },
     {
-      "id": 17,
+      "id": "17",
       "reviewer": "Fitness First Gym",
       "eventName": "Fitness Competition",
       "eventDate": "2024-05-20",
@@ -1036,7 +1036,7 @@
       "responded": false
     },
     {
-      "id": 18,
+      "id": "18",
       "reviewer": "Carmen Ruiz",
       "eventName": "Engagement Party",
       "eventDate": "2024-05-05",
@@ -1046,7 +1046,7 @@
       "responded": true
     },
     {
-      "id": 19,
+      "id": "19",
       "reviewer": "Finance Partners",
       "eventName": "Investment Seminar",
       "eventDate": "2024-04-15",
@@ -1056,7 +1056,7 @@
       "responded": false
     },
     {
-      "id": 20,
+      "id": "20",
       "reviewer": "Isabella Torres",
       "eventName": "Sweet Sixteen Party",
       "eventDate": "2024-04-01",
@@ -1131,19 +1131,6 @@
       "isActive": true,
       "createdAt": "2025-03-10T14:20:00.000Z",
       "updatedAt": "2025-03-10T14:20:00.000Z"
-    },
-    {
-      "id": "6",
-      "userId": "1",
-      "title": "Corporate Team Building",
-      "description": "Design and execution of team building activities for companies. Includes outdoor activities, workshops, competitive games, and post-event analysis to improve team performance.",
-      "priceFrom": 15000,
-      "priceTo": 35000,
-      "currency": "S/",
-      "category": "Corporate",
-      "isActive": true,
-      "createdAt": "2025-02-15T09:15:00.000Z",
-      "updatedAt": "2025-02-15T09:15:00.000Z"
     },
     {
       "id": "7",
@@ -1264,7 +1251,7 @@
   ],
   "events": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Wedding of Maria and Juan",
       "date": "2025-04-26",
       "customerName": "María López",
@@ -1273,7 +1260,7 @@
       "userId": 1
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Annual Conference",
       "date": "2025-06-22",
       "customerName": "ABC Company",
@@ -1282,7 +1269,7 @@
       "userId": 1
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Corporate Party",
       "date": "2025-07-10",
       "customerName": "Company XYZ",
@@ -1291,7 +1278,7 @@
       "userId": 1
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Baby Shower Ana",
       "date": "2025-08-05",
       "customerName": "Ana Rodríguez",
@@ -1300,7 +1287,7 @@
       "userId": 1
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Pedro's graduation",
       "date": "2025-08-20",
       "customerName": "Sanchez Family",
@@ -1315,12 +1302,12 @@
       "location": "Av El Sol 234",
       "status": "Active",
       "userId": 1,
-      "id": 6
+      "id": "6"
     }
   ],
   "events-calendar": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Event 1",
       "description": "2023-10-01",
       "startDate": "2025-05-01",
@@ -1329,7 +1316,7 @@
       "status": "upcoming"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Event 2",
       "description": "2023-10-03",
       "startDate": "2025-10-03",
@@ -1338,7 +1325,7 @@
       "status": "upcoming"
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Event 3",
       "description": "2023-10-05",
       "startDate": "2025-10-05",
@@ -1347,7 +1334,7 @@
       "status": "upcoming"
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Event 4",
       "description": "2023-10-07",
       "startDate": "2025-10-07",
@@ -1356,7 +1343,7 @@
       "status": "upcoming"
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Event 5",
       "description": "2023-10-09",
       "startDate": "2025-10-09",
@@ -1367,32 +1354,32 @@
   ],
   "boards": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Proyecto Website",
       "description": "Tareas para el desarrollo del website"
     }
   ],
   "columns": [
     {
-      "id": 1,
+      "id": "1",
       "boardId": 1,
       "title": "Por hacer",
       "order": 1
     },
     {
-      "id": 2,
+      "id": "2",
       "boardId": 1,
       "title": "En progreso",
       "order": 2
     },
     {
-      "id": 3,
+      "id": "3",
       "boardId": 1,
       "title": "Por revisar",
       "order": 3
     },
     {
-      "id": 4,
+      "id": "4",
       "boardId": 1,
       "title": "Completadas",
       "order": 4
@@ -1400,7 +1387,7 @@
   ],
   "tasks": [
     {
-      "id": 1,
+      "id": "1",
       "columnId": 3,
       "title": "Diseñar página de inicio",
       "description": "Crear wireframes y diseño visual",
@@ -1408,7 +1395,7 @@
       "createdAt": "2025-05-10T10:00:00.000Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "columnId": 4,
       "title": "Implementar autenticación",
       "description": "Sistema de login y registro",
@@ -1416,7 +1403,7 @@
       "createdAt": "2025-05-10T11:30:00.000Z"
     },
     {
-      "id": 3,
+      "id": "3",
       "columnId": 4,
       "title": "Desarrollar componentes UI",
       "description": "Crear botones, formularios y layouts",
@@ -1424,7 +1411,7 @@
       "createdAt": "2025-05-11T09:00:00.000Z"
     },
     {
-      "id": 5,
+      "id": "5",
       "columnId": 1,
       "title": "Campaña en redes sociales",
       "description": "Planear publicaciones para Instagram y Facebook",
@@ -1437,7 +1424,7 @@
       "description": "Probando hacer un UPDATE",
       "order": 1,
       "createdAt": "2025-05-15T22:00:22.734Z",
-      "id": 6
+      "id": "6"
     },
     {
       "columnId": 3,
@@ -1445,7 +1432,7 @@
       "description": "asdasdasdasdasda",
       "order": 2,
       "createdAt": "2025-05-16T05:42:32.229Z",
-      "id": 7
+      "id": "7"
     },
     {
       "columnId": 1,
@@ -1453,7 +1440,7 @@
       "description": "",
       "order": 2,
       "createdAt": "2025-05-16T12:05:16.784Z",
-      "id": 8
+      "id": "8"
     },
     {
       "columnId": 1,
@@ -1461,7 +1448,7 @@
       "description": "ASDASDASD",
       "order": 3,
       "createdAt": "2025-05-16T12:12:07.878Z",
-      "id": 9
+      "id": "9"
     }
   ]
 }

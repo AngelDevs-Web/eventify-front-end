@@ -1,11 +1,11 @@
 <script>
-  import ToolbarContent from "./public/components/toolbar-content.component.vue";
-  import HeaderContent from "./public/components/header-content.component.vue";
+import ToolbarContent from "./public/components/toolbar-content.component.vue";
+import HeaderContent from "./public/components/header-content.component.vue";
 
-  export default {
-    name: "app",
-    components: {HeaderContent, ToolbarContent}
-  }
+export default {
+  name: "app",
+  components: {HeaderContent, ToolbarContent}
+}
 </script>
 
 <template>

@@ -1,54 +1,137 @@
-<script>
-export default {
-  name: 'ProfileInformation',
-  props: {
-    profileImage: {
-      type: String,
-      default: 'placeholder'
-    },
-    name: {
-      type: String,
-      default: ' '
-    },
-    title: {
-      type: String,
-      default: ' '
-    },
-    email: {
-      type: String,
-      default: ' '
-    },
-    phone: {
-      type: String,
-      default: ' '
-    },
-    location: {
-      type: String,
-      default: ' '
-    },
-    website: {
-      type: String,
-      default: ' '
-    },
-    bio: {
-      type: String,
-      default: ''
-    }
+<script setup>
+import { ref, computed, onMounted,watch } from 'vue';
+import profileService from '../services/profile.service.js';
+import { profile as ProfileEntity } from '../model/profile.entity.js';
+
+const props = defineProps({
+  profileId: {
+    type: [Number, String],
+    required: true
+  }
+});
+const profile = ref(null);
+const backupProfile = ref(null); // For canceling edits
+const loading = ref(false);
+const error = ref('');
+const success = ref('');
+const isEditing = ref(false);
+
+/**
+ * Adapter: Converts backend response to frontend model
+ */
+function adaptProfile(response) {
+  // Split fullName if available
+  let name = '';
+  let lastName = '';
+  if (response.fullName) {
+    const parts = response.fullName.split(' ');
+    name = parts[0] || '';
+    lastName = parts.slice(1).join(' ') || '';
+  }
+  return {
+    id: response.id,
+    name,
+    lastName,
+    title: response.role || '',
+    avatarUrl: response.profileImage || '',
+    email: response.email || '',
+    phone: response.phoneNumber || '',
+    location: response.streetAddress || '',
+    webSite: response.webSite || '',
+    biography: response.biography || ''
+  };
+}
+
+/**
+ * Fetches profile from backend and adapts it to the frontend model
+ */
+async function fetchProfile() {
+  loading.value = true;
+  error.value = '';
+  success.value = '';
+  try {
+    const response = await profileService.getProfileById(props.profileId);
+    profile.value = ProfileEntity.fromJSON(adaptProfile(response));
+    backupProfile.value = ProfileEntity.fromJSON(adaptProfile(response));
+  } catch (err) {
+    error.value = 'Error loading profile';
+  } finally {
+    loading.value = false;
   }
 }
-</script>
 
+/**
+ * Saves edited profile to backend
+ */
+async function saveProfile() {
+  loading.value = true;
+  error.value = '';
+  success.value = '';
+  try {
+    // Prepare payload for backend
+    const payload = {
+      fullName: `${profile.value.name} ${profile.value.lastName}`,
+      email: profile.value.email,
+      streetAddress: profile.value.location,
+      phoneNumber: profile.value.phone,
+      webSite: profile.value.webSite,
+      biography: profile.value.biography,
+      role: profile.value.title,
+    };
+    const updated = await profileService.updateProfile(props.profileId, payload);
+    profile.value = ProfileEntity.fromJSON(adaptProfile(updated));
+    backupProfile.value = ProfileEntity.fromJSON(adaptProfile(updated));
+    isEditing.value = false;
+    success.value = 'Profile updated successfully!';
+  } catch (err) {
+    error.value = 'Error saving profile';
+  } finally {
+    loading.value = false;
+  }
+}
+
+/**
+ * Cancels editing and restores original values
+ */
+function cancelEdit() {
+  isEditing.value = false;
+  error.value = '';
+  success.value = '';
+  if (backupProfile.value) {
+    profile.value = ProfileEntity.fromJSON(backupProfile.value.toJSON());
+  }
+}
+
+// Computed properties for template bindings
+const name = computed(() => profile.value ? profile.value.fullName : '');
+const title = computed(() => profile.value ? profile.value.title : '');
+const email = computed(() => profile.value ? profile.value.email : '');
+const phone = computed(() => profile.value ? profile.value.phone : '');
+const location = computed(() => profile.value ? profile.value.location : '');
+const website = computed(() => profile.value ? profile.value.webSite : '');
+const bio = computed(() => profile.value ? profile.value.biography : '');
+const profileImage = computed(() => profile.value ? profile.value.avatarUrl : 'placeholder');
+
+onMounted(fetchProfile);
+// Load profile when component is mounted or when the id changes
+watch(
+    () => props.profileId,
+    () => {
+      if (props.profileId !== undefined && props.profileId !== null) {
+        fetchProfile();
+      }
+    },
+    { immediate: true }
+);
+</script>
 <template>
   <div class="profile-info-container">
-    <!-- Photo and name section with shadow effect -->
     <div class="profile-header">
       <div class="avatar-container">
         <div class="avatar-wrapper">
-          <!-- Use a div as placeholder when there is no image -->
           <div v-if="!profileImage || profileImage === 'placeholder'" class="avatar-placeholder">
             {{ $t('profile.profilePhoto') }}
           </div>
-          <!-- Show the image if it exists -->
           <img v-else :src="profileImage" :alt="$t('profile.profilePhoto')" class="profile-avatar" />
           <div class="avatar-shadow"></div>
         </div>
@@ -57,46 +140,56 @@ export default {
       <p class="profile-title">{{ title }}</p>
     </div>
 
-    <!-- Central container with limited width for Contact Info and About me -->
     <div class="centered-content">
-      <!-- Contact information section -->
       <div class="contact-section">
         <h3 class="section-title">{{ $t('profile.contactInformation') }}</h3>
 
         <div class="contact-grid">
           <div class="contact-row">
             <div class="contact-label">{{ $t('profile.emailAddress') }}</div>
-            <div class="contact-value">{{ email }}</div>
+            <div class="contact-value" v-if="!isEditing">{{ email }}</div>
+            <input v-else v-model="profile.email" placeholder="Email" />
           </div>
 
           <div class="contact-row">
             <div class="contact-label">{{ $t('profile.phoneNumber') }}</div>
-            <div class="contact-value">{{ phone }}</div>
+            <div class="contact-value" v-if="!isEditing">{{ phone }}</div>
+            <input v-else v-model="profile.phone" placeholder="Phone" />
           </div>
 
           <div class="contact-row">
             <div class="contact-label">{{ $t('profile.location') }}</div>
-            <div class="contact-value">{{ location }}</div>
+            <div class="contact-value" v-if="!isEditing">{{ location }}</div>
+            <input v-else v-model="profile.location" placeholder="Location" />
           </div>
 
           <div class="contact-row">
             <div class="contact-label">{{ $t('profile.website') }}</div>
-            <div class="contact-value">
+            <div class="contact-value" v-if="!isEditing">
               <a :href="website" class="website-link">{{ website }}</a>
             </div>
+            <input v-else v-model="profile.webSite" placeholder="Website" />
           </div>
         </div>
       </div>
 
-      <!-- "About me" section -->
       <div class="about-section">
         <h3 class="section-title">{{ $t('profile.aboutMe') }}</h3>
-        <p class="about-text">{{ bio }}</p>
+        <p class="about-text" v-if="!isEditing">{{ bio }}</p>
+        <textarea v-else v-model="profile.biography" placeholder="Biography"></textarea>
+      </div>
+
+      <div style="margin-top:2rem;">
+        <button v-if="!isEditing" @click="isEditing = true">Edit</button>
+        <button v-else @click="saveProfile" :disabled="loading">Save</button>
+        <button v-if="isEditing" @click="cancelEdit" :disabled="loading">Cancel</button>
+        <div v-if="error" style="color:red; margin-top:0.5rem;">{{ error }}</div>
+        <div v-if="success" style="color:green; margin-top:0.5rem;">{{ success }}</div>
+        <div v-if="loading" style="margin-top:0.5rem;">Saving...</div>
       </div>
     </div>
   </div>
 </template>
-
 <style scoped>
 .profile-info-container {
   background-color: #ffffff;
